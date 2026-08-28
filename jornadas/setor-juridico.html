@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jurídico — guia operacional · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc ops-doc">
+  <div class="ops-shell">
+    <nav class="ops-toc" aria-label="Neste guia">
+      <p>Neste guia</p>
+      <ol>
+        <li><a href="#papel">Seu papel</a></li>
+        <li><a href="#comecar">Minhas Tarefas</a></li>
+        <li><a href="#analisar">Trabalhar um caso</a></li>
+        <li><a href="#abas">Abas do caso</a></li>
+        <li><a href="#tarefas">Todas as tarefas</a></li>
+        <li><a href="#decidir">Qual decisão tomar</a></li>
+        <li><a href="#depois">O que acontece depois</a></li>
+        <li><a href="#status">Status</a></li>
+        <li><a href="#telas">Todas as telas</a></li>
+        <li><a href="#jornada">Jornada de treinamento</a></li>
+        <li><a href="#times">Quando outro time assume</a></li>
+        <li><a href="#handoffs">De quem recebo</a></li>
+        <li><a href="#excecoes">Se algo sair do fluxo</a></li>
+      </ol>
+    </nav>
+
+    <div class="ops-content">
+      <section id="papel">
+        <p class="ops-kicker">Guia operacional · Analista jurídico</p>
+        <h1>Jurídico</h1>
+        <p class="ops-lead">Você conduz a exoneração interna, fecha divergências do EasyJur e trata aditivos. São três filas distintas — não uma esteira única.</p>
+
+        <div class="ops-hero-grid">
+          <div class="ops-card">
+            <h3>Seu papel</h3>
+            <p>Seu trabalho começa quando um caso chega à sua fila (ou uma divergência / aditivo pede conferência) e termina quando o processo anda: documento conferido, andamento registrado, ajuizamento solicitado ou desfecho lançado.</p>
+            <ul>
+              <li>Você conduz a exoneração: checklist, andamentos, prazos, notificações e desfecho.</li>
+              <li>Você reconcilia divergências do EasyJur — sempre na mão, nunca sozinho.</li>
+              <li>Você trata aditivos (modelo, ZapSign, ticket de TI).</li>
+              <li>Você não reabre a análise de cobertura da Inadimplência.</li>
+              <li>Você não paga a indenização nem liquida a bonificação do escritório.</li>
+              <li>Você não usa a tela da loja: a imobiliária acompanha o mesmo processo em outro endereço.</li>
+            </ul>
+          </div>
+          <div class="ops-start">
+            <h3>Onde começo meu dia?</h3>
+            <strong>Minhas Tarefas</strong>
+            <p>É a sua fila. O sistema já separa o que precisa da sua atenção — documentos, prazos e ajuizamento — na ordem sugerida.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comecar">
+        <h2 class="ops-h2">Minhas Tarefas</h2>
+        <p class="ops-h2-sub">Sua home operacional. No menu: Painel, Minhas Tarefas ★, Contratos em exoneração, Aditivos, Divergências EasyJur, Documentos de apoio e Bonificação.</p>
+
+        <div class="ops-chips"><span class="ops-chip">Tela de trabalho</span><span class="ops-chip ops-chip--navy">Próxima ação sugerida</span><span class="ops-chip ops-chip--amber">Ordenada por prazo</span></div>
+
+        <p class="ops-note">A fila já considera o prazo de cada pendência. No topo, a Liza destaca a próxima ação sugerida. Comece por ela e siga a ordem: <strong>Vence hoje</strong>, depois <strong>Prazo crítico</strong> e, por último, <strong>No prazo</strong> — salvo orientação operacional específica. Cada card abre o caso (ou a fila certa) para documentos, prazos ou ajuizamento.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/tarefas</div>
+        <img src="../img/jornadas/juridico-tarefas.png" alt="Minhas Tarefas — a fila do seu dia" loading="lazy">
+        <figcaption>Minhas Tarefas — a fila do seu dia</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>O que cada card mostra</h3>
+          <p>São os dados da tarefa — o que você usa para saber o que fazer, em qual caso e com que urgência.</p>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>No card</th>
+                  <th>O que é</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tipo</td>
+                  <td><strong>Exoneração</strong>, <strong>Despejo</strong>, <strong>Aditivo</strong>, <strong>Documento</strong> ou <strong>Provisionamento</strong> — indica a natureza do trabalho, não a tela da loja.</td>
+                </tr>
+                <tr>
+                  <td>Nome da tarefa</td>
+                  <td>O trabalho da vez: Validar documento recusado, Conferir checklist, Verificar elegibilidade de ajuizamento etc.</td>
+                </tr>
+                <tr>
+                  <td>Resumo</td>
+                  <td>Linha curta com o contexto (contrato, imobiliária, o que falta — ex.: “AR sem confirmação de leitura”).</td>
+                </tr>
+                <tr>
+                  <td>Destino</td>
+                  <td>Para onde o card leva: Caso JR-…, Aditivos, ou o resumo do contrato se ainda não houver caso.</td>
+                </tr>
+                <tr>
+                  <td>Prazo</td>
+                  <td>Vence hoje, prazo crítico, no prazo. Define o grupo da fila.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Clique no card: o caso (ou a fila de aditivos) abre já no ponto certo. <strong>Contratos em exoneração</strong> é a carteira completa — use para consultar, não para escolher o próximo da vez.</p>
+        </article>
+
+        <p class="ops-note">Fila vazia: a Liza avisa que não há pendência e aponta a carteira de contratos em exoneração. Encerradas hoje ficam no fim da tela.</p>
+      </section>
+
+      <section id="analisar">
+        <h2 class="ops-h2">Trabalhar um caso</h2>
+        <p class="ops-h2-sub">A atividade central da exoneração. EasyJur e aditivos têm filas próprias — não abrem um caso JR e não misturam com este dossiê.</p>
+
+        <ol class="ops-steps">
+          <li>
+            <div>
+              <h3>Abra o caso pela sua fila</h3>
+              <p>Clique no card em Minhas Tarefas. O caso abre já na aba do trabalho (anexos, andamentos ou detalhes, conforme o tipo da tarefa).</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Percorra as abas</h3>
+              <p>Detalhes, Andamentos, Anexos, Prazos legais e Notificações. Cada uma tem um papel — a lista completa está na seção seguinte.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Confera o checklist e registre o que aconteceu</h3>
+              <p>Sete documentos da exoneração. Recuse o que estiver fora do critério. Registre andamento, anexe e envie notificação pelos botões do caso.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Decida o próximo passo irreversível só quando as travas liberarem</h3>
+              <p>Solicitar ajuizamento e registrar desfecho entram na linha do tempo com o seu nome. Não faça isso no treino da Liza — e, no dia a dia, só depois das travas verdes.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="ops-media-pair"><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-caso.png" alt="Caso JR-0024 — identidade, prazos e o trabalho do dia" loading="lazy">
+        <figcaption>Caso JR-0024 — identidade, prazos e o trabalho do dia</figcaption>
+      </figure><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <video controls preload="metadata" src="../img/jornadas/juridico-caso.mov">Seu navegador não reproduz este vídeo.</video>
+        <figcaption>Percurso no caso — abas e CTAs</figcaption>
+      </figure></div>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <video controls preload="metadata" src="../img/jornadas/juridico-exoneracao.mov">Seu navegador não reproduz este vídeo.</video>
+        <figcaption>Exoneração no caso — checklist e próximos passos</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>Checklist documental da exoneração (7 documentos)</h3>
+          <p>Sem o conjunto completo, o ajuizamento fica bloqueado. Procuração e notificação de ausência exigem o <strong>modelo oficial</strong> da plataforma — outro formato é recusado.</p>
+          <ul>
+            <li>Comprovante de endereço</li>
+            <li>Contrato de locação</li>
+            <li>Procuração (modelo oficial)</li>
+            <li>Identificação do locador</li>
+            <li>Confirmação de recebimento (AR)</li>
+            <li>Notificação de ausência de garantia (modelo oficial)</li>
+            <li>Declaração de débito</li>
+          </ul>
+          <details class="ops-details">
+    <summary>Critério de cada documento (abrir se for conferir)</summary>
+    <div class="ops-details-body"><div class="ops-table-wrap"><table class="ops-table">
+              <thead><tr><th>Documento</th><th>O que conferir</th><th>Recusa típica</th></tr></thead>
+              <tbody>
+                <tr><td>Comprovante de endereço</td><td>Em nome do locador (não da imobiliária). Validade máxima 60 dias.</td><td>Nome da imobiliária ou mais de 60 dias.</td></tr>
+                <tr><td>Contrato de locação</td><td>Vigente ou rescindido conforme o caso. Partes, imóvel e valores legíveis. Sem páginas faltando.</td><td>Incompleto, ilegível ou desatualizado.</td></tr>
+                <tr><td>Procuração</td><td>Só o modelo oficial (ícone alaranjado). Outros formatos caem automaticamente.</td><td>Fora do modelo Avaliza.</td></tr>
+                <tr><td>Identificação do locador</td><td>CPF/RG (PF) ou contrato social + representante (PJ). Deve bater com a procuração.</td><td>Documento do inquilino no lugar do locador.</td></tr>
+                <tr><td>Confirmação de recebimento (AR)</td><td>AR Online (leitura digital) <strong>ou</strong> assinatura de recebimento físico — não exija só um dos dois.</td><td>Falta leitura no AR Online ou comprovante assinado.</td></tr>
+                <tr><td>Notificação de ausência</td><td>Modelo oficial. Destinatário correto (locatário). Erro de endereço invalida o prazo de 30 dias.</td><td>Pessoa errada ou fora do modelo.</td></tr>
+                <tr><td>Declaração de débito</td><td>Valores e competências coerentes com a inadimplência coberta. Status “Aprovada” na Inadimplência <strong>não</strong> é pagamento efetuado — conferir com o Financeiro antes de ajuizar.</td><td>Valores divergentes ou débito já quitado.</td></tr>
+              </tbody>
+            </table></div></div>
+  </details>
+        </article>
+      </section>
+
+      <section id="abas">
+        <h2 class="ops-h2">Abas do detalhe do caso</h2>
+        <p class="ops-h2-sub">As cinco abas ficam abaixo do cabeçalho. A imobiliária não vê Prazos legais; lá Anexos aparece como Documentos. O desfecho não é uma aba — quando o prazo de 30 dias encerra, o botão fica no cabeçalho.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-detalhes.png" alt="Detalhes do caso — situação atual, dados e travas" loading="lazy">
+        <figcaption>Detalhes do caso — situação atual, dados e travas</figcaption>
+      </figure>
+
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Aba</th>
+                <th>Para que serve</th>
+                <th>Quando aparece</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Detalhes do caso</td>
+                <td>Situação atual (status, valor em risco, próximo passo), dados do caso (motivo, imóvel, advogado, abertura), travas financeiras e um recorte dos prazos. É a aba inicial.</td>
+                <td>Sempre.</td>
+              </tr>
+              <tr>
+                <td>Andamentos</td>
+                <td>Linha do tempo do processo. Você registra, edita e exclui o que aconteceu (petição, notificação, aditivo). Dá para ocultar um registro da imobiliária. Badge = quantidade.</td>
+                <td>Sempre.</td>
+              </tr>
+              <tr>
+                <td>Anexos</td>
+                <td>Dossiê: petições, notificações e laudos. Anexar, baixar e controlar o que a loja vê. Badge = quantidade.</td>
+                <td>Sempre. Na loja o rótulo é Documentos.</td>
+              </tr>
+              <tr>
+                <td>Prazos legais</td>
+                <td>Prazos do caso (início, limite, restante) com a base legal — por exemplo, prazo de exoneração. Badge laranja se estiver urgente ou esgotado.</td>
+                <td>Só para analista interno. A imobiliária não vê esta aba.</td>
+              </tr>
+              <tr>
+                <td>Notificações</td>
+                <td>Histórico de envios ao locatário e à imobiliária (destinatário, documento, data, status). Enviar o kit não é nesta aba — é pelos botões do cabeçalho.</td>
+                <td>Sempre. Na loja, só o que a imobiliária recebeu.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ops-media-pair"><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-andamento.png" alt="Andamentos — o que já aconteceu no processo" loading="lazy">
+        <figcaption>Andamentos — o que já aconteceu no processo</figcaption>
+      </figure><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-anexos.png" alt="Anexos — petições, notificações e laudos" loading="lazy">
+        <figcaption>Anexos — petições, notificações e laudos</figcaption>
+      </figure></div>
+        <div class="ops-media-pair"><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-prazos.png" alt="Prazos legais — início, limite e o que resta" loading="lazy">
+        <figcaption>Prazos legais — início, limite e o que resta</figcaption>
+      </figure><figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-desfecho.png" alt="Registrar desfecho — garantia restabelecida ou exonerada" loading="lazy">
+        <figcaption>Registrar desfecho — garantia restabelecida ou exonerada</figcaption>
+      </figure></div>
+
+        <article class="ops-block">
+          <h3>Como usar as abas no dia a dia</h3>
+          <dl class="ops-dl-grid"><div><dt>Comece em Detalhes</dt><dd>Leia a situação, o próximo passo e as travas. Se o prazo de 30 dias já esgotou, o desfecho está no cabeçalho — não numa aba.</dd></div><div><dt>Registre em Andamentos</dt><dd>Cada evento do processo fica na timeline. O que a loja não deve ver, oculte.</dd></div><div><dt>Anexos no dossiê</dt><dd>Petição, AR e aditivo entram aqui. Anexe o que ainda falta e recuse o que estiver fora do critério.</dd></div><div><dt>Prazos legais</dt><dd>É aqui que o prazo da exoneração aparece com início, limite e restante.</dd></div><div><dt>Notificações</dt><dd>Confira se locatário e imobiliária receberam o kit. Enviar é pelos botões do caso.</dd></div><div><dt>Desfecho</dt><dd>Prazo encerrado → Registrar desfecho: garantia restabelecida (locatário regularizou) ou exonerada. Irreversível.</dd></div></dl>
+        </article>
+      </section>
+
+      <section id="tarefas">
+        <h2 class="ops-h2">Todas as tarefas</h2>
+        <p class="ops-h2-sub">Os tipos que aparecem na fila. Cada card leva ao caso (com a aba certa) ou à fila de aditivos. EasyJur e bonificação não entram nesta lista — têm tela própria no menu.</p>
+
+        <p class="ops-group-label">Tarefas da sua fila</p>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">Documento</span></div>
+              <h3>Validar documento recusado</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Um anexo da exoneração foi recusado (por exemplo, AR sem confirmação de leitura) e precisa da sua conferência.</dd></div><div><dt>O que fazer</dt><dd>Abra o caso na aba Anexos. Confira o arquivo contra o critério. Peça correção ou aprove se já estiver certo.</dd></div><div><dt>Para onde o card leva</dt><dd>Caso jurídico, aba Anexos.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-8120</div>
+        <img src="../img/jornadas/juridico-anexos.png" alt="Documento recusado — conferência na aba Anexos" loading="lazy">
+        <figcaption>Documento recusado — conferência na aba Anexos</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">Exoneração</span></div>
+              <h3>Conferir checklist de exoneração</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso está em exoneração e o dossiê ainda não fechou os 7 documentos.</dd></div><div><dt>O que fazer</dt><dd>Percorra os itens. Recuse o que estiver fora do modelo ou do critério. Sem o conjunto completo, ajuizar fica bloqueado.</dd></div><div><dt>Para onde o card leva</dt><dd>Caso jurídico, aba Anexos.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-8099</div>
+        <img src="../img/jornadas/juridico-caso.png" alt="Checklist de exoneração no caso" loading="lazy">
+        <figcaption>Checklist de exoneração no caso</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--amber">Despejo</span></div>
+              <h3>Verificar elegibilidade de ajuizamento</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso parece pronto: checklist caminhando, indenização no radar, prazo em vista.</dd></div><div><dt>O que fazer</dt><dd>Confira as travas no cabeçalho antes de clicar em Solicitar ajuizamento. Se uma falhar, o sistema impede — não force.</dd></div><div><dt>Para onde o card leva</dt><dd>Caso jurídico, aba Andamentos.</dd></div><div><dt>Irreversível</dt><dd>Solicitar ajuizamento entra na linha do tempo com o seu nome. Não registre no treino da Liza.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-andamento.png" alt="Elegibilidade de ajuizamento — andamentos e travas" loading="lazy">
+        <figcaption>Elegibilidade de ajuizamento — andamentos e travas</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">Aditivo</span></div>
+              <h3>Conferir aditivo pendente</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Há um aditivo aguardando (por exemplo, correção de endereço no ZapSign).</dd></div><div><dt>O que fazer</dt><dd>Trabalhe na fila de Aditivos — não no caso JR. Siga o modelo oficial, o PDF e a assinatura externa.</dd></div><div><dt>Para onde o card leva</dt><dd>Tela Aditivos, não o dossiê de exoneração.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/aditivos</div>
+        <img src="../img/jornadas/juridico-aditivos.png" alt="Fila de aditivos — independente da exoneração" loading="lazy">
+        <figcaption>Fila de aditivos — independente da exoneração</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip ops-chip--amber">Sua fila · Financeiro paga</span></div>
+              <h3>Provisionar pagamento da exoneração</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso já está na via de exoneração e há valores a provisionar.</dd></div><div><dt>O que o card faz</dt><dd>Abre o caso na aba Detalhes, para você ver o contexto.</dd></div><div><dt>Quem informa data e comprovante</dt><dd>O <strong>Financeiro</strong>. Você não liquida NF nem marca o pagamento da indenização.</dd></div></dl>
+              <p class="ops-validate">Critério a validar com a operação: se esta tarefa é só lembrete na sua fila ou se você dispara o pedido ao Financeiro. O pagamento em si não é desta mesa.</p>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-detalhes.png" alt="Provisionar — o caso abre em Detalhes; quem paga é o Financeiro" loading="lazy">
+        <figcaption>Provisionar — o caso abre em Detalhes; quem paga é o Financeiro</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <p class="ops-group-label">Fora da fila de tarefas — telas próprias no menu</p>
+        <p class="ops-note">Divergências EasyJur e Bonificação não aparecem como card de Minhas Tarefas. Você as abre pelo menu. Tickets do setor ficam em Atendimento.</p>
+      </section>
+
+      <section id="decidir">
+        <h2 class="ops-h2">Qual decisão tomar?</h2>
+        <p class="ops-h2-sub">Não há um único botão de “aprovar o caso”. As decisões mudam conforme a fila: exoneração no dossiê, EasyJur na reconciliação, aditivo na fila própria.</p>
+
+        <p class="ops-group-label">No caso de exoneração</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Registrar andamento</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando algo aconteceu no processo e precisa ficar na linha do tempo (petição, notificação, contato, aditivo).</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Abrir o registro no caso. Dá para ocultar da imobiliária o que ela não deve ver.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O evento entra em Andamentos. O status do caso não muda só por registrar.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Recusar ou pedir documento</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o arquivo está ilegível, fora do modelo, no nome errado ou incompleto.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Conferência item a item. Procuração e notificação de ausência só no modelo oficial.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O item fica recusado até chegar a correção. Sem o checklist completo, ajuizar continua bloqueado.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Enviar notificação</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o próximo passo do cabeçalho pede kit ao locatário ou à imobiliária.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>O envio é pelos botões do caso, não pela aba Notificações (a aba só mostra o histórico).</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O envio aparece na aba Notificações, com destinatário, documento, data e status.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Solicitar ajuizamento</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando as travas estão verdes e o caso está pronto para o protocolo. A loja acompanha o mesmo processo na tela dela — você não “entrega” o dossiê à mão.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Quatro condições na orientação da Liza: checklist documental completo, indenização paga (se houve aprovação), sem pendência documental ativa e sem divergência EasyJur bloqueante. O sistema também pode bloquear se houver acordo CobMais vigente ou débito já quitado.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O caso passa a Ajuizado. A ação é <strong>irreversível</strong> e entra na linha do tempo com o seu nome.</dd>
+              </div>
+            </dl>
+            <p class="ops-validate">Indenização paga é necessária, mas não basta: checklist incompleto bloqueia. Confira as travas no próprio caso antes de clicar.</p>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Registrar desfecho</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o prazo de 30 dias da exoneração encerra. O botão fica no cabeçalho, não numa aba.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Escolher garantia restabelecida (locatário regularizou) ou garantia exonerada, com o motivo.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O caso segue o desfecho escolhido. Também é <strong>irreversível</strong>.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <p class="ops-group-label">Na fila EasyJur</p>
+        <p class="ops-note">A reconciliação é sempre humana. O sistema não fecha divergência sozinho. Não abre um caso JR e não mistura com aditivo.</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Corrigir e sincronizar novamente</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o dado de origem está errado (status, tipo de ação ou ID do contrato) e dá para ajustar.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Informar o valor correto e enviar. Se ainda ficar em conflito, o registro continua na fila — confira e tente de novo.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>Se a correção resolver, a divergência some da fila.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Justificar sem corrigir</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando a divergência não deve sincronizar — você registra o motivo e fecha na mão.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Justificativa preenchida.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>A divergência sai da fila. O caso JR, se existir, não é criado nem alterado por este clique.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <details class="ops-details">
+    <summary>Os três tipos de divergência que você vai ver</summary>
+    <div class="ops-details-body"><ul>
+            <li><strong>Sem correspondência encontrada</strong> — o EasyJur trouxe um registro que a Avaliza não mapeou.</li>
+            <li><strong>Rejeitado na importação</strong> — a carga recusou o registro; leia o motivo na tela.</li>
+            <li><strong>Conflito com um caso já existente na Avaliza</strong> — bateu com um JR que já existe; decida qual fonte vale.</li>
+          </ul></div>
+  </details>
+
+        <p class="ops-group-label">Na fila de aditivos</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Seguir o fluxo até a assinatura</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Mudança formal de valor, prazo, garantia ou partes.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Ticket de atendimento, modelo oficial no Drive, PDF anexado, assinatura no ZapSign (fora desta tela) e, depois de assinado, ticket para TI vincular o PDF ao contrato.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O aditivo segue independente da exoneração. ZapSign e Drive são ferramentas externas.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Devolver ao solicitante</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o pedido da imobiliária está incompleto ou errado.</dd>
+              </div>
+              <div>
+                <dt>O que isso significa</dt>
+                <dd>Devolver à imobiliária para correção — <strong>não</strong> é recusa definitiva do aditivo.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <details class="ops-details">
+    <summary>Passos do aditivo (abrir se for executar)</summary>
+    <div class="ops-details-body"><ol>
+            <li><strong>Abrir ticket de atendimento</strong> — registre a demanda (valor, prazo, garantia ou partes).</li>
+            <li><strong>Redigir no Drive Jurídico</strong> — use o modelo oficial. Não envie PDF solto sem passar pelo modelo.</li>
+            <li><strong>Exportar PDF e anexar</strong> — no ticket ou no registro do aditivo.</li>
+            <li><strong>Assinatura no ZapSign</strong> — autenticação avançada e testemunhas quando exigido; a assinatura não acontece dentro desta tela.</li>
+            <li><strong>Ticket TI pós-assinatura</strong> — para vincular o PDF assinado ao contrato no sistema.</li>
+          </ol></div>
+  </details>
+      </section>
+
+      <section id="depois">
+        <h2 class="ops-h2">O que acontece depois</h2>
+        <p class="ops-h2-sub">Depois de agir, o sistema move o caso. Você não precisa “entregar” o dossiê à loja à mão.</p>
+
+        <div class="ops-decision-grid">
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você solicita ajuizamento</strong> com as travas verdes</div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">O caso fica <strong>Ajuizado</strong>. A imobiliária vê o mesmo processo na tela dela.</div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você registra o desfecho</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">Garantia restabelecida ou exonerada. O registro é irreversível.</div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você recusa um documento</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">O item fica pendente. Sem o checklist completo, ajuizar continua bloqueado.</div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você fecha uma divergência EasyJur</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">Sai da fila EasyJur. Não cria e não anda o caso de exoneração.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="status">
+        <h2 class="ops-h2">Status que você vai encontrar</h2>
+        <p class="ops-h2-sub">São os nomes que aparecem nos badges e na carteira — não os códigos internos. A imobiliária vê alguns rótulos um pouco diferentes (ex.: “Em revisão documental” no lugar de “Aguardando documentos”).</p>
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Status exibido</th>
+                <th>O que significa</th>
+                <th>O que você precisa fazer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Em exoneração</td>
+                <td>O processo jurídico interno está em curso.</td>
+                <td>Andar checklist, andamentos, prazos e notificações.</td>
+              </tr>
+              <tr>
+                <td>Aguardando documentos</td>
+                <td>Falta peça do dossiê.</td>
+                <td>Conferir o que chegou; recusar o que estiver fora do critério; cobrar o que falta.</td>
+              </tr>
+              <tr>
+                <td>Aguardando ajuizamento</td>
+                <td>Documentação já caminhou; o próximo passo é o protocolo — se as travas liberarem.</td>
+                <td>Conferir elegibilidade. Só então Solicitar ajuizamento.</td>
+              </tr>
+              <tr>
+                <td>Ajuizado</td>
+                <td>O ajuizamento foi solicitado e registrado.</td>
+                <td>Acompanhar andamentos. Não dá para desfazer o clique.</td>
+              </tr>
+              <tr>
+                <td>Acordo CobMais</td>
+                <td>Há acordo vigente. O ajuizamento fica bloqueado enquanto o acordo estiver em vigor.</td>
+                <td>Acompanhar. Não force o ajuizamento.</td>
+              </tr>
+              <tr>
+                <td>Exoneração suspensa</td>
+                <td>A via jurídica foi suspensa — em geral porque o débito foi quitado.</td>
+                <td>Consulta. Não há causa para ajuizar.</td>
+              </tr>
+              <tr>
+                <td>Em ação de despejo</td>
+                <td>O despejo está em curso.</td>
+                <td>Registrar andamentos e prazos do despejo.</td>
+              </tr>
+              <tr>
+                <td>Encerrado</td>
+                <td>O caso jurídico fechou.</td>
+                <td>Consulta. Sai da fila de trabalho.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ops-note">Na bonificação os status são outros: <strong>A conferir</strong> (você confere), <strong>Conferida</strong> (segue ao Financeiro), <strong>Liquidada</strong> (eles pagaram) e <strong>Divergente</strong> (abre o caso, ajusta e volta para conferir). Você não liquida por aqui.</p>
+      </section>
+
+      <section id="telas">
+        <h2 class="ops-h2">Todas as telas do setor</h2>
+        <p class="ops-h2-sub">Só o que existe hoje no menu da analista e no detalhe do caso. Abrir uma tela de consulta não avança o caso. EasyJur, aditivos e bonificação são filas próprias — não misture com o dossiê JR.</p>
+
+        <p class="ops-group-label">Menu da analista — onde você trabalha</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Minhas Tarefas</h3>
+          <p>Sua fila. Comece o dia aqui. Grupos: Vence hoje, Prazo crítico, No prazo; no fim, Encerradas hoje. Atalho no topo para Contratos em exoneração.</p>
+          <p class="ops-route">Jurídico → Minhas Tarefas ★</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/tarefas</div>
+        <img src="../img/jornadas/juridico-tarefas.png" alt="Minhas Tarefas" loading="lazy">
+        <figcaption>Minhas Tarefas</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Detalhe do caso (aberto pela tarefa)</h3>
+          <p>Onde você confere as abas, anexa, registra andamento, envia notificação, solicita ajuizamento e registra desfecho.</p>
+          <p class="ops-route">Aberto a partir do card da fila</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
+        <img src="../img/jornadas/juridico-caso.png" alt="Detalhe do caso — cabeçalho, etapas e abas" loading="lazy">
+        <figcaption>Detalhe do caso — cabeçalho, etapas e abas</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Divergências EasyJur</h3>
+          <p>Fila própria de reconciliação. Corrigir e sincronizar, ou justificar sem corrigir. Não abre um JR.</p>
+          <p class="ops-route">Jurídico → Divergências EasyJur</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/divergencias-easyjur</div>
+        <img src="../img/jornadas/juridico-easyjur.png" alt="Fila de divergências EasyJur" loading="lazy">
+        <figcaption>Fila de divergências EasyJur</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Aditivos</h3>
+          <p>Mudança formal de valor, prazo, garantia ou partes. Assinatura no ZapSign; ticket de TI depois. Independente da exoneração.</p>
+          <p class="ops-route">Jurídico → Aditivos</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/aditivos</div>
+        <img src="../img/jornadas/juridico-aditivos.png" alt="Fila de aditivos" loading="lazy">
+        <figcaption>Fila de aditivos</figcaption>
+      </figure>
+        </article>
+
+        <p class="ops-group-label">Menu da analista — onde você consulta ou confere</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Contratos em exoneração</h3>
+          <p>Carteira completa. Não é a fila do dia — abrir um caso daqui é consulta, a menos que você já tenha tarefa nele.</p>
+          <p class="ops-route">Jurídico → Contratos em exoneração</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico</div>
+        <img src="../img/jornadas/juridico-fila.png" alt="Carteira de contratos em exoneração" loading="lazy">
+        <figcaption>Carteira de contratos em exoneração</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Painel</h3>
+          <p>Números do dia (volume, prazos, produção). Não substitui a fila: o próximo caso continua em Minhas Tarefas.</p>
+          <p class="ops-route">Jurídico → Painel</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/dashboard</div>
+        <img src="../img/jornadas/juridico-painel.png" alt="Painel do setor" loading="lazy">
+        <figcaption>Painel do setor</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Documentos de apoio</h3>
+          <p>Biblioteca de modelos (procuração, notificações). Não é a fila e não fecha o caso — é onde você pega o modelo oficial.</p>
+          <p class="ops-route">Jurídico → Documentos de apoio</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/documentos-de-apoio</div>
+        <img src="../img/jornadas/juridico-docs.png" alt="Documentos de apoio" loading="lazy">
+        <figcaption>Documentos de apoio</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Conferência</span><span class="ops-chip ops-chip--amber">Financeiro liquida</span></div>
+          <h3>Bonificação</h3>
+          <p>Você confere a bonificação do escritório parceiro (exoneração concluída, ajuizamento, acordo, despejo, encerramento). O Financeiro liquida. Se estiver divergente, abra o caso, ajuste e volte para conferir — não tente pagar por aqui.</p>
+          <p class="ops-route">Jurídico → Bonificação</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/bonificacao</div>
+        <img src="../img/jornadas/juridico-bonificacao.png" alt="Bonificação do escritório — conferir, não liquidar" loading="lazy">
+        <figcaption>Bonificação do escritório — conferir, não liquidar</figcaption>
+      </figure>
+        </article>
+
+        <p class="ops-group-label">Treinamento — não é a fila do dia</p>
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--mute">Treino</span></div>
+          <h3>Jornada</h3>
+          <p>Tela de treinamento guiado pela Liza, no sistema real. Não avança caso, não registra ajuizamento nem desfecho. Detalhes na seção <a href="#jornada">Jornada de treinamento</a>.</p>
+          <p class="ops-route">Configurações → Jornada</p>
+        </article>
+
+        <p class="ops-group-label">Tela da imobiliária — não é a sua mesa</p>
+        <p class="ops-note">A loja acompanha o mesmo processo em outro endereço. Não use essa tela como fila do dia e não peça à imobiliária que entre em Minhas Tarefas.</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--mute">Imobiliária</span></div>
+          <h3>Jurídico da loja</h3>
+          <p>Acompanhamento e documentos de apoio do lado da imobiliária. Ajuizamento que a loja vê não substitui o seu dossiê.</p>
+        </article>
+      </section>
+
+      <section id="jornada">
+        <h2 class="ops-h2">Jornada de treinamento</h2>
+        <p class="ops-h2-sub">Treino no sistema real, guiado pela Liza. Não é Minhas Tarefas e não substitui a operação do dia.</p>
+
+        <div class="ops-chips"><span class="ops-chip ops-chip--mute">Treino</span><span class="ops-chip ops-chip--navy">Cerca de 15 min</span><span class="ops-chip ops-chip--amber">Progresso salvo</span></div>
+
+        <p class="ops-note">Esta tela não ajuíza nem registra desfecho. A jornada pede que você abra filas e casos de verdade, mas as decisões críticas são mini-casos — você nunca registra uma ação irreversível.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/jornada</div>
+        <img src="../img/jornadas/juridico-jornada.png" alt="Jornada do Analista Jurídico — capítulos, confiança e o botão para começar ou retomar" loading="lazy">
+        <figcaption>Jornada do Analista Jurídico — capítulos, confiança e o botão para começar ou retomar</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>Onde fica e como usar</h3>
+          <p>No menu: <strong>Configurações → Jornada</strong>. Título na tela: Jurídico · Jornada do Analista Jurídico.</p>
+          <ul>
+            <li><strong>Começar jornada</strong> (ou <strong>Retomar jornada</strong>, se você já tinha começado) leva você às telas reais. A Liza acompanha cada passo e detecta sozinha quando você conclui.</li>
+            <li>A confiança começa em 30% e sobe até 100%. Ao terminar, a tela libera o certificado.</li>
+            <li>Pode pausar a qualquer momento: o progresso fica salvo e você volta por esta mesma tela.</li>
+          </ul>
+        </article>
+
+        <article class="ops-block">
+          <h3>Os cinco capítulos</h3>
+          <p>A timeline à esquerda mostra o que vem a seguir. À direita, a barra de progresso (confiança, etapas, capítulos e tempo estimado).</p>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Capítulo</th>
+                  <th>O que você pratica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. Sua missão</td>
+                  <td>O papel do jurídico e por onde começar o dia.</td>
+                </tr>
+                <tr>
+                  <td>2. O que fazer hoje</td>
+                  <td>Tarefas por urgência e a carteira de exoneração.</td>
+                </tr>
+                <tr>
+                  <td>3. Um caso na tela</td>
+                  <td>Detalhes, andamentos e prazos legais.</td>
+                </tr>
+                <tr>
+                  <td>4. Decisões críticas</td>
+                  <td>Ajuizamento e bifurcações — em mini-casos, sem registrar ação irreversível.</td>
+                </tr>
+                <tr>
+                  <td>5. Ferramentas e governança</td>
+                  <td>Aditivos, EasyJur e o certificado ao concluir.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="times">
+        <h2 class="ops-h2">Quando outro time assume</h2>
+        <p class="ops-h2-sub">Você conduz a via jurídica interna. O restante da operação continua com o dono de cada etapa.</p>
+
+        <div class="ops-team-grid">
+          <article class="ops-team">
+            <h3>Inadimplência</h3>
+            <p>Entra antes de você: analisa a cobertura. Você recebe o caso já com essa decisão feita.</p>
+            <p>Não reabra se a cobertura cabe. Encaminhar para o jurídico não é conduzir a exoneração — isso é seu.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Financeiro</h3>
+            <p>Paga a indenização já aprovada e liquida a bonificação que você conferiu. Também provisiona valores da exoneração.</p>
+            <p>Status “Aprovada” na Inadimplência não significa pagamento efetuado — confira antes de ajuizar.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Imobiliária</h3>
+            <p>Acompanha o mesmo processo na tela dela, envia documento e solicita aditivo. Não usa a sua fila.</p>
+            <p>Devolver um aditivo ao solicitante é devolver à loja para correção, não recusar de vez.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Atendimento</h3>
+            <p>Entra quando alguém abre um chamado triado para o jurídico.</p>
+            <p>O ticket não substitui o dossiê nem a fila EasyJur. A decisão continua no caso ou na tela certa.</p>
+          </article>
+          <article class="ops-team">
+            <h3>TI (via ticket)</h3>
+            <p>Entra depois da assinatura do aditivo: vincula o PDF assinado ao contrato.</p>
+            <p>Você abre o chamado; não faz a vinculação no lugar deles.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="handoffs">
+        <h2 class="ops-h2">De quem recebo e para quem passo</h2>
+        <p class="ops-h2-sub">Em dez segundos: a Inadimplência dispara a via jurídica quando o caso pede; você conduz; a loja vê o mesmo processo em paralelo.</p>
+
+        <div class="ops-diagram" role="img" aria-label="Quem envia para o Jurídico e para quem o caso segue">
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Inadimplência<small>Caso pede via jurídica</small></div>
+            <div class="ops-diagram-node">Atendimento<small>Chamado vira contexto</small></div>
+          </div>
+          <p class="ops-diagram-arrow">enviam o trabalho ↓</p>
+          <div class="ops-diagram-you">Jurídico<small>Você conduz exoneração, EasyJur e aditivos</small></div>
+          <p class="ops-diagram-arrow">em paralelo e depois ↓</p>
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Imobiliária<small>Acompanha o mesmo processo</small></div>
+            <div class="ops-diagram-node">Financeiro<small>Indenização e bonificação</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="excecoes">
+        <h2 class="ops-h2">Quando algo sair do fluxo esperado</h2>
+        <p class="ops-h2-sub">Situações que o produto já trata. Se a tela bloquear, leia o motivo no próprio caso antes de procurar outro time.</p>
+
+        <article class="ops-exception">
+          <h3>Não consigo solicitar ajuizamento</h3>
+          <p>O sistema impede se faltar checklist, se a indenização aprovada ainda não foi paga, se há pendência documental, divergência EasyJur bloqueante, acordo CobMais vigente ou débito já quitado.</p>
+          <p><strong>O que fazer.</strong> Leia a trava no caso. Complete o dossiê ou aguarde o acordo. Não force o clique — e não registre ajuizamento no treino da Liza.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Documento recusado ou fora do modelo</h3>
+          <p>Procuração e notificação de ausência só no modelo oficial. Comprovante em nome da imobiliária, AR sem leitura e identificação do inquilino no lugar do locador são recusas típicas.</p>
+          <p><strong>O que fazer.</strong> Recuse com o motivo. Peça o arquivo certo. Sem o conjunto, ajuizar continua bloqueado.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Indenização “aprovada” mas ainda não paga</h3>
+          <p>O status na Inadimplência não é comprovante de pagamento. A declaração de débito precisa bater com o que o Financeiro efetivamente pagou.</p>
+          <p><strong>O que fazer.</strong> Confira com o Financeiro antes de ajuizar. A trava de indenização é do servidor no momento da solicitação.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Acordo CobMais ativo</h3>
+          <p>O status pode aparecer como Acordo CobMais. Enquanto o acordo estiver vigente, o ajuizamento fica bloqueado.</p>
+          <p><strong>O que fazer.</strong> Acompanhar. Ajuizamento prematuro queima a chance de acordo.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Divergência EasyJur não some depois de corrigir</h3>
+          <p>A correção foi aplicada, mas o registro continua como sem correspondência, rejeitado ou em conflito.</p>
+          <p><strong>O que fazer.</strong> Confira status, tipo e ID do contrato e tente de novo — ou justifique sem corrigir, se a sincronização não deve acontecer.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Aditivo devolvido</h3>
+          <p>“Devolver ao solicitante” no ticket manda de volta à imobiliária.</p>
+          <p><strong>O que fazer.</strong> Oriente a correção. Não trate como recusa definitiva.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Bonificação divergente</h3>
+          <p>O valor ou o fato gerador não fechou na conferência.</p>
+          <p><strong>O que fazer.</strong> Abra o caso, ajuste e volte para conferir. Não tente liquidar — isso é do Financeiro.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Chamado no Atendimento</h3>
+          <p>Alguém tem dúvida ou bloqueio ligado a um caso, aditivo ou EasyJur.</p>
+          <p><strong>O que fazer.</strong> Responder o ticket. A decisão continua no dossiê ou na fila certa, não no chamado.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>A loja pergunta por Minhas Tarefas</h3>
+          <p>Essa tela é da Avaliza. A imobiliária acompanha em Minha imobiliária → Jurídico.</p>
+          <p><strong>O que fazer.</strong> Oriente o URL certo. Não compartilhe a sua fila.</p>
+        </article>
+      </section>
+
+      <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+      <footer>Setor · Jurídico · agosto/2026</footer>
+    </div>
+  </div>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

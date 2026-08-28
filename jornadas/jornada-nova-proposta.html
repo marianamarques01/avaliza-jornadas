@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova proposta · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Originar garantia · jornada independente</p>
+  <h1>Nova proposta</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-imobiliaria.html">Imobiliária</a> — Responsável da loja (corretor e gestor)</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Corretor/gestor tem locatário + imóvel e clica em Nova proposta.</dd></div>
+    <div><dt>Resultado</dt><dd>Motor decide: aprovado, solidário, banca ou negado. A proposta acaba aqui para o corretor.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Cada proposta é um ciclo. Não espera a banca (outro ator, outro gatilho).</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Corretor</strong> <code>corretor</code></li><li><strong>Gestor da imobiliária</strong> <code>admin_imobiliaria</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-imobiliaria.html">Imobiliária</a></dd></div>
+    <div><dt>Outros setores</dt><dd><span class='muted'>Ninguém além do dono</span></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <a class="graph-neighbor" href="jornada-onboarding.html">
+    <span class="chip">pode disparar</span>
+    <strong>Onboarding da imobiliária</strong>
+    <span>Cadastro aprovado — a loja já pode originar · dono: Comercial</span>
+  </a>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-banca.html">
+    <span class="chip">pode disparar</span>
+    <strong>Banca humanizada</strong>
+    <span>Motor escala para revisão humana · dono: Crédito</span>
+  </a><a class="graph-neighbor" href="jornada-ativacao.html">
+    <span class="chip">pode disparar</span>
+    <strong>Ativação do locatário</strong>
+    <span>Aprovado (motor ou banca) · dono: Portais do locatário</span>
+  </a><a class="graph-neighbor" href="jornada-assinar.html">
+    <span class="chip">pode disparar</span>
+    <strong>Assinar o contrato</strong>
+    <span>Aprovado — link ZapSign é outro token · dono: Portais do locatário</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sequência interna (só aqui)</h2>
+        <p class="lead">Estes momentos são obrigatórios <em>dentro</em> desta jornada. Não são o grafo global e não são o menu do papel.</p>
+        <ol class="journey-moments"><li>
+              <h3>Composição</h3>
+              <p>Sem endereço e valores o wizard não anda.</p>
+            </li><li>
+              <h3>Locatários</h3>
+              <p>CPF do titular. Demo aprovado: 107.194.476-23.</p>
+            </li><li>
+              <h3>Plano</h3>
+              <p>Premium/Smart/Pop/Up — o motor ainda manda no desfecho.</p>
+            </li><li>
+              <h3>Pagamento</h3>
+              <p>Modalidade da garantia.</p>
+            </li><li>
+              <h3>Revisão e simular</h3>
+              <p>Único momento em que a sequência é obrigatória. Simular gera o desfecho.</p>
+            </li></ol>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas</div>
+        <img src="../img/jornadas/corretor-propostas.png" alt="Nova proposta — /propostas" loading="lazy">
+        <figcaption><code>/propostas</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas/nova/composicao</div>
+        <img src="../img/jornadas/corretor-np1.png" alt="Nova proposta — /propostas/nova/composicao" loading="lazy">
+        <figcaption><code>/propostas/nova/composicao</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas/nova/locatarios</div>
+        <img src="../img/jornadas/corretor-np2.png" alt="Nova proposta — /propostas/nova/locatarios" loading="lazy">
+        <figcaption><code>/propostas/nova/locatarios</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas/nova/plano</div>
+        <img src="../img/jornadas/corretor-np3.png" alt="Nova proposta — /propostas/nova/plano" loading="lazy">
+        <figcaption><code>/propostas/nova/plano</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas/nova/modalidade</div>
+        <img src="../img/jornadas/corretor-np4.png" alt="Nova proposta — /propostas/nova/modalidade" loading="lazy">
+        <figcaption><code>/propostas/nova/modalidade</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/propostas/nova/revisao</div>
+        <img src="../img/jornadas/corretor-np5.png" alt="Nova proposta — /propostas/nova/revisao" loading="lazy">
+        <figcaption><code>/propostas/nova/revisao</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Histórico de crédito e limites do motor não fazem parte desta jornada.</li><li>Aprovar na banca é outra jornada, com outro dono.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ticket de atendimento · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Lateral · jornada independente</p>
+  <h1>Ticket de atendimento</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-atendimento.html">Atendimento</a> — Responsável de Atendimento</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Alguém tem uma dúvida/bloqueio e abre chamado (ou a Liza faz handoff).</dd></div>
+    <div><dt>Resultado</dt><dd>Ticket triado e finalizado pelo setor dono.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Atravessa o grafo. Pode apontar para banca, IN ou jurídico — não os substitui.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Analista de atendimento</strong> <code>atendimento</code></li><li><strong>Analista de inadimplência</strong> <code>inadimplencia</code></li><li><strong>Analista jurídico</strong> <code>juridico</code></li><li><strong>Analista de CS</strong> <code>cs</code></li><li><strong>Corretor</strong> <code>corretor</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-atendimento.html">Atendimento</a></dd></div>
+    <div><dt>Outros setores</dt><dd><a class="chip" href="setor-inadimplencia.html">Inadimplência</a> <a class="chip" href="setor-juridico.html">Jurídico</a> <a class="chip" href="setor-cs.html">Customer Success</a> <a class="chip" href="setor-imobiliaria.html">Imobiliária</a></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <p class='muted'>Ponto de entrada. Ninguém neste grafo é obrigado a chegar aqui.</p>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-cobertura.html">
+    <span class="chip">pode disparar</span>
+    <strong>Analisar cobertura</strong>
+    <span>Chamado vira contexto de um caso IN · dono: Inadimplência</span>
+  </a><a class="graph-neighbor" href="jornada-banca.html">
+    <span class="chip">pode disparar</span>
+    <strong>Banca humanizada</strong>
+    <span>Imobiliária pergunta por que reprovou · dono: Crédito</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sem linha do tempo forçada</h2>
+        <p class="lead">Este ciclo não tem etapas ordenadas. A tela abaixo é evidência, não passo 1 de N.</p>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento</div>
+        <img src="../img/jornadas/atendimento-fila.png" alt="Ticket de atendimento — /atendimento" loading="lazy">
+        <figcaption><code>/atendimento</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento/novo</div>
+        <img src="../img/jornadas/atendimento-novo.png" alt="Ticket de atendimento — /atendimento/novo" loading="lazy">
+        <figcaption><code>/atendimento/novo</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento/tickets/TCK-01</div>
+        <img src="../img/jornadas/atendimento-ticket.png" alt="Ticket de atendimento — /atendimento/tickets/TCK-01" loading="lazy">
+        <figcaption><code>/atendimento/tickets/TCK-01</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Abrir ticket não analisa crédito nem cobre IN.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

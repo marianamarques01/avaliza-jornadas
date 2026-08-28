@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baixa de indenização · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Cobrir inadimplência · jornada independente</p>
+  <h1>Baixa de indenização</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-financeiro.html">Financeiro</a> — Responsável Financeiro Avaliza</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Cobertura já aprovada, valor a pagar. Financeiro não reabre mérito.</dd></div>
+    <div><dt>Resultado</dt><dd>Indenização marcada paga.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Começa quando o mérito acabou. Dono: Financeiro.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Analista financeiro</strong> <code>financeiro_avaliza</code></li><li><strong>Admin Avaliza</strong> <code>admin_avaliza</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-financeiro.html">Financeiro</a></dd></div>
+    <div><dt>Outros setores</dt><dd><a class="chip" href="setor-admin.html">Admin Avaliza</a></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <a class="graph-neighbor" href="jornada-cobertura.html">
+    <span class="chip">pode disparar</span>
+    <strong>Analisar cobertura</strong>
+    <span>Cobertura aprovada — mérito encerrado · dono: Inadimplência</span>
+  </a>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <p class='muted'>Não dispara outra jornada. O ciclo acaba aqui.</p>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sem linha do tempo forçada</h2>
+        <p class="lead">Este ciclo não tem etapas ordenadas. A tela abaixo é evidência, não passo 1 de N.</p>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia</div>
+        <img src="../img/jornadas/financeiro-inad.png" alt="Baixa de indenização — /inadimplencia" loading="lazy">
+        <figcaption><code>/inadimplencia</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Se o valor está errado, devolve ao analista de IN — não reliquida no escuro.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

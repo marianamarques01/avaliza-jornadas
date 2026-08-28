@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capacidades — não são jornadas · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="active">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap">
+  <div class="hero">
+    <div class="kicker">Não confundir</div>
+    <h1>Capacidades</h1>
+    <p class="lead">O que um papel <em>consegue fazer</em> no shell. Histórico, painel, limites do motor e placeholder de imobiliárias não têm gatilho/resultado próprios — por isso não entram no grafo.</p>
+  </div>
+  <div class="journey-map-wrap">
+    <table class="journey-map-table">
+      <thead><tr><th>Capacidade</th><th>Papéis</th><th>Por que não é jornada</th><th>Print</th></tr></thead>
+      <tbody><tr>
+      <td><strong>Entrar offline (dev)</strong></td>
+      <td>dev</td>
+      <td>Acesso. Não é jornada.</td>
+      <td><code>login-dev.png</code></td>
+    </tr><tr>
+      <td><strong>Painel operacional</strong></td>
+      <td><code>credito</code> <code>cs</code> <code>admin_avaliza</code> <code>corretor</code> <code>admin_imobiliaria</code></td>
+      <td>Ponto de partida do dia, não um ciclo de negócio.</td>
+      <td><code>credito-dash.png</code></td>
+    </tr><tr>
+      <td><strong>Histórico de crédito</strong></td>
+      <td><code>credito</code></td>
+      <td>Auditoria de decisões já tomadas.</td>
+      <td><code>credito-historico.png</code></td>
+    </tr><tr>
+      <td><strong>Limites do motor</strong></td>
+      <td><code>credito</code> <code>admin_avaliza</code></td>
+      <td>Governança do parâmetro — muda as próximas análises.</td>
+      <td><code>credito-limites.png</code></td>
+    </tr><tr>
+      <td><strong>Análise avulsa</strong></td>
+      <td><code>credito</code></td>
+      <td>Ferramenta. Não tem gatilho de fila.</td>
+      <td><code>credito-analisar.png</code></td>
+    </tr><tr>
+      <td><strong>Importação Serasa</strong></td>
+      <td><code>credito</code></td>
+      <td>Consulta lateral do dossiê.</td>
+      <td><code>credito-serasa.png</code></td>
+    </tr><tr>
+      <td><strong>Validação pós-deploy</strong></td>
+      <td><code>credito</code></td>
+      <td>Checklist de saúde, não caso.</td>
+      <td><code>credito-validacao.png</code></td>
+    </tr><tr>
+      <td><strong>Status do gateway</strong></td>
+      <td><code>credito</code></td>
+      <td>Infra. Se estiver vermelho a fila enche de erro.</td>
+      <td><code>credito-gateway.png</code></td>
+    </tr><tr>
+      <td><strong>Painel de inadimplência</strong></td>
+      <td><code>inadimplencia</code></td>
+      <td>Volume/SLA do dia, não o caso.</td>
+      <td><code>inadimplencia-painel.png</code></td>
+    </tr><tr>
+      <td><strong>Histórico de IN</strong></td>
+      <td><code>inadimplencia</code></td>
+      <td>Consulta de encerrados.</td>
+      <td><code>inadimplencia-historico.png</code></td>
+    </tr><tr>
+      <td><strong>Controle operacional IN</strong></td>
+      <td><code>inadimplencia</code></td>
+      <td>Produção do time.</td>
+      <td><code>inadimplencia-operacional.png</code></td>
+    </tr><tr>
+      <td><strong>Análise de cobertura (admin)</strong></td>
+      <td><code>admin_avaliza</code></td>
+      <td>Auditoria. O analista trabalha por Minhas Tarefas.</td>
+      <td><code>admin-analise.png</code></td>
+    </tr><tr>
+      <td><strong>Painel jurídico</strong></td>
+      <td><code>juridico</code></td>
+      <td>Recorte do dia.</td>
+      <td><code>juridico-painel.png</code></td>
+    </tr><tr>
+      <td><strong>Documentos de apoio (Avaliza)</strong></td>
+      <td><code>juridico</code></td>
+      <td>Biblioteca, não ciclo.</td>
+      <td><code>juridico-docs.png</code></td>
+    </tr><tr>
+      <td><strong>Bonificação do escritório</strong></td>
+      <td><code>juridico</code></td>
+      <td>Conferência; Financeiro liquida.</td>
+      <td><code>juridico-bonificacao.png</code></td>
+    </tr><tr>
+      <td><strong>Carteira / funil / visão estratégica</strong></td>
+      <td><code>comercial</code> <code>admin_avaliza</code> <code>admin_imobiliaria</code></td>
+      <td>Leitura. Aprovar cadastro é a jornada de onboarding.</td>
+      <td><code>comercial-carteira.png</code></td>
+    </tr><tr>
+      <td><strong>Portal Imobiliárias</strong></td>
+      <td><code>comercial</code> <code>cs</code> <code>admin_avaliza</code></td>
+      <td>Módulo em desenvolvimento — não há jornada de ficha/saúde/treino.</td>
+      <td><code>cs-imob.png</code></td>
+    </tr><tr>
+      <td><strong>Developer Hub</strong></td>
+      <td><code>comercial</code> <code>admin_avaliza</code></td>
+      <td>Docs de API.</td>
+      <td><code>comercial-devs.png</code></td>
+    </tr><tr>
+      <td><strong>Consulta de contratos</strong></td>
+      <td><code>corretor</code> <code>credito</code> <code>atendimento</code> <code>cs</code> <code>financeiro_avaliza</code></td>
+      <td>Carteira. Originar é Nova proposta; ativar é o portal.</td>
+      <td><code>corretor-contratos.png</code></td>
+    </tr><tr>
+      <td><strong>Dashboards admin (fila interna, executivo, consolidado)</strong></td>
+      <td><code>admin_avaliza</code></td>
+      <td>Governança. Ver tudo não é fazer a fila.</td>
+      <td><code>admin-exec.png</code></td>
+    </tr><tr>
+      <td><strong>Usuários e papéis</strong></td>
+      <td><code>admin_avaliza</code></td>
+      <td>IAM, não operação de garantia.</td>
+      <td><code>admin-users.png</code></td>
+    </tr><tr>
+      <td><strong>Beta Ops</strong></td>
+      <td><code>admin_avaliza</code></td>
+      <td>Go/no-go do beta.</td>
+      <td><code>admin-beta.png</code></td>
+    </tr><tr>
+      <td><strong>Tarefas globais</strong></td>
+      <td><code>admin_avaliza</code></td>
+      <td>Pool legado — só admin.</td>
+      <td><code>admin-tarefas.png</code></td>
+    </tr><tr>
+      <td><strong>Revisão de documentos</strong></td>
+      <td><code>atendimento</code></td>
+      <td>Fila de conferência, não ticket.</td>
+      <td><code>atendimento-docs.png</code></td>
+    </tr></tbody>
+    </table>
+  </div>
+  <p class="back"><a href="index.html">← Grafo de jornadas</a></p>
+  <footer>Atlas · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Success — responsabilidade · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc">
+  <p class="kicker">Documento para o responsável · Analista de CS</p>
+  <p class="setor-to">Para: Responsável de CS</p>
+  <h1>Customer Success</h1>
+  <p class="lead">CS não fecha nenhum ciclo deste grafo. Observa onboarding, acompanha a fila de ativação e trabalha ticket do setor. Portal Imobiliárias ainda é placeholder.</p>
+  <section class="setor-work">
+    <h2>O que vocês fazem</h2>
+    <p class="lead">O trabalho no produto, na ordem em que costuma aparecer no dia. Tela é evidência; não é etapa de um tour.</p>
+    <ol class="setor-work-list"><li>
+        <h3>Olhar a fila de onboarding</h3>
+        
+        <p>A mesma fila do comercial. CS não aprova o cadastro — só vê.</p>
+        <p class="setor-work-where"><a href="jornada-onboarding.html">Onboarding da imobiliária</a> · <code>/onboarding-comercial</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/onboarding-comercial</div>
+        <img src="../img/jornadas/cs-onb.png" alt="Olhar a fila de onboarding" loading="lazy">
+        <figcaption><code>/onboarding-comercial</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Acompanhar ativação travada</h3>
+        
+        <p>Quem executa é o locatário no portal. /ativacao no shell de CS é acompanhamento.</p>
+        <p class="setor-work-where"><a href="jornada-ativacao.html">Ativação do locatário</a> · <code>/ativacao</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/ativacao</div>
+        <img src="../img/jornadas/cs-ativacao.png" alt="Acompanhar ativação travada" loading="lazy">
+        <figcaption><code>/ativacao</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Trabalhar ticket do setor</h3>
+        
+        <p>Chamado triado para CS. Não origina proposta e não cobre IN.</p>
+        <p class="setor-work-where"><a href="jornada-ticket.html">Ticket de atendimento</a> · <code>/atendimento</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento</div>
+        <img src="../img/jornadas/cs-tickets.png" alt="Trabalhar ticket do setor" loading="lazy">
+        <figcaption><code>/atendimento</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Consultar contratos da carteira</h3>
+        
+        <p>Leitura. Ativar é o portal do locatário.</p>
+        <p class="setor-work-where"><code>/contratos</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/contratos</div>
+        <img src="../img/jornadas/cs-contratos.png" alt="Consultar contratos da carteira" loading="lazy">
+        <figcaption><code>/contratos</code></figcaption>
+      </figure>
+        
+        
+      </li></ol>
+  </section>
+  
+  <section class="setor-block">
+    <h2>Ciclos que vocês fecham</h2>
+    <p class="lead">Jornadas cujo resultado é deste setor. Fronteira, não o passo a passo acima.</p>
+    <p class='muted'>Este setor não é dono de nenhum ciclo do grafo. A responsabilidade está nas participações e nas capacidades abaixo.</p>
+  </section>
+  <section class="setor-block">
+    <h2>Ciclos em que só aparecem</h2>
+    <p class="lead">Participam da operação. Quem fecha o ciclo é outro setor.</p>
+    <a class="graph-neighbor" href="jornada-onboarding.html">
+            <span class="chip">participa · dono: Comercial</span>
+            <strong>Onboarding da imobiliária</strong>
+            <span>Parceiro ainda sem conta abre /onboarding (CNPJ, responsável, admin).</span>
+            
+          </a><a class="graph-neighbor" href="jornada-ativacao.html">
+            <span class="chip">participa · dono: Portais do locatário</span>
+            <strong>Ativação do locatário</strong>
+            <span>Link /ativacao/{token} no e-mail/SMS. O locatário não tem login no shell.</span>
+            
+          </a><a class="graph-neighbor" href="jornada-ticket.html">
+            <span class="chip">participa · dono: Atendimento</span>
+            <strong>Ticket de atendimento</strong>
+            <span>Alguém tem uma dúvida/bloqueio e abre chamado (ou a Liza faz handoff).</span>
+            
+          </a>
+  </section>
+  <section class="setor-block setor-block-warn">
+    <h2>Isto não é de vocês</h2>
+    <p class="lead">Confusão típica deste time. O dono está no link.</p>
+    <ul class="journey-checklist"><li>
+        <a href="jornada-onboarding.html"><strong>Onboarding da imobiliária</strong></a>
+        — dono: <a href="setor-comercial.html">Comercial</a>.
+        Aprovar cadastro é clique do comercial. A sidebar de CS só vê a mesma fila.
+      </li><li>
+        <a href="jornada-ativacao.html"><strong>Ativação do locatário</strong></a>
+        — dono: <a href="setor-portais.html">Portais do locatário</a>.
+        Quem executa é o locatário. /ativacao no shell de CS é acompanhamento.
+      </li><li>
+        <a href="jornada-nova-proposta.html"><strong>Nova proposta</strong></a>
+        — dono: <a href="setor-imobiliaria.html">Imobiliária</a>.
+        Originar garantia não é CS.
+      </li></ul>
+  </section>
+  <section class="handoff-board">
+    <div>
+      <h2>Recebem de</h2>
+      <ul class="journey-checklist"><li>Nenhum setor é obrigado a disparar os ciclos de vocês.</li></ul>
+    </div>
+    <div>
+      <h2>Passam para</h2>
+      <ul class="journey-checklist"><li>Os ciclos de vocês não disparam outra jornada. O resultado fica aqui.</li></ul>
+    </div>
+  </section>
+  <section class="setor-work">
+    <h2>Capacidades do shell (não são jornadas)</h2>
+    <p class="lead">Menu e leitura. Não fecham ciclo — mas são as telas que o time abre no dia a dia além do trabalho acima.</p>
+    <ol class="setor-work-list"><li>
+        <h3>Painel operacional</h3>
+        <p>Ponto de partida do dia, não um ciclo de negócio.</p>
+        <p class="setor-work-where"><code>/dashboard</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/dashboard</div>
+        <img src="../img/jornadas/credito-dash.png" alt="Painel operacional" loading="lazy">
+        <figcaption><code>/dashboard</code></figcaption>
+      </figure>
+      </li><li>
+        <h3>Portal Imobiliárias</h3>
+        <p>Módulo em desenvolvimento — não há jornada de ficha/saúde/treino.</p>
+        <p class="setor-work-where"><code>/imobiliarias</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/imobiliarias</div>
+        <img src="../img/jornadas/cs-imob.png" alt="Portal Imobiliárias" loading="lazy">
+        <figcaption><code>/imobiliarias</code></figcaption>
+      </figure>
+      </li><li>
+        <h3>Consulta de contratos</h3>
+        <p>Carteira. Originar é Nova proposta; ativar é o portal.</p>
+        <p class="setor-work-where"><code>/contratos</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/contratos</div>
+        <img src="../img/jornadas/corretor-contratos.png" alt="Consulta de contratos" loading="lazy">
+        <figcaption><code>/contratos</code></figcaption>
+      </figure>
+      </li></ol>
+  </section>
+  <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+  <footer>Setor · Customer Success · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

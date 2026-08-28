@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portais do locatário — responsabilidade · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc">
+  <p class="kicker">Documento para o responsável · Locatário — sem login no shell</p>
+  <p class="setor-to">Para: Dono de produto / ops dos portais (sem shell)</p>
+  <h1>Portais do locatário</h1>
+  <p class="lead">Quatro tokens, quatro ciclos: ativar, assinar, manifestar renovação, enviar pendência. Nenhum é tela da loja nem da Avaliza.</p>
+  <section class="setor-work">
+    <h2>O que vocês fazem</h2>
+    <p class="lead">O trabalho no produto, na ordem em que costuma aparecer no dia. Tela é evidência; não é etapa de um tour.</p>
+    <ol class="setor-work-list"><li>
+        <h3>Ativar a garantia</h3>
+        
+        <p>Cadastro, biometria e termos no link /ativacao/{token}. Sem login no shell.</p>
+        <p class="setor-work-where"><a href="jornada-ativacao.html">Ativação do locatário</a> · <code>/ativacao/demo-nova</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/ativacao/demo-nova</div>
+        <img src="../img/jornadas/inquilino-ativacao.png" alt="Ativar a garantia" loading="lazy">
+        <figcaption><code>/ativacao/demo-nova</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Assinar o contrato</h3>
+        
+        <p>Outro token, ZapSign. Corre em paralelo com a ativação.</p>
+        <p class="setor-work-where"><a href="jornada-assinar.html">Assinar o contrato</a> · <code>/contrato/demo-aguardando</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/contrato/demo-aguardando</div>
+        <img src="../img/jornadas/inquilino-contrato.png" alt="Assinar o contrato" loading="lazy">
+        <figcaption><code>/contrato/demo-aguardando</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Manifestar renovação</h3>
+        
+        <p>Aceite, contraproposta ou bloqueio por reanálise. Sem CPF — o link já vincula.</p>
+        <p class="setor-work-where"><a href="jornada-renovar-portal.html">Manifestação de renovação</a> · <code>/renovacao/demo-renovacao-manifestacao</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/renovacao/demo-renovacao-manifestacao</div>
+        <img src="../img/jornadas/inquilino-renovacao.png" alt="Manifestar renovação" loading="lazy">
+        <figcaption><code>/renovacao/demo-renovacao-manifestacao</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Enviar documento pendente</h3>
+        
+        <p>IN pediu evidência. Enviar devolve o caso ao analista; não decide cobertura.</p>
+        <p class="setor-work-where"><a href="jornada-pendencias.html">Pendências do locatário</a> · <code>/pendencias/demo-pendencias-julia</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/pendencias/demo-pendencias-julia</div>
+        <img src="../img/jornadas/inquilino-pendencias.png" alt="Enviar documento pendente" loading="lazy">
+        <figcaption><code>/pendencias/demo-pendencias-julia</code></figcaption>
+      </figure>
+        
+        
+      </li></ol>
+  </section>
+  
+  <section class="setor-block">
+    <h2>Ciclos que vocês fecham</h2>
+    <p class="lead">Jornadas cujo resultado é deste setor. Fronteira, não o passo a passo acima.</p>
+    <a class="graph-neighbor" href="jornada-ativacao.html">
+            <span class="chip navy">vocês entregam</span>
+            <strong>Ativação do locatário</strong>
+            <span>Cadastro, biometria e termos concluídos — ou travado na fila interna.</span>
+            
+          </a><a class="graph-neighbor" href="jornada-assinar.html">
+            <span class="chip navy">vocês entregam</span>
+            <strong>Assinar o contrato</strong>
+            <span>Assinado no ZapSign, expirado ou cancelado.</span>
+            
+          </a><a class="graph-neighbor" href="jornada-renovar-portal.html">
+            <span class="chip navy">vocês entregam</span>
+            <strong>Manifestação de renovação</strong>
+            <span>Aceite, contraproposta ou bloqueio por reanálise (&gt;10%).</span>
+            
+          </a><a class="graph-neighbor" href="jornada-pendencias.html">
+            <span class="chip navy">vocês entregam</span>
+            <strong>Pendências do locatário</strong>
+            <span>Documento enviado — o caso volta para a cobertura, não se encerra aqui.</span>
+            
+          </a>
+  </section>
+  <section class="setor-block">
+    <h2>Ciclos em que só aparecem</h2>
+    <p class="lead">Participam da operação. Quem fecha o ciclo é outro setor.</p>
+    <p class='muted'>Não participam de ciclo alheio. Ou são donos, ou estão fora.</p>
+  </section>
+  <section class="setor-block setor-block-warn">
+    <h2>Isto não é de vocês</h2>
+    <p class="lead">Confusão típica deste time. O dono está no link.</p>
+    <ul class="journey-checklist"><li>
+        <a href="jornada-nova-proposta.html"><strong>Nova proposta</strong></a>
+        — dono: <a href="setor-imobiliaria.html">Imobiliária</a>.
+        A proposta já acabou quando o link chega.
+      </li><li>
+        <a href="jornada-renovar-fila.html"><strong>Fila de renovação (loja)</strong></a>
+        — dono: <a href="setor-imobiliaria.html">Imobiliária</a>.
+        A fila /renovacoes é da loja. O aceite é outro portal.
+      </li><li>
+        <a href="jornada-cobertura.html"><strong>Analisar cobertura</strong></a>
+        — dono: <a href="setor-inadimplencia.html">Inadimplência</a>.
+        Enviar documento devolve o caso ao analista de inadimplência; não decide cobertura.
+      </li></ul>
+  </section>
+  <section class="handoff-board">
+    <div>
+      <h2>Recebem de</h2>
+      <ul class="journey-checklist"><li>Recebem <strong>Ativação do locatário</strong> de Imobiliária (Nova proposta): Aprovado (motor ou banca)</li><li>Recebem <strong>Ativação do locatário</strong> de Crédito (Banca humanizada): Crédito aprova na banca</li><li>Recebem <strong>Assinar o contrato</strong> de Imobiliária (Nova proposta): Aprovado — link ZapSign é outro token</li><li>Recebem <strong>Assinar o contrato</strong> de Crédito (Banca humanizada): Crédito aprova na banca</li><li>Recebem <strong>Assinar o contrato</strong> de Portais do locatário (Ativação do locatário): Go-live precisa dos dois portais; um não espera o outro</li><li>Recebem <strong>Manifestação de renovação</strong> de Imobiliária (Fila de renovação (loja)): Link de manifestação vai ao locatário</li><li>Recebem <strong>Pendências do locatário</strong> de Inadimplência (Analisar cobertura): IN pendencia documento</li></ul>
+    </div>
+    <div>
+      <h2>Passam para</h2>
+      <ul class="journey-checklist"><li>De <strong>Ativação do locatário</strong> passam para Portais do locatário (Assinar o contrato): Go-live precisa dos dois portais; um não espera o outro</li><li>De <strong>Pendências do locatário</strong> passam para Inadimplência (Analisar cobertura): Locatário enviou o que faltava</li></ul>
+    </div>
+  </section>
+  <section class="setor-work">
+    <h2>Capacidades do shell (não são jornadas)</h2>
+    <p class="lead">Menu e leitura. Não fecham ciclo — mas são as telas que o time abre no dia a dia além do trabalho acima.</p>
+    <p class='muted'>Sem capacidade de shell listada para este destinatário (portais não têm menu).</p>
+  </section>
+  <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+  <footer>Setor · Portais do locatário · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

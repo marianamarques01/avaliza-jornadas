@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analisar cobertura · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Cobrir inadimplência · jornada independente</p>
+  <h1>Analisar cobertura</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-inadimplencia.html">Inadimplência</a> — Responsável de Inadimplência</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Caso na fila pessoal do analista de IN (não na listagem geral).</dd></div>
+    <div><dt>Resultado</dt><dd>Aprovar, negar, pendenciar ou encaminhar. Mérito da cobertura.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Ciclo do analista. Pode voltar depois das pendências do locatário.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Analista de inadimplência</strong> <code>inadimplencia</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-inadimplencia.html">Inadimplência</a></dd></div>
+    <div><dt>Outros setores</dt><dd><span class='muted'>Ninguém além do dono</span></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <a class="graph-neighbor" href="jornada-comunicar-in.html">
+    <span class="chip">dispara</span>
+    <strong>Comunicar inadimplência</strong>
+    <span>Caso entra na fila do analista de IN · dono: Imobiliária</span>
+  </a><a class="graph-neighbor" href="jornada-pendencias.html">
+    <span class="chip">devolve</span>
+    <strong>Pendências do locatário</strong>
+    <span>Locatário enviou o que faltava · dono: Portais do locatário</span>
+  </a><a class="graph-neighbor" href="jornada-ticket.html">
+    <span class="chip">pode disparar</span>
+    <strong>Ticket de atendimento</strong>
+    <span>Chamado vira contexto de um caso IN · dono: Atendimento</span>
+  </a>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-pendencias.html">
+    <span class="chip">pode disparar</span>
+    <strong>Pendências do locatário</strong>
+    <span>IN pendencia documento · dono: Portais do locatário</span>
+  </a><a class="graph-neighbor" href="jornada-indenizacao.html">
+    <span class="chip">pode disparar</span>
+    <strong>Baixa de indenização</strong>
+    <span>Cobertura aprovada — mérito encerrado · dono: Financeiro</span>
+  </a><a class="graph-neighbor" href="jornada-exoneracao.html">
+    <span class="chip">pode disparar</span>
+    <strong>Exoneração (Avaliza)</strong>
+    <span>Caso pede via jurídica · dono: Jurídico</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sequência interna (só aqui)</h2>
+        <p class="lead">Estes momentos são obrigatórios <em>dentro</em> desta jornada. Não são o grafo global e não são o menu do papel.</p>
+        <ol class="journey-moments"><li>
+              <h3>Pegar a tarefa</h3>
+              <p>Home do papel. Ordenada por prazo do ciclo.</p>
+            </li><li>
+              <h3>Trabalhar o caso</h3>
+              <p>Decisão, pendência, encaminhamento.</p>
+            </li><li>
+              <h3>Dossiê de cobertura</h3>
+              <p>Quando o caso pede a análise formal.</p>
+            </li></ol>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/tarefas</div>
+        <img src="../img/jornadas/inadimplencia-tarefas.png" alt="Analisar cobertura — /inadimplencia/tarefas" loading="lazy">
+        <figcaption><code>/inadimplencia/tarefas</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/analise</div>
+        <img src="../img/jornadas/inad-analise.png" alt="Analisar cobertura — /inadimplencia/analise" loading="lazy">
+        <figcaption><code>/inadimplencia/analise</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/443511?tab=documentos</div>
+        <img src="../img/jornadas/inadimplencia-detalhe.png" alt="Analisar cobertura — /inadimplencia/443511?tab=documentos" loading="lazy">
+        <figcaption><code>/inadimplencia/443511?tab=documentos</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837?tarefa=validar_analise_inicial</div>
+        <img src="../img/jornadas/inad-validar-analise.png" alt="Analisar cobertura — /inadimplencia/225837?tarefa=validar_analise_inicial" loading="lazy">
+        <figcaption><code>/inadimplencia/225837?tarefa=validar_analise_inicial</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837?tarefa=validar_analise_inicial</div>
+        <img src="../img/jornadas/inad-checklist.png" alt="Analisar cobertura — /inadimplencia/225837?tarefa=validar_analise_inicial" loading="lazy">
+        <figcaption><code>/inadimplencia/225837?tarefa=validar_analise_inicial</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/449001?tarefa=confirmar_pagamento</div>
+        <img src="../img/jornadas/inad-confirmar-pagamento.png" alt="Analisar cobertura — /inadimplencia/449001?tarefa=confirmar_pagamento" loading="lazy">
+        <figcaption><code>/inadimplencia/449001?tarefa=confirmar_pagamento</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/cobertura/447821</div>
+        <img src="../img/jornadas/inadimplencia-cobertura.png" alt="Analisar cobertura — /cobertura/447821" loading="lazy">
+        <figcaption><code>/cobertura/447821</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia</div>
+        <img src="../img/jornadas/inadimplencia-lista.png" alt="Analisar cobertura — /inadimplencia" loading="lazy">
+        <figcaption><code>/inadimplencia</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Painel, histórico e controle operacional são capacidades do módulo, não este ciclo.</li><li>Marcar indenização paga é jornada do Financeiro.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

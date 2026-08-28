@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comissionamento / NF · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Mover dinheiro · jornada independente</p>
+  <h1>Comissionamento / NF</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-financeiro.html">Financeiro</a> — Responsável Financeiro Avaliza</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Comissão da loja a faturar. URL /financeiro/comissionamento (não é item da sidebar do financeiro).</dd></div>
+    <div><dt>Resultado</dt><dd>NF tratada (pendente / a receber).</dd></div>
+    <div><dt>Lifecycle</dt><dd>Ciclo de NF. Gestor vê a mesma superfície; corretor não.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Analista financeiro</strong> <code>financeiro_avaliza</code></li><li><strong>Gestor da imobiliária</strong> <code>admin_imobiliaria</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-financeiro.html">Financeiro</a></dd></div>
+    <div><dt>Outros setores</dt><dd><a class="chip" href="setor-imobiliaria.html">Imobiliária</a></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <p class='muted'>Ponto de entrada. Ninguém neste grafo é obrigado a chegar aqui.</p>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <p class='muted'>Não dispara outra jornada. O ciclo acaba aqui.</p>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sem linha do tempo forçada</h2>
+        <p class="lead">Este ciclo não tem etapas ordenadas. A tela abaixo é evidência, não passo 1 de N.</p>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/financeiro/comissionamento</div>
+        <img src="../img/jornadas/financeiro-comissoes.png" alt="Comissionamento / NF — /financeiro/comissionamento" loading="lazy">
+        <figcaption><code>/financeiro/comissionamento</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/financeiro/comissionamento</div>
+        <img src="../img/jornadas/gestor-comissoes.png" alt="Comissionamento / NF — /financeiro/comissionamento" loading="lazy">
+        <figcaption><code>/financeiro/comissionamento</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Quem gera borderô não libera o mesmo borderô — contas a pagar é outra capacidade, e 404 neste build.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

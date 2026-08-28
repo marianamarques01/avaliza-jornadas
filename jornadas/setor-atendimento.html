@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atendimento — responsabilidade · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc">
+  <p class="kicker">Documento para o responsável · Analista de atendimento</p>
+  <p class="setor-to">Para: Responsável de Atendimento</p>
+  <h1>Atendimento</h1>
+  <p class="lead">Triar e fechar ticket. O chamado pode apontar para banca ou IN — não os substitui. Revisão de documentos é capacidade, não esta jornada.</p>
+  <section class="setor-work">
+    <h2>O que vocês fazem</h2>
+    <p class="lead">O trabalho no produto, na ordem em que costuma aparecer no dia. Tela é evidência; não é etapa de um tour.</p>
+    <ol class="setor-work-list"><li>
+        <h3>Triar a fila de tickets</h3>
+        
+        <p>Abrir, classificar, mandar ao setor dono. Isso fecha o ciclo de atendimento.</p>
+        <p class="setor-work-where"><a href="jornada-ticket.html">Ticket de atendimento</a> · <code>/atendimento</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento</div>
+        <img src="../img/jornadas/atendimento-fila.png" alt="Triar a fila de tickets" loading="lazy">
+        <figcaption><code>/atendimento</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Abrir um chamado</h3>
+        
+        <p>Quando alguém bloqueia ou a Liza faz handoff.</p>
+        <p class="setor-work-where"><a href="jornada-ticket.html">Ticket de atendimento</a> · <code>/atendimento/novo</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento/novo</div>
+        <img src="../img/jornadas/atendimento-novo.png" alt="Abrir um chamado" loading="lazy">
+        <figcaption><code>/atendimento/novo</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Trabalhar o ticket</h3>
+        
+        <p>Até finalizar. Perguntar por que reprovou não decide crédito; chamado de IN não cobre.</p>
+        <p class="setor-work-where"><a href="jornada-ticket.html">Ticket de atendimento</a> · <code>/atendimento/tickets/TCK-01</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/atendimento/tickets/TCK-01</div>
+        <img src="../img/jornadas/atendimento-ticket.png" alt="Trabalhar o ticket" loading="lazy">
+        <figcaption><code>/atendimento/tickets/TCK-01</code></figcaption>
+      </figure>
+        
+        
+      </li><li>
+        <h3>Revisar documentos</h3>
+        
+        <p>Fila de conferência. Não é ticket e não é jornada de garantia.</p>
+        <p class="setor-work-where"><code>/documentos/revisao</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/documentos/revisao</div>
+        <img src="../img/jornadas/atendimento-docs.png" alt="Revisar documentos" loading="lazy">
+        <figcaption><code>/documentos/revisao</code></figcaption>
+      </figure>
+        
+        
+      </li></ol>
+  </section>
+  
+  <section class="setor-block">
+    <h2>Ciclos que vocês fecham</h2>
+    <p class="lead">Jornadas cujo resultado é deste setor. Fronteira, não o passo a passo acima.</p>
+    <a class="graph-neighbor" href="jornada-ticket.html">
+            <span class="chip navy">vocês entregam</span>
+            <strong>Ticket de atendimento</strong>
+            <span>Ticket triado e finalizado pelo setor dono.</span>
+            
+          </a>
+  </section>
+  <section class="setor-block">
+    <h2>Ciclos em que só aparecem</h2>
+    <p class="lead">Participam da operação. Quem fecha o ciclo é outro setor.</p>
+    <p class='muted'>Não participam de ciclo alheio. Ou são donos, ou estão fora.</p>
+  </section>
+  <section class="setor-block setor-block-warn">
+    <h2>Isto não é de vocês</h2>
+    <p class="lead">Confusão típica deste time. O dono está no link.</p>
+    <ul class="journey-checklist"><li>
+        <a href="jornada-banca.html"><strong>Banca humanizada</strong></a>
+        — dono: <a href="setor-credito.html">Crédito</a>.
+        Perguntar por que reprovou abre contexto; não decide crédito.
+      </li><li>
+        <a href="jornada-cobertura.html"><strong>Analisar cobertura</strong></a>
+        — dono: <a href="setor-inadimplencia.html">Inadimplência</a>.
+        Ticket não cobre inadimplência.
+      </li><li>
+        <a href="jornada-nova-proposta.html"><strong>Nova proposta</strong></a>
+        — dono: <a href="setor-imobiliaria.html">Imobiliária</a>.
+        Consulta de propostas no menu não é originar garantia.
+      </li></ul>
+  </section>
+  <section class="handoff-board">
+    <div>
+      <h2>Recebem de</h2>
+      <ul class="journey-checklist"><li>Nenhum setor é obrigado a disparar os ciclos de vocês.</li></ul>
+    </div>
+    <div>
+      <h2>Passam para</h2>
+      <ul class="journey-checklist"><li>De <strong>Ticket de atendimento</strong> passam para Inadimplência (Analisar cobertura): Chamado vira contexto de um caso IN</li><li>De <strong>Ticket de atendimento</strong> passam para Crédito (Banca humanizada): Imobiliária pergunta por que reprovou</li></ul>
+    </div>
+  </section>
+  <section class="setor-work">
+    <h2>Capacidades do shell (não são jornadas)</h2>
+    <p class="lead">Menu e leitura. Não fecham ciclo — mas são as telas que o time abre no dia a dia além do trabalho acima.</p>
+    <ol class="setor-work-list"><li>
+        <h3>Consulta de contratos</h3>
+        <p>Carteira. Originar é Nova proposta; ativar é o portal.</p>
+        <p class="setor-work-where"><code>/contratos</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/contratos</div>
+        <img src="../img/jornadas/corretor-contratos.png" alt="Consulta de contratos" loading="lazy">
+        <figcaption><code>/contratos</code></figcaption>
+      </figure>
+      </li><li>
+        <h3>Revisão de documentos</h3>
+        <p>Fila de conferência, não ticket.</p>
+        <p class="setor-work-where"><code>/documentos/revisao</code></p>
+        <figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/documentos/revisao</div>
+        <img src="../img/jornadas/atendimento-docs.png" alt="Revisão de documentos" loading="lazy">
+        <figcaption><code>/documentos/revisao</code></figcaption>
+      </figure>
+      </li></ol>
+  </section>
+  <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+  <footer>Setor · Atendimento · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

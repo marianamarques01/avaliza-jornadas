@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pendências do locatário · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Cobrir inadimplência · jornada independente</p>
+  <h1>Pendências do locatário</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-portais.html">Portais do locatário</a> — Dono de produto / ops dos portais (sem shell)</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>IN pediu documento. Link /pendencias/{token} enviado ao locatário.</dd></div>
+    <div><dt>Resultado</dt><dd>Documento enviado — o caso volta para a cobertura, não se encerra aqui.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Token próprio. Só existe se a cobertura pendenciou.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Locatário (portal, sem shell)</strong> <code>portal</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-portais.html">Portais do locatário</a></dd></div>
+    <div><dt>Outros setores</dt><dd><span class='muted'>Ninguém além do dono</span></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <a class="graph-neighbor" href="jornada-cobertura.html">
+    <span class="chip">pode disparar</span>
+    <strong>Analisar cobertura</strong>
+    <span>IN pendencia documento · dono: Inadimplência</span>
+  </a>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-cobertura.html">
+    <span class="chip">devolve</span>
+    <strong>Analisar cobertura</strong>
+    <span>Locatário enviou o que faltava · dono: Inadimplência</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sem linha do tempo forçada</h2>
+        <p class="lead">Este ciclo não tem etapas ordenadas. A tela abaixo é evidência, não passo 1 de N.</p>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/pendencias/demo-pendencias-julia</div>
+        <img src="../img/jornadas/inquilino-pendencias.png" alt="Pendências do locatário — /pendencias/demo-pendencias-julia" loading="lazy">
+        <figcaption><code>/pendencias/demo-pendencias-julia</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Não é o portal de ativação nem o de assinatura.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

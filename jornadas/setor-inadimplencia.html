@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inadimplência — guia operacional · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc ops-doc">
+  <div class="ops-shell">
+    <nav class="ops-toc" aria-label="Neste guia">
+      <p>Neste guia</p>
+      <ol>
+        <li><a href="#papel">Seu papel</a></li>
+        <li><a href="#comecar">Minhas Tarefas</a></li>
+        <li><a href="#analisar">Analisar um caso</a></li>
+        <li><a href="#abas">Abas do caso</a></li>
+        <li><a href="#tarefas">Todas as tarefas</a></li>
+        <li><a href="#decidir">Qual decisão tomar</a></li>
+        <li><a href="#depois">O que acontece depois</a></li>
+        <li><a href="#status">Status</a></li>
+        <li><a href="#telas">Todas as telas</a></li>
+        <li><a href="#jornada">Jornada de treinamento</a></li>
+        <li><a href="#times">Quando outro time assume</a></li>
+        <li><a href="#handoffs">De quem recebo</a></li>
+        <li><a href="#excecoes">Se algo sair do fluxo</a></li>
+      </ol>
+    </nav>
+
+    <div class="ops-content">
+      <section id="papel">
+        <p class="ops-kicker">Guia operacional · Analista de inadimplência</p>
+        <h1>Inadimplência</h1>
+        <p class="ops-lead">Você analisa os casos enviados para o setor e decide o tratamento da cobertura.</p>
+
+        <div class="ops-hero-grid">
+          <div class="ops-card">
+            <h3>Seu papel</h3>
+            <p>Seu trabalho começa quando um caso chega à sua fila e termina quando a análise é concluída ou o caso segue para o próximo responsável.</p>
+            <ul>
+              <li>Você decide se a cobertura cabe, em que valor, ou se falta documento.</li>
+              <li>Você não abre o comunicado pela imobiliária.</li>
+              <li>Você não realiza o pagamento da indenização.</li>
+              <li>Você não conduz o processo jurídico.</li>
+            </ul>
+          </div>
+          <div class="ops-start">
+            <h3>Onde começo meu dia?</h3>
+            <strong>Minhas Tarefas</strong>
+            <p>É a sua fila. O sistema já separa o que precisa da sua atenção — não é preciso vasculhar a listagem geral para descobrir o que trabalhar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comecar">
+        <h2 class="ops-h2">Minhas Tarefas</h2>
+        <p class="ops-h2-sub">Sua home operacional. No menu: Painel, Minhas Tarefas ★, Inadimplências, Histórico e Controle operacional.</p>
+
+        <div class="ops-chips"><span class="ops-chip">Tela de trabalho</span><span class="ops-chip ops-chip--navy">Próximo passo: abrir o primeiro caso</span><span class="ops-chip ops-chip--amber">Ordenada por prazo</span></div>
+
+        <p class="ops-note">A fila já considera o prazo de cada caso. No topo, a Liza destaca o mais urgente. Comece por ele e siga a ordem: <strong>Vence hoje</strong>, depois <strong>Prazo crítico</strong> e, por último, <strong>No prazo</strong> — salvo orientação operacional específica.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/tarefas</div>
+        <img src="../img/jornadas/inadimplencia-tarefas.png" alt="Minhas Tarefas — a fila do seu dia" loading="lazy">
+        <figcaption>Minhas Tarefas — a fila do seu dia</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>O que cada card mostra</h3>
+          <p>São os dados da tarefa — o que você usa para saber o que fazer, em qual caso e com que urgência.</p>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>No card</th>
+                  <th>O que é</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nome da tarefa</td>
+                  <td>O trabalho da vez: Validar análise inicial, Acompanhar pendências, Confirmar pagamento etc.</td>
+                </tr>
+                <tr>
+                  <td>Nº do caso · locatário · contrato</td>
+                  <td>Qual inadimplência abrir. O locatário aparece como CPF na frente do nome (ex.: CPF 234.567.890-12 · Maria Silva). O endereço do imóvel entra no card e no cabeçalho do caso.</td>
+                </tr>
+                <tr>
+                  <td>Resumo</td>
+                  <td>Linha curta com o contexto (nome e valor, ou “aguardando imobiliária”).</td>
+                </tr>
+                <tr>
+                  <td>Tipo</td>
+                  <td><strong>Simples</strong> ou <strong>Rescisória</strong> — muda o tipo de débito, não o lugar onde você trabalha.</td>
+                </tr>
+                <tr>
+                  <td>Status do caso</td>
+                  <td>Em análise, Pendenciada, Aprovada etc. — o estado do caso, não o nome da tarefa.</td>
+                </tr>
+                <tr>
+                  <td>Prazo</td>
+                  <td>Vence hoje, 2 dias restantes, vencida há X. Define o grupo da fila.</td>
+                </tr>
+                <tr>
+                  <td>Valor</td>
+                  <td>Quando houver (pedido ou valor em análise).</td>
+                </tr>
+                <tr>
+                  <td>Avisos / tags</td>
+                  <td>Quando existirem — por exemplo, um alerta extra no card.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Clique no card: o caso abre já na tarefa da vez. A listagem <strong>Inadimplências</strong> serve para consultar a carteira — não escolha o próximo caso por lá.</p>
+        </article>
+      </section>
+
+      <section id="analisar">
+        <h2 class="ops-h2">Analisar um caso</h2>
+        <p class="ops-h2-sub">Esta é a atividade central. Você abre o caso pela fila, percorre as abas, registra a decisão em cada lançamento e conclui a tarefa.</p>
+
+        <ol class="ops-steps">
+          <li>
+            <div>
+              <h3>Abra o caso pela sua fila</h3>
+              <p>Clique no card em Minhas Tarefas. O caso abre já com a tarefa da vez.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Percorra as abas</h3>
+              <p>Resumo, Detalhes, Documentos (ou Checklist danos), Cobertura, Histórico, Prazos, Log. Cada aba tem um papel — a lista completa está na seção seguinte.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Complete o checklist e decida cada lançamento</h3>
+              <p>Sete itens manuais + uma decisão por linha (Aprovar, Parcial, Reprovar, Pendenciar). Ao pendenciar, você escolhe o que falta — inclusive a notificação de ciência do débito. Sem isso, Concluir fica bloqueado.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Conclua a tarefa</h3>
+              <p>A barra no rodapé mostra o que ainda falta (checklist, lançamento, contato no Log, comprovante…). Quando os chips estiverem ok, clique em Concluir.</p>
+            </div>
+          </li>
+        </ol>
+
+        <article class="ops-block">
+          <h3>Checklist de análise (obrigatório nas 3 conferências)</h3>
+          <p>São 7 itens manuais. Sem 7 de 7, a tarefa de análise não fecha. Isso é diferente do painel de conformidade, que o sistema calcula sozinho (Cláusula Avaliza, assinaturas, prazo — apurado no servidor).</p>
+          <ul>
+            <li>Cláusula Avaliza conferida</li>
+            <li>Assinaturas válidas</li>
+            <li>E-mail de abertura conferido</li>
+            <li>Duplicidade verificada</li>
+            <li>Contrato vigente na plataforma</li>
+            <li>VMR compatível com o pleito</li>
+            <li>Documentos mínimos anexados</li>
+          </ul>
+          <p>O print do checklist está em <a href="#tarefas">Realizar análise inicial</a> — é o primeiro trabalho da fila.</p>
+        </article>
+      </section>
+
+      <section id="abas">
+        <h2 class="ops-h2">Abas do detalhe do caso</h2>
+        <p class="ops-h2-sub">Nem todas aparecem o tempo todo. O conjunto muda com o status do caso. Log e Tickets só existem para analista interno.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837</div>
+        <img src="../img/jornadas/inad-detalhe.png" alt="Detalhe atual do caso #225837 — abas no topo" loading="lazy">
+        <figcaption>Detalhe atual do caso #225837 — abas no topo</figcaption>
+      </figure>
+
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Aba</th>
+                <th>Para que serve</th>
+                <th>Quando aparece</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Resumo</td>
+                <td>Estado do caso, tarefa ativa, valor, prazo e sinais automáticos (prazo, cobertura, CPF, contrato vigente). Se algo bloquear, o aviso aparece aqui. Número no badge = parâmetros com falha.</td>
+                <td>Quase sempre. Some só quando o caso já está Pago ou Pago na imobiliária. Com tarefa aberta, esta é a aba inicial.</td>
+              </tr>
+              <tr>
+                <td>Detalhes</td>
+                <td>Dossiê: locatário (CPF na frente do nome, telefone), endereço completo do imóvel e cobertura, plano, contrato, data de abertura. Bloco de valores: solicitado, aprovado, lançamentos, saldo de cobertura. Para analista interno, o log das analistas (movimentação e comunicação) também aparece nesta aba.</td>
+                <td>Sempre. Em caso já pago, vira a aba inicial.</td>
+              </tr>
+              <tr>
+                <td>Documentos</td>
+                <td>Arquivos anexados, com status pendente, aprovado ou rejeitado, e preview. Na pendência, cada item pedido vira um slot (boleto, extrato, notificação de ciência do débito ao inquilino). A imobiliária/locatário devolve o arquivo por aqui.</td>
+                <td>Em análise, pendenciada, retorno recebido, aprovada e parcial. Some em negada e nos casos já pagos. Não aparece na trilha de danos — aí entra Checklist danos no lugar.</td>
+              </tr>
+              <tr>
+                <td>Checklist danos</td>
+                <td>Substitui Documentos na trilha de danos. A imobiliária envia item a item da matriz; você valida cada um.</td>
+                <td>Só em caso de cobertura de danos. Em pendência, abre nesta aba.</td>
+              </tr>
+              <tr>
+                <td>Discriminativo</td>
+                <td>Competências e valores que vão ao pagamento, depois que a cobertura já foi aceita. Badge se estiver em revisão.</td>
+                <td>Só depois de Aprovada ou Parcialmente aprovada.</td>
+              </tr>
+              <tr>
+                <td>Cobertura (VMR)</td>
+                <td>Teto do contrato, o que já foi usado e o saldo por tipo (aluguel, condomínio, IPTU, consumo, danos). Se o pedido passar do disponível, há alerta — isso não recusa o caso sozinho; existe aprovação parcial.</td>
+                <td>Sempre.</td>
+              </tr>
+              <tr>
+                <td>Histórico</td>
+                <td>Linha do tempo: abertura, decisões, retornos, mudanças de status.</td>
+                <td>Sempre.</td>
+              </tr>
+              <tr>
+                <td>Prazos do ciclo</td>
+                <td>Marcos de prazo do caso e da tarefa (o que já venceu, o que ainda cabe).</td>
+                <td>Sempre.</td>
+              </tr>
+              <tr>
+                <td>Log</td>
+                <td>Duas listas: movimentação do caso e comunicação com a imobiliária. Você registra contato (telefone, e-mail, WhatsApp, presencial ou outro). Nas tarefas de pendência, é preciso ao menos um registro para concluir.</td>
+                <td>Só para analista interno.</td>
+              </tr>
+              <tr>
+                <td>Tickets</td>
+                <td>Chamados ligados ao caso. Badge = tickets abertos. Não é aqui que se decide cobertura.</td>
+                <td>Só para analista interno.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <article class="ops-block">
+          <h3>Como usar as abas no dia a dia</h3>
+          <dl class="ops-dl-grid"><div><dt>Comece no Resumo</dt><dd>Leia o estado, a tarefa e os avisos. Se um parâmetro estiver vermelho, resolva ou pendencie antes de aprovar.</dd></div><div><dt>Confira Detalhes e Cobertura</dt><dd>Bata o pedido com o saldo VMR. Pedido maior que o teto → alerta; você decide parcial ou reprovação.</dd></div><div><dt>Documentos ou Checklist danos</dt><dd>Arquivo rejeitado (ilegível, incorreto, incompleto, vencido, sem assinatura) pede pendência, não aprovação.</dd></div><div><dt>Decida nos lançamentos</dt><dd>A decisão fica na tela de trabalho, linha a linha — não numa aba “Decisão”. A observação da linha (Obs.) aparece em texto de leitura, não como nota apagada.</dd></div><div><dt>Log nas pendências</dt><dd>Sem contato registrado, Concluir não libera em Enviar / Acompanhar pendências.</dd></div><div><dt>Discriminativo depois</dt><dd>Só olhe depois de aprovado: é o recorte que o Financeiro usa para pagar.</dd></div></dl>
+        </article>
+      </section>
+
+      <section id="tarefas">
+        <h2 class="ops-h2">Todas as tarefas</h2>
+        <p class="ops-h2-sub">Existem 9 tipos. As 5 primeiras são suas. As 4 de pagamento são do Financeiro — você vê no mesmo caso, mas não conclui no lugar deles.</p>
+
+        <p class="ops-note">A fila é compartilhada por permissão: ao concluir, a próxima tarefa fica disponível para quem pode executá-la. Não há dono atribuído à mão. Quem fez a 1ª análise não valida a 2ª — o sistema bloqueia.</p>
+
+        <p class="ops-group-label">Suas tarefas</p>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">1ª conferência</span></div>
+              <h3>Realizar análise inicial</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso chegou à Avaliza e ainda não teve a primeira conferência.</dd></div><div><dt>O que fazer</dt><dd>1) Revise o checklist de análise. 2) Decida todos os lançamentos pendentes. 3) Conclua quando tudo estiver certo.</dd></div><div><dt>Para concluir</dt><dd>Checklist 7/7 + nenhum lançamento “Em análise” + permissão de análise inicial.</dd></div><div><dt>O que acontece depois</dt><dd>Sai da sua fila. Abre <strong>Validar análise inicial</strong> para outra pessoa.</dd></div></dl>
+              <p>A tela de lançamentos é a mesma das outras conferências — muda quem pode clicar em Concluir.</p>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/443200?tarefa=realizar_analise_inicial</div>
+        <img src="../img/jornadas/inad-checklist.png" alt="Realizar análise inicial — checklist 7/7 obrigatório" loading="lazy">
+        <figcaption>Realizar análise inicial — checklist 7/7 obrigatório</figcaption>
+      </figure>
+          </div>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/443200?tarefa=realizar_analise_inicial</div>
+        <img src="../img/jornadas/inad-validar-analise.png" alt="Mesma tela de trabalho: lançamentos, documento e o que falta para concluir" loading="lazy">
+        <figcaption>Mesma tela de trabalho: lançamentos, documento e o que falta para concluir</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--amber">2ª conferência · outra pessoa</span></div>
+              <h3>Validar análise inicial</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>A 1ª análise já foi concluída. Quem fez a primeira não valida a própria.</dd></div><div><dt>O que fazer</dt><dd>1) Revise o checklist da 1ª analista. 2) Confira as decisões dos lançamentos. 3) Conclua a validação da 2ª camada.</dd></div><div><dt>Para concluir</dt><dd>Os mesmos gates da análise: checklist completo, lançamentos decididos, e permissão de validar.</dd></div><div><dt>O que acontece depois</dt><dd>Abre <strong>Confirmar resultado da análise</strong> (3ª conferência).</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837?tarefa=validar_analise_inicial</div>
+        <img src="../img/jornadas/inad-validar-analise.png" alt="Validar análise inicial — mesma tela, segunda pessoa" loading="lazy">
+        <figcaption>Validar análise inicial — mesma tela, segunda pessoa</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">3ª conferência</span></div>
+              <h3>Confirmar resultado da análise</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Depois da validação. Também volta mais adiante no prazo do caso (reanálise).</dd></div><div><dt>O que fazer</dt><dd>1) Valide checklist e lançamentos. 2) Confirme o resultado final. 3) Conclua a 3ª camada.</dd></div><div><dt>Para concluir</dt><dd>Checklist 7/7 + lançamentos decididos + permissão de confirmar.</dd></div><div><dt>O que acontece depois</dt><dd>Se aprovado (ou parcial): o caso segue para o Financeiro provisionar o pagamento. Se pendenciado: imobiliária/portal. Se negado: encerra sem pagamento.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837?tarefa=confirmar_analise</div>
+        <img src="../img/jornadas/inad-detalhe.png" alt="Confirmar resultado — o caso ainda está Em análise nesta camada" loading="lazy">
+        <figcaption>Confirmar resultado — o caso ainda está Em análise nesta camada</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--amber">Pendência</span></div>
+          <h3>Enviar pendências</h3>
+          <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Falta documento ou data, e alguém do setor precisa orientar a imobiliária.</dd></div><div><dt>O que fazer</dt><dd>1) Revise o que falta na documentação. 2) Oriente a imobiliária. 3) Conclua após o envio orientado.</dd></div><div><dt>Para concluir</dt><dd>Registrar ao menos um contato na aba <strong>Log</strong> (telefone, e-mail, WhatsApp, presencial ou outro).</dd></div><div><dt>O que acontece depois</dt><dd>O caso continua pendenciado. A imobiliária (e o locatário no portal, quando couber) recebem o pedido. Quando a resposta chegar, volta para análise com “Retorno recebido”.</dd></div></dl>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--amber">Pendência</span></div>
+          <h3>Acompanhar pendências</h3>
+          <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso já está pendenciado e precisa de cobrança enquanto espera resposta.</dd></div><div><dt>O que fazer</dt><dd>1) Entre em contato com a imobiliária. 2) Registre o contato na aba Log. 3) Conclua quando houver registro.</dd></div><div><dt>Para concluir</dt><dd>Pelo menos 1 contato no Log. Sem isso, o botão fica bloqueado (“Falta registrar contato”).</dd></div><div><dt>O que acontece depois</dt><dd>Acompanhar não encerra o caso. Encerrar a pendência é a resposta chegar — aí o caso volta para a sua análise.</dd></div></dl>
+        </article>
+
+        <p class="ops-group-label">Tarefas do Financeiro (você vê, não conclui)</p>
+        <p class="ops-note">Aparecem no mesmo detalhe do caso depois da aprovação. Quem analisa cobertura não confirma o pagamento — o sistema separa as permissões.</p>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip ops-chip--amber">Financeiro</span><span class="ops-chip">Você consulta</span></div>
+              <h3>Provisionar pagamento</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Cobertura aprovada (ou parcial). É a primeira tarefa do pagamento da indenização.</dd></div><div><dt>O que o Financeiro faz</dt><dd>1) Confere a data prevista do repasse. 2) Informa a data de pagamento. 3) Conclui o provisionamento.</dd></div><div><dt>Para concluir</dt><dd>Data de pagamento preenchida + permissão financeira.</dd></div><div><dt>O que acontece depois</dt><dd>Abre <strong>Confirmar pagamento</strong>.</dd></div><div><dt>Se o valor estiver errado</dt><dd>Devolvem o caso para você reanalisar. Eles não pagam um valor diferente por conta própria.</dd></div></dl>
+              <p>O print é a tela seguinte: provisionar só informa a data; o comprovante entra em Confirmar pagamento.</p>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/88291?tarefa=provisionar_pagamento</div>
+        <img src="../img/jornadas/inad-confirmar-pagamento.png" alt="Depois de provisionar, o Financeiro confirma o pagamento nesta tela" loading="lazy">
+        <figcaption>Depois de provisionar, o Financeiro confirma o pagamento nesta tela</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip ops-chip--amber">Financeiro</span><span class="ops-chip">Você consulta</span></div>
+              <h3>Confirmar pagamento</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Depois de provisionar a indenização.</dd></div><div><dt>O que o Financeiro faz</dt><dd>1) Abre o comprovante. 2) Anexa PDF ou foto. 3) Conclui após anexar.</dd></div><div><dt>Para concluir</dt><dd>Comprovante anexado. Sem arquivo, o botão não libera.</dd></div><div><dt>O que acontece depois</dt><dd>O caso fica <strong>Pago</strong>. Sai das filas de trabalho.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/88291?tarefa=confirmar_pagamento</div>
+        <img src="../img/jornadas/inad-confirmar-pagamento.png" alt="Confirmar pagamento — anexar comprovante da indenização" loading="lazy">
+        <figcaption>Confirmar pagamento — anexar comprovante da indenização</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip ops-chip--amber">Financeiro</span><span class="ops-chip">Via de exoneração</span></div>
+              <h3>Provisionar valores da exoneração</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Quando o caso já está na via de exoneração e há valores a provisionar — mesa do Financeiro, não da análise de cobertura.</dd></div><div><dt>O que o Financeiro faz</dt><dd>Informa a data prevista e conclui o provisionamento da exoneração.</dd></div><div><dt>Para concluir</dt><dd>Data de pagamento informada + permissão.</dd></div><div><dt>O que acontece depois</dt><dd>Abre a confirmação do pagamento da exoneração.</dd></div></dl>
+              <p>Mesmo padrão do provisionar da indenização: data, depois comprovante.</p>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/88291?tarefa=provisionar_exoneracao</div>
+        <img src="../img/jornadas/inad-confirmar-pagamento.png" alt="Exoneração — o Financeiro informa a data e depois anexa o comprovante" loading="lazy">
+        <figcaption>Exoneração — o Financeiro informa a data e depois anexa o comprovante</figcaption>
+      </figure>
+          </div>
+        </article>
+
+        <article class="ops-block ops-block--task">
+          <div class="ops-accompany">
+            <div>
+              <div class="ops-chips"><span class="ops-chip ops-chip--amber">Financeiro</span><span class="ops-chip">Via de exoneração</span></div>
+              <h3>Confirmar pagamento da exoneração</h3>
+              <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>Depois de provisionar a exoneração.</dd></div><div><dt>O que o Financeiro faz</dt><dd>Anexa o comprovante (PDF ou imagem) e conclui.</dd></div><div><dt>Para concluir</dt><dd>Comprovante anexado.</dd></div><div><dt>Diferença para você</dt><dd>Exoneração é do Jurídico + Financeiro. Você não conduz o processo; só consulta se precisar de contexto.</dd></div></dl>
+            </div>
+            <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/88291?tarefa=confirmar_pagamento_exoneracao</div>
+        <img src="../img/jornadas/inad-confirmar-pagamento.png" alt="Confirmar pagamento da exoneração — mesmo gesto: anexar comprovante" loading="lazy">
+        <figcaption>Confirmar pagamento da exoneração — mesmo gesto: anexar comprovante</figcaption>
+      </figure>
+          </div>
+        </article>
+      </section>
+
+      <section id="decidir">
+        <h2 class="ops-h2">Qual decisão tomar?</h2>
+        <p class="ops-h2-sub">Você decide lançamento por lançamento. Os botões na linha são: Aprovar, Parcial, Reprovar e Pendenciar. Em multa rescisória, também aparece Calcular multa.</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Aprovar</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando aquele lançamento deve ser coberto pelo valor pedido.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Um clique na linha. A linha deixa de ficar “Em análise”.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O valor segue no caso. Se todas as linhas forem aprovadas e as conferências concluídas, o caso vai para o Financeiro pagar a indenização.</dd>
+              </div>
+            </dl>
+            <p class="ops-validate">Critério jurídico do “quando cabe cobertura” — a validar com a operação. O sistema não descreve a regra legal; só registra a sua decisão.</p>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Aprovar parcialmente</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando a linha deve ser coberta, mas por um valor menor que o pedido — por exemplo, quando o pleito passa do disponível.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Valor maior que zero e menor que o pleiteado, mais justificativa (mínimo de 10 caracteres).</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O caso pode ficar como parcialmente aprovado. O Financeiro paga o valor aprovado, não o pedido original.</dd>
+              </div>
+            </dl>
+            <p class="ops-validate">Se o pedido passa do teto de cobertura, o sistema alerta — não recusa sozinho. Cabe a você aprovar o que couber ou reprovar.</p>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Reprovar</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando aquele lançamento não deve ser coberto.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Um clique na linha. No caso inteiro, motivos de negativa existem para situações como valor acima da cobertura, prazo encerrado, cobertura fora do plano, documentação insuficiente ou contrato sem cobertura ativa.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>A linha sai da cobertura. Se o caso fechar como negado, não segue para pagamento.</dd>
+              </div>
+            </dl>
+            <p class="ops-validate">Critério a validar com a operação: quando negar o caso inteiro versus pendenciar o que ainda é corrigível.</p>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Pendenciar</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando falta documento ou data, ou o que chegou está incorreto e ainda pode ser corrigido.</dd>
+              </div>
+              <div>
+                <dt>O que o sistema exige</dt>
+                <dd>Na linha, um clique em Pendenciar abre a lista de documentos a pedir (boleto, extrato, notificação de ciência do débito). Pelo menos um item. Na pendência do caso, descrição e prazo de resposta também são obrigatórios.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>Os itens pedidos aparecem como slots na aba Documentos. O caso fica pendenciado. A imobiliária é orientada; o locatário pode enviar pelo portal de pendências. Enquanto espera, você acompanha. Quando a resposta chega, o caso volta para a sua análise — com o aviso de retorno recebido.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <p class="ops-note">Não há um botão “Encaminhar ao Jurídico” na análise dos lançamentos. O Jurídico entra depois, quando o caso pede via de exoneração — em geral após a indenização, se o locatário não regularizou. Encaminhar não é conduzir o processo.</p>
+      </section>
+
+      <section id="depois">
+        <h2 class="ops-h2">O que acontece depois</h2>
+        <p class="ops-h2-sub">Depois de agir, o sistema move o caso. Você não precisa “entregar” o dossiê à mão.</p>
+
+        <div class="ops-decision-grid">
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você aprova</strong> e as conferências fecham</div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">O caso segue para o <strong>Financeiro</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">Eles informam a data e confirmam o pagamento. Volta para você só se o valor estiver errado.</div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você pede documento</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step"><strong>Imobiliária</strong> e, quando couber, o <strong>locatário no portal</strong> recebem a solicitação</div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">Quando responderem, o caso <strong>volta para a sua fila</strong></div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você reprova</strong> e o caso fecha como negado</div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">Não há pagamento. O caso sai da sua fila de trabalho.</div>
+            </div>
+          </div>
+          <div>
+            <div class="ops-flow">
+              <div class="ops-flow-step"><strong>Você conclui uma conferência</strong></div>
+              <div class="ops-flow-arrow" aria-hidden="true">↓</div>
+              <div class="ops-flow-step">A tarefa some da sua fila. A próxima conferência aparece para quem tem permissão — outra pessoa, na validação.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="status">
+        <h2 class="ops-h2">Status que você vai encontrar</h2>
+        <p class="ops-h2-sub">São os nomes que aparecem nos badges e na listagem — não os códigos internos.</p>
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Status exibido</th>
+                <th>O que significa</th>
+                <th>O que você precisa fazer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Em análise</td>
+                <td>O caso está sob análise da Avaliza.</td>
+                <td>Trabalhar pela sua fila: conferir e decidir.</td>
+              </tr>
+              <tr>
+                <td>Pendenciada</td>
+                <td>Falta documento ou informação.</td>
+                <td>Acompanhar. Orientar a imobiliária se essa for a sua tarefa.</td>
+              </tr>
+              <tr>
+                <td>Pendenciada · Retorno recebido</td>
+                <td>A resposta chegou e o caso voltou.</td>
+                <td>Reanalisar o que foi enviado.</td>
+              </tr>
+              <tr>
+                <td>Aprovada</td>
+                <td>Cobertura aceita. A análise neste setor acabou.</td>
+                <td>Nada a decidir. O Financeiro assume o pagamento.</td>
+              </tr>
+              <tr>
+                <td>Parcialmente aprovada</td>
+                <td>Parte do pedido foi coberta.</td>
+                <td>O Financeiro paga o valor aprovado.</td>
+              </tr>
+              <tr>
+                <td>Negada</td>
+                <td>Cobertura recusada.</td>
+                <td>Caso encerrado nesta fila.</td>
+              </tr>
+              <tr>
+                <td>Pago</td>
+                <td>A indenização foi paga.</td>
+                <td>Encerrado. Consulta no Histórico, se precisar.</td>
+              </tr>
+              <tr>
+                <td>Pago na imobiliária</td>
+                <td>Baixa operacional: o caso foi encerrado como pago na loja.</td>
+                <td>Encerrado. Tarefas pendentes daquele caso são concluídas automaticamente.</td>
+              </tr>
+              <tr>
+                <td>Cancelado</td>
+                <td>Aparece como filtro na listagem.</td>
+                <td>Consulta. Não é uma decisão desta tela de análise.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ops-note">Na listagem você também vê recortes como <strong>Prazo crítico</strong>, <strong>Aprovadas</strong> e <strong>Encerradas</strong> — são filtros da carteira, não novas decisões.</p>
+      </section>
+
+      <section id="telas">
+        <h2 class="ops-h2">Todas as telas do setor</h2>
+        <p class="ops-h2-sub">Só o que existe hoje no menu da analista e no detalhe do caso. Abrir uma tela de consulta não avança o caso.</p>
+
+        <p class="ops-group-label">Menu da analista — onde você trabalha</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Minhas Tarefas</h3>
+          <p>Sua fila. Comece o dia aqui. Grupos: Vence hoje, Prazo crítico, No prazo; no fim, Encerradas hoje.</p>
+          <p class="ops-route">Inadimplência → Minhas Tarefas ★</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/tarefas</div>
+        <img src="../img/jornadas/inadimplencia-tarefas.png" alt="Minhas Tarefas" loading="lazy">
+        <figcaption>Minhas Tarefas</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Detalhe do caso (aberto pela tarefa)</h3>
+          <p>Onde você confere as abas, decide lançamentos e conclui. A URL traz o número do caso e, em geral, <code>?tarefa=</code> com o tipo da vez.</p>
+          <p class="ops-route">Aberto a partir do card da fila</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/225837</div>
+        <img src="../img/jornadas/inad-detalhe.png" alt="Detalhe do caso — abas e status; a tarefa abre por cima desta tela" loading="lazy">
+        <figcaption>Detalhe do caso — abas e status; a tarefa abre por cima desta tela</figcaption>
+      </figure>
+        </article>
+
+        <p class="ops-group-label">Menu da analista — onde você consulta</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Inadimplências</h3>
+          <p>Carteira completa. Filtros: Em análise, Pendenciada, Prazo crítico, Aprovadas, Encerradas. Busca por contrato, locatário ou número. Não é a fila do dia — abrir um caso daqui é consulta, a menos que você já tenha tarefa nele.</p>
+          <p class="ops-route">Inadimplência → Inadimplências</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia</div>
+        <img src="../img/jornadas/inadimplencia-lista.png" alt="Listagem da carteira" loading="lazy">
+        <figcaption>Listagem da carteira</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Painel</h3>
+          <p>Números do dia (volume, prazos, produção). Não substitui a fila: o próximo caso continua em Minhas Tarefas.</p>
+          <p class="ops-route">Inadimplência → Painel</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/dashboard</div>
+        <img src="../img/jornadas/inadimplencia-painel.png" alt="Painel do setor" loading="lazy">
+        <figcaption>Painel do setor</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Histórico</h3>
+          <p>Casos já encerrados (pago, negado, cancelado, pago na imobiliária). Use para consultar o que já saiu da fila.</p>
+          <p class="ops-route">Inadimplência → Histórico</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/historico</div>
+        <img src="../img/jornadas/inadimplencia-historico.png" alt="Histórico do setor" loading="lazy">
+        <figcaption>Histórico do setor</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Controle operacional</h3>
+          <p>Produção do time e gargalos (quem está com o quê, o que atravessou prazo). Só consulta — não decide cobertura.</p>
+          <p class="ops-route">Inadimplência → Controle operacional</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/operacional</div>
+        <img src="../img/jornadas/inadimplencia-operacional.png" alt="Controle operacional" loading="lazy">
+        <figcaption>Controle operacional</figcaption>
+      </figure>
+        </article>
+
+        <p class="ops-group-label">Treinamento — não é a fila do dia</p>
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--mute">Treino</span></div>
+          <h3>Jornada</h3>
+          <p>Tela de treinamento guiado pela Liza, no sistema real. Não avança caso, não decide cobertura. Detalhes na seção <a href="#jornada">Jornada de treinamento</a>.</p>
+          <p class="ops-route">Configurações → Jornada</p>
+        </article>
+
+        <p class="ops-group-label">Abertura do caso — tela da imobiliária, não da analista</p>
+        <p class="ops-note">Quem envia o comunicado é a imobiliária. O wizard tem três passos (tipo de débito, detalhes e documentos, revisão e envio). Não dá para abrir o mesmo tipo de débito com a mesma data de vencimento duas vezes no contrato — o sistema bloqueia na revisão. Seu trabalho começa quando o caso já está na fila como Realizar análise inicial. A analista não abre comunicado por aqui — o sistema redireciona para Minhas Tarefas.</p>
+      </section>
+
+      <section id="jornada">
+        <h2 class="ops-h2">Jornada de treinamento</h2>
+        <p class="ops-h2-sub">Treino no sistema real, guiado pela Liza. Não é Minhas Tarefas e não substitui a operação do dia.</p>
+
+        <div class="ops-chips"><span class="ops-chip ops-chip--mute">Treino</span><span class="ops-chip ops-chip--navy">Cerca de 15 min</span><span class="ops-chip ops-chip--amber">Progresso salvo</span></div>
+
+        <p class="ops-note">Esta tela não decide cobertura. A jornada pede que você abra filas e casos de verdade, mas as decisões críticas são mini-casos — você nunca registra aprovação, negativa ou validação real.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/jornada</div>
+        <img src="../img/jornadas/inad-jornada.png" alt="Jornada do Analista de Inadimplência — capítulos, confiança e o botão para começar ou retomar" loading="lazy">
+        <figcaption>Jornada do Analista de Inadimplência — capítulos, confiança e o botão para começar ou retomar</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>Onde fica e como usar</h3>
+          <p>No menu: <strong>Configurações → Jornada</strong>. Título na tela: Inadimplência · Jornada do Analista de Inadimplência.</p>
+          <ul>
+            <li><strong>Começar jornada</strong> (ou <strong>Retomar jornada</strong>, se você já tinha começado) leva você às telas reais. A Liza acompanha cada passo e detecta sozinha quando você conclui.</li>
+            <li>A confiança começa em 30% e sobe até 100%. Ao terminar, a tela libera o certificado.</li>
+            <li>Pode pausar a qualquer momento: o progresso fica salvo e você volta por esta mesma tela.</li>
+          </ul>
+        </article>
+
+        <article class="ops-block">
+          <h3>Os cinco capítulos</h3>
+          <p>A timeline à esquerda mostra o que vem a seguir. À direita, a barra de progresso (confiança, etapas, capítulos e tempo estimado).</p>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Capítulo</th>
+                  <th>O que você pratica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. Sua missão</td>
+                  <td>Por onde começar o dia e como a Liza prioriza por prazo.</td>
+                </tr>
+                <tr>
+                  <td>2. Priorizar a fila</td>
+                  <td>Minhas Tarefas, filtros e o que exige ação imediata.</td>
+                </tr>
+                <tr>
+                  <td>3. Um caso na tela</td>
+                  <td>Resumo, cobertura VMR e prazos do ciclo.</td>
+                </tr>
+                <tr>
+                  <td>4. Decisões críticas</td>
+                  <td>Triagem, quatro olhos e conformidade — em mini-casos, sem tocar em caso real.</td>
+                </tr>
+                <tr>
+                  <td>5. Histórico e handoffs</td>
+                  <td>Histórico, controle operacional e quando o Jurídico assume.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="times">
+        <h2 class="ops-h2">Quando outro time assume</h2>
+        <p class="ops-h2-sub">Você analisa a cobertura. O restante da operação continua com o dono de cada etapa.</p>
+
+        <div class="ops-team-grid">
+          <article class="ops-team">
+            <h3>Imobiliária</h3>
+            <p>Entra antes de você: abre o comunicado e envia evidências. Durante a pendência, responde o que faltou.</p>
+            <p>Não decide cobertura.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Financeiro</h3>
+            <p>Entra quando a cobertura já está aprovada (ou parcial). Informa a data prevista e anexa o comprovante da indenização — isso marca o caso como pago.</p>
+            <p>Se o valor estiver errado, devolve o caso para você. Não paga um valor diferente por conta própria.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Jurídico</h3>
+            <p>Entra quando o caso pede via de exoneração. Conduz checklist e andamentos. Não é a sua mesa.</p>
+            <p>Encaminhar o caso não é fazer a exoneração.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Locatário (portal)</h3>
+            <p>Entra quando você pediu documento. Envia pelo link de pendências.</p>
+            <p>Enviar o arquivo devolve o caso para você — não decide cobertura.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Atendimento</h3>
+            <p>Entra quando alguém abre um chamado. O ticket pode apontar para um caso seu.</p>
+            <p>Chamado não cobre inadimplência. A decisão continua no detalhe do caso.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="handoffs">
+        <h2 class="ops-h2">De quem recebo e para quem passo</h2>
+        <p class="ops-h2-sub">Em dez segundos: a imobiliária origina o caso; você decide; o destino depende da decisão.</p>
+
+        <div class="ops-diagram" role="img" aria-label="Quem envia para Inadimplência e para quem o caso segue depois da decisão">
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Imobiliária<small>Abre o comunicado</small></div>
+            <div class="ops-diagram-node">Portal do locatário<small>Devolve o documento</small></div>
+            <div class="ops-diagram-node">Atendimento<small>Chamado vira contexto</small></div>
+          </div>
+          <p class="ops-diagram-arrow">enviam o trabalho ↓</p>
+          <div class="ops-diagram-you">Inadimplência<small>Você analisa e decide</small></div>
+          <p class="ops-diagram-arrow">conforme a decisão ↓</p>
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Portal / imobiliária<small>Pendência de documento</small></div>
+            <div class="ops-diagram-node">Financeiro<small>Cobertura aprovada</small></div>
+            <div class="ops-diagram-node">Jurídico<small>Via de exoneração</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="excecoes">
+        <h2 class="ops-h2">Quando algo sair do fluxo esperado</h2>
+        <p class="ops-h2-sub">Situações que o produto já trata. Se a tela bloquear, leia o motivo no próprio caso antes de procurar outro time.</p>
+
+        <article class="ops-exception">
+          <h3>Documento rejeitado ou incorreto</h3>
+          <p>O arquivo aparece como rejeitado, com o motivo (ilegível, incorreto, incompleto, vencido, sem assinatura, entre outros).</p>
+          <p><strong>O que fazer.</strong> Pendenciar e pedir a correção. Quando o novo arquivo chegar, o caso volta com retorno recebido.</p>
+          <p><strong>Para quem passa.</strong> Imobiliária e, quando o pedido for ao locatário, o portal de pendências.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Caso que voltou depois da pendência</h3>
+          <p>O badge pode mostrar Retorno recebido, ainda no status Pendenciada.</p>
+          <p><strong>O que fazer.</strong> Reabrir pela fila e reanalisar o que foi enviado — não começa um caso novo.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Pedido maior que a cobertura disponível</h3>
+          <p>A aba Cobertura alerta. O sistema não recusa o caso sozinho.</p>
+          <p><strong>O que fazer.</strong> Aprovar o que couber (parcial) ou reprovar o que não cabe — conforme a análise.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Não consigo concluir a tarefa</h3>
+          <p>Concluir fica bloqueado enquanto houver lançamento em análise, checklist incompleto ou falta de permissão. Nas pendências, falta registrar contato no Log. No pagamento (Financeiro), falta data ou comprovante.</p>
+          <p><strong>O que fazer.</strong> Completar o que a própria barra da tarefa indica. Quem fez a primeira análise não valida a segunda — outra pessoa precisa concluir.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Pago na imobiliária</h3>
+          <p>Baixa operacional quando o pagamento ocorreu na loja. O status passa para Pago na imobiliária e as tarefas pendentes daquele caso são concluídas. Tickets vinculados não mudam.</p>
+          <p><strong>Quem faz.</strong> Você (Inadimplência). Isso é diferente de o Financeiro marcar o caso como pago com comprovante da indenização.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Financeiro devolveu o caso</h3>
+          <p>A cobertura já tinha sido aprovada, mas o valor não fechou para o pagamento.</p>
+          <p><strong>O que fazer.</strong> Rever a análise. O Financeiro não paga um valor diferente no seu lugar.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Chamado no Atendimento</h3>
+          <p>Alguém tem dúvida ou bloqueio ligado ao caso.</p>
+          <p><strong>O que fazer.</strong> Responder o ticket. A decisão de cobertura continua no detalhe do caso, não no chamado.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Caso já no Jurídico</h3>
+          <p>A mesa de exoneração é do Jurídico. Você não reabre a análise de cobertura por ali.</p>
+          <p><strong>O que fazer.</strong> Se precisar de contexto, consulte o caso. O andamento jurídico não é sua tarefa.</p>
+        </article>
+      </section>
+
+      <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+      <footer>Setor · Inadimplência · agosto/2026</footer>
+    </div>
+  </div>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

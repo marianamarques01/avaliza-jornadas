@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Onboarding da imobiliária · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Entrar na rede · jornada independente</p>
+  <h1>Onboarding da imobiliária</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-comercial.html">Comercial</a> — Responsável Comercial</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>Parceiro ainda sem conta abre /onboarding (CNPJ, responsável, admin).</dd></div>
+    <div><dt>Resultado</dt><dd>Cadastro aprovado, rejeitado ou parado — o clique de aprovar é irreversível.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Um cadastro = um ciclo. Não se mistura com proposta nem com CS.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Parceiro ainda sem conta</strong> <code>portal</code></li><li><strong>Analista comercial</strong> <code>comercial</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-comercial.html">Comercial</a></dd></div>
+    <div><dt>Outros setores</dt><dd><a class="chip" href="setor-cs.html">Customer Success</a></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <p class='muted'>Ponto de entrada. Ninguém neste grafo é obrigado a chegar aqui.</p>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-nova-proposta.html">
+    <span class="chip">pode disparar</span>
+    <strong>Nova proposta</strong>
+    <span>Cadastro aprovado — a loja já pode originar · dono: Imobiliária</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sem linha do tempo forçada</h2>
+        <p class="lead">Este ciclo não tem etapas ordenadas. A tela abaixo é evidência, não passo 1 de N.</p>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/onboarding</div>
+        <img src="../img/jornadas/comercial-publico.png" alt="Onboarding da imobiliária — /onboarding" loading="lazy">
+        <figcaption><code>/onboarding</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/onboarding-comercial</div>
+        <img src="../img/jornadas/comercial-onb.png" alt="Onboarding da imobiliária — /onboarding-comercial" loading="lazy">
+        <figcaption><code>/onboarding-comercial</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Não é jornada de CS — a sidebar de CS só observa a mesma fila.</li><li>Portal Imobiliárias é placeholder; não há ficha de conta neste build.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crédito — guia operacional · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="">Grafo</a>
+      <a href="setores.html" class="active">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc setor-doc ops-doc">
+  <div class="ops-shell">
+    <nav class="ops-toc" aria-label="Neste guia">
+      <p>Neste guia</p>
+      <ol>
+        <li><a href="#papel">Seu papel</a></li>
+        <li><a href="#comecar">Fila de reanálise</a></li>
+        <li><a href="#analisar">Decidir no dossiê</a></li>
+        <li><a href="#board">Aprovação Diretoria</a></li>
+        <li><a href="#decidir">Qual decisão tomar</a></li>
+        <li><a href="#regras">Regras de negócio</a></li>
+        <li><a href="#papéis">Papéis e dev-login</a></li>
+        <li><a href="#telas">Todas as telas</a></li>
+        <li><a href="#carrossel">Carrossel de banners</a></li>
+        <li><a href="#times">Quando outro time assume</a></li>
+        <li><a href="#handoffs">De quem recebo</a></li>
+        <li><a href="#excecoes">Se algo sair do fluxo</a></li>
+      </ol>
+    </nav>
+
+    <div class="ops-content">
+      <section id="papel">
+        <p class="ops-kicker">Guia operacional · Analista de crédito</p>
+        <h1>Crédito — Reanálise de contratos</h1>
+        <p class="ops-lead">Você decide contratos que o motor não aprovou sozinho. A fila e o dossiê são o ciclo; análise avulsa, Serasa e limites do motor são ferramentas — não substituem a reanálise.</p>
+
+        <div class="ops-hero-grid">
+          <div class="ops-card">
+            <h3>Seu papel</h3>
+            <p>Seu trabalho começa quando a Liza encaminha um contrato para revisão humana e termina quando você registra a decisão no dossiê — aprovar, negar ou exigir solidário.</p>
+            <ul>
+              <li>Você analisa exceções: score fora da faixa, valor acima do teto da persona ou SLA de processamento excedido.</li>
+              <li>A decisão é no dossiê, não na listagem. É irreversível e auditável.</li>
+              <li>Você não origina proposta — isso é da imobiliária.</li>
+              <li>Você não conduz a ativação do locatário — isso é do portal.</li>
+              <li>Você não gerencia campanhas do carrossel — isso é Marketing ou Admin.</li>
+            </ul>
+          </div>
+          <div class="ops-start">
+            <h3>Onde começo meu dia?</h3>
+            <strong>Reanálise de contratos</strong>
+            <p>Menu Crédito → <strong>Reanálise</strong>. A urgência vem da Liza, não da ordem da lista. Comece pelo card que ela destacar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="comecar">
+        <h2 class="ops-h2">Fila de reanálise</h2>
+        <p class="ops-h2-sub">Sua home operacional. Rotas: <code>/credito</code> (fila) e <code>/credito/reanalise</code> (redireciona para a mesma fila).</p>
+
+        <div class="ops-chips"><span class="ops-chip">Tela de trabalho</span><span class="ops-chip ops-chip--navy">Próximo passo: abrir o primeiro contrato</span><span class="ops-chip ops-chip--amber">Ordenada pela Liza</span></div>
+
+        <p class="ops-note">Quando não há contratos pendentes, a tela mostra o empty state: <strong>“Nenhuma reanálise pendente”</strong>. Isso é normal — significa que o motor não escalou nada para a diretoria no momento.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito</div>
+        <img src="../img/jornadas/credito-fila.png" alt="Fila de reanálise — cards por urgência da Liza" loading="lazy">
+        <figcaption>Fila de reanálise — cards por urgência da Liza</figcaption>
+      </figure>
+
+        <article class="ops-block">
+          <h3>O que cada card mostra</h3>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>No card</th>
+                  <th>O que é</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Contrato · locatário</td>
+                  <td>Qual dossiê abrir. CPF na frente do nome quando disponível.</td>
+                </tr>
+                <tr>
+                  <td>Motivo do roteamento</td>
+                  <td>Por que o motor escalou: score fora da faixa, valor acima do limite da persona, tempo de processamento excedido etc.</td>
+                </tr>
+                <tr>
+                  <td>Badge <strong>SLA excedido</strong></td>
+                  <td>Contratos com motivo <code>TEMPO_PROCESSAMENTO_EXCEDIDO</code> (RN01). Use o filtro homônimo na barra.</td>
+                </tr>
+                <tr>
+                  <td>Plano · valor · imobiliária</td>
+                  <td>Contexto rápido antes de abrir o dossiê completo.</td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td>Em reanálise, aguardando decisão etc.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Clique no card para abrir o dossiê. A listagem <strong>Aprovação Diretoria</strong> (<code>/credito/banca-humanizada</code>) é um recorte visual — a decisão continua no dossiê.</p>
+        </article>
+      </section>
+
+      <section id="analisar">
+        <h2 class="ops-h2">Decidir no dossiê</h2>
+        <p class="ops-h2-sub">Esta é a atividade central. Você abre o contrato pela fila, revisa sinais do motor e registra a decisão no painel da diretoria.</p>
+
+        <ol class="ops-steps">
+          <li>
+            <div>
+              <h3>Abra o contrato pela fila</h3>
+              <p>Clique no card em Reanálise. Ou use a URL direta de demo: <code>/credito/analisar?auditId=7&amp;contrato=101</code> (caso SLA mock).</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Revise o dossiê</h3>
+              <p>Score, renda, histórico Serasa, composição do plano e motivo do roteamento. A aba de sinais resume o que o motor viu.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Registre a decisão</h3>
+              <p>No painel <strong>Decisão da Diretoria</strong>: aprovar, negar ou condicionar (ex.: exigir solidário). Justificativa quando exigida.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Confirme</h3>
+              <p>A decisão sai da fila e segue para o próximo responsável — ativação/assinatura se aprovado, ou retorno à imobiliária se negado.</p>
+            </div>
+          </li>
+        </ol>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/analisar?auditId=7&amp;contrato=101</div>
+        <img src="../img/jornadas/credito-dossie.png" alt="Dossiê — painel Decisão da Diretoria" loading="lazy">
+        <figcaption>Dossiê — painel Decisão da Diretoria</figcaption>
+      </figure>
+      </section>
+
+      <section id="board">
+        <h2 class="ops-h2">Aprovação Diretoria</h2>
+        <p class="ops-h2-sub">Board em <code>/credito/banca-humanizada</code>. Recorte da fila para visão kanban — não substitui o dossiê.</p>
+
+        <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta / triagem</span></div>
+
+        <p class="ops-note">Título na tela: <strong>Aprovação Diretoria</strong>. Empty state: <strong>“Nenhuma reanálise pendente”</strong>. Abrir um card aqui leva ao mesmo dossiê da fila principal.</p>
+
+        <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/banca-humanizada</div>
+        <img src="../img/jornadas/credito-banca.png" alt="Board Aprovação Diretoria" loading="lazy">
+        <figcaption>Board Aprovação Diretoria</figcaption>
+      </figure>
+      </section>
+
+      <section id="decidir">
+        <h2 class="ops-h2">Qual decisão tomar?</h2>
+        <p class="ops-h2-sub">Três desfechos no painel da diretoria. Todos ficam registrados com seu usuário — audit trail.</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Aprovar</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o risco é aceitável apesar do motivo de escalação.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O contrato segue para ativação e assinatura no portal do locatário.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Negar</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o perfil ou o valor não cabem na política, mesmo com revisão humana.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>A imobiliária recebe o resultado. Não há ativação.</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="ops-decision">
+            <h3>Condicionar (solidário)</h3>
+            <dl>
+              <div>
+                <dt>Quando usar</dt>
+                <dd>Quando o titular precisa de avalista ou segundo locatário para fechar o risco.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>A proposta volta para composição na imobiliária. Novo CPF entra na reanálise.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <p class="ops-note">A decisão não é na listagem nem no board. Sempre no dossiê, no painel <strong>Decisão da Diretoria</strong>.</p>
+      </section>
+
+      <section id="regras">
+        <h2 class="ops-h2">Regras de negócio (relatório Clara Utsch)</h2>
+        <p class="ops-h2-sub">O motor aplica RN02 e RN03 automaticamente. RN01 depende de job no backend — a UI já está preparada.</p>
+
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Regra</th>
+                <th>O que faz</th>
+                <th>Na tela</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RN01 — Tempo de processamento</td>
+                <td>Contratos que excedem o SLA de vigência vão para a fila de aprovação.</td>
+                <td>Filtro <strong>Tempo de processamento excedido</strong>; badge <strong>SLA excedido</strong>; mock contrato #101.</td>
+              </tr>
+              <tr>
+                <td>RN02 — Persona / score</td>
+                <td>Score fora da faixa da persona escala para reanálise.</td>
+                <td>Motivo <code>SCORE_FORA_FAIXA</code> no card e no dossiê.</td>
+              </tr>
+              <tr>
+                <td>RN03 — Teto locatício</td>
+                <td>Valor acima do limite da persona escala para reanálise.</td>
+                <td>Motivo <code>VALOR_ACIMA_LIMITE_PERSONA</code> no card.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="papéis">
+        <h2 class="ops-h2">Papéis e dev-login</h2>
+        <p class="ops-h2-sub">Em desenvolvimento: <code>/login</code> → <strong>Acesso de desenvolvimento</strong> → escolher o papel. Base URL: <code>http://localhost:3000</code>.</p>
+
+        <div class="ops-table-wrap">
+          <table class="ops-table">
+            <thead>
+              <tr>
+                <th>Papel</th>
+                <th>Usuário mock</th>
+                <th>O que testar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>credito</code></td>
+                <td>Carla Crédito</td>
+                <td>Fila, dossiê, histórico, limites do motor</td>
+              </tr>
+              <tr>
+                <td><code>diretoria</code></td>
+                <td>Diana Diretoria</td>
+                <td>Fila, board, decisão no dossiê</td>
+              </tr>
+              <tr>
+                <td><code>admin_avaliza</code></td>
+                <td>Eva Admin Avaliza</td>
+                <td>Tudo do crédito + configurações</td>
+              </tr>
+              <tr>
+                <td><code>marketing</code></td>
+                <td>Marta Marketing</td>
+                <td>Admin de banners (<code>/configuracoes/banners</code>)</td>
+              </tr>
+              <tr>
+                <td><code>corretor</code> / <code>admin_imobiliaria</code></td>
+                <td>Ana / Bruno</td>
+                <td>Carrossel no <code>/dashboard</code> — só visualização</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <article class="ops-block">
+          <h3>Roteiro rápido — Reanálise</h3>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Rota</th>
+                  <th>Validar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/credito</code></td>
+                  <td>Título “Reanálise de contratos”; filtro RN01; badge SLA no #101</td>
+                </tr>
+                <tr>
+                  <td><code>/credito/reanalise</code></td>
+                  <td>Redireciona para <code>/credito</code></td>
+                </tr>
+                <tr>
+                  <td><code>/credito/banca-humanizada</code></td>
+                  <td>Título “Aprovação Diretoria”</td>
+                </tr>
+                <tr>
+                  <td><code>/credito/analisar?auditId=7&amp;contrato=101</code></td>
+                  <td>Caso SLA; painel Decisão da Diretoria</td>
+                </tr>
+                <tr>
+                  <td><code>/credito/historico</code></td>
+                  <td>Auditoria de decisões já tomadas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="telas">
+        <h2 class="ops-h2">Todas as telas do setor</h2>
+        <p class="ops-h2-sub">Menu Crédito e ferramentas adjacentes. Abrir consulta não registra decisão.</p>
+
+        <p class="ops-group-label">Onde você trabalha</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Reanálise de contratos</h3>
+          <p>Fila principal. Comece o dia aqui.</p>
+          <p class="ops-route">Crédito → Reanálise</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito</div>
+        <img src="../img/jornadas/credito-fila.png" alt="Reanálise de contratos" loading="lazy">
+        <figcaption>Reanálise de contratos</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip">Trabalho</span></div>
+          <h3>Dossiê (decisão)</h3>
+          <p>Onde você aprova, nega ou condiciona.</p>
+          <p class="ops-route">Aberto a partir do card da fila</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/analisar?auditId=550e8400-e29b-41d4-a716-446655440004&amp;contrato=10</div>
+        <img src="../img/jornadas/credito-dossie.png" alt="Dossiê com painel de decisão" loading="lazy">
+        <figcaption>Dossiê com painel de decisão</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Histórico de crédito</h3>
+          <p>Decisões já tomadas — auditoria, não fila do dia.</p>
+          <p class="ops-route">Crédito → Histórico</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/historico</div>
+        <img src="../img/jornadas/credito-historico.png" alt="Histórico de crédito" loading="lazy">
+        <figcaption>Histórico de crédito</figcaption>
+      </figure>
+        </article>
+
+        <p class="ops-group-label">Ferramentas (não são a jornada)</p>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--mute">Ferramenta</span></div>
+          <h3>Limites do motor</h3>
+          <p>Governança de parâmetros — muda as próximas análises automáticas.</p>
+          <p class="ops-route"><code>/credito/thresholds</code></p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/thresholds</div>
+        <img src="../img/jornadas/credito-limites.png" alt="Parâmetros do motor" loading="lazy">
+        <figcaption>Parâmetros do motor</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--mute">Ferramenta</span></div>
+          <h3>Análise avulsa · Serasa · Gateway · Validação</h3>
+          <p>Consulta lateral ou checklist de saúde — sem gatilho de fila.</p>
+          <p class="ops-route"><code>/credito/analisar</code> · <code>/credito/serasa</code> · <code>/credito/gateway</code> · <code>/credito/validacao</code></p>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--amber">Acompanhamento</span></div>
+          <h3>Fila de ativação</h3>
+          <p>Quem executa é o locatário no portal. <code>/ativacao</code> no shell é só ver quem travou.</p>
+          <p class="ops-route"><code>/ativacao</code></p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/ativacao</div>
+        <img src="../img/jornadas/credito-ativacao.png" alt="Acompanhamento de ativação" loading="lazy">
+        <figcaption>Acompanhamento de ativação</figcaption>
+      </figure>
+        </article>
+      </section>
+
+      <section id="carrossel">
+        <h2 class="ops-h2">Carrossel de banners</h2>
+        <p class="ops-h2-sub">Campanhas de marketing no dashboard das imobiliárias. Quem configura é Marketing ou Admin; corretor e gestor só veem.</p>
+
+        <div class="ops-chips"><span class="ops-chip ops-chip--navy">Marketing / Admin</span><span class="ops-chip ops-chip--amber">Imobiliária: visualização</span></div>
+
+        <article class="ops-block">
+          <h3>O que a imobiliária vê</h3>
+          <p>No <code>/dashboard</code>, abaixo do hero, o carrossel roda os banners ativos na vigência. Cada slide respeita o <strong>tempo de exibição</strong> configurado (segundos por banner).</p>
+          <p class="ops-route">Papéis: <code>corretor</code>, <code>admin_imobiliaria</code></p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/dashboard</div>
+        <img src="../img/jornadas/credito-dash.png" alt="Dashboard — carrossel de campanhas" loading="lazy">
+        <figcaption>Dashboard — carrossel de campanhas</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <h3>Administrar banners</h3>
+          <p>Menu <strong>Configurações → Banners de marketing</strong> (<code>/configuracoes/banners</code>).</p>
+          <dl class="ops-dl-grid"><div><dt>Upload</dt><dd>PNG, JPG ou WEBP — máximo 2 MB. Dimensão recomendada: 1200×400 px.</dd></div><div><dt>Tempo de exibição</dt><dd>Segundos por slide no carrossel (ex.: 5–8).</dd></div><div><dt>Vigência</dt><dd>Data início e fim. Banner fora da vigência não aparece.</dd></div><div><dt>Ordem</dt><dd>Define a sequência no carrossel.</dd></div><div><dt>Preview</dt><dd>Visualização antes de publicar.</dd></div></dl>
+          <p class="ops-route">Papéis: <code>marketing</code>, <code>admin_avaliza</code></p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/configuracoes/banners</div>
+        <img src="../img/jornadas/admin-config.png" alt="Configurações — entrada para banners de marketing" loading="lazy">
+        <figcaption>Configurações — entrada para banners de marketing</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <h3>Roteiro rápido — Carrossel</h3>
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Rota</th>
+                  <th>Papel</th>
+                  <th>Validar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/dashboard</code></td>
+                  <td>corretor / admin_imobiliaria</td>
+                  <td>Carrossel visível; slides alternam pelo tempo configurado</td>
+                </tr>
+                <tr>
+                  <td><code>/configuracoes/banners</code></td>
+                  <td>marketing / admin_avaliza</td>
+                  <td>CRUD, upload, preview, tempo de exibição</td>
+                </tr>
+                <tr>
+                  <td><code>/configuracoes</code></td>
+                  <td>marketing / admin_avaliza</td>
+                  <td>Card “Banners de marketing” no hub</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ops-note">Em staging/produção sem backend Django, a API pode retornar <strong>501</strong> — a UI exibe mensagem amigável (<code>PROVIDER_UNAVAILABLE</code>). Em dev, mocks alimentam o carrossel.</p>
+        </article>
+      </section>
+
+      <section id="times">
+        <h2 class="ops-h2">Quando outro time assume</h2>
+        <p class="ops-h2-sub">Você decide o crédito. O restante da operação continua com o dono de cada etapa.</p>
+
+        <div class="ops-team-grid">
+          <article class="ops-team">
+            <h3>Imobiliária</h3>
+            <p>Origina a proposta. Recebe o resultado da reanálise — aprovado, negado ou solidário pendente.</p>
+            <p>Não decide exceção de crédito.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Portais do locatário</h3>
+            <p>Entram depois da aprovação: ativação (<code>/ativacao/{token}</code>) e assinatura ZapSign.</p>
+            <p>O locatário não tem login no shell.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Marketing</h3>
+            <p>Gerencia banners do carrossel. Não entra na fila de reanálise.</p>
+          </article>
+          <article class="ops-team">
+            <h3>Atendimento</h3>
+            <p>Pode receber chamado quando a imobiliária questiona reprovação. A decisão continua no dossiê.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="handoffs">
+        <h2 class="ops-h2">De quem recebo e para quem passo</h2>
+        <p class="ops-h2-sub">A imobiliária origina; o motor escala; você decide; o destino depende da decisão.</p>
+
+        <div class="ops-diagram" role="img" aria-label="Fluxo da reanálise de contratos">
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Imobiliária<small>Nova proposta</small></div>
+            <div class="ops-diagram-node">Motor de crédito<small>Automático ou escala</small></div>
+          </div>
+          <p class="ops-diagram-arrow">quando escala ↓</p>
+          <div class="ops-diagram-you">Crédito / Diretoria<small>Você decide no dossiê</small></div>
+          <p class="ops-diagram-arrow">conforme a decisão ↓</p>
+          <div class="ops-diagram-row">
+            <div class="ops-diagram-node">Portal do locatário<small>Ativação e assinatura</small></div>
+            <div class="ops-diagram-node">Imobiliária<small>Negado ou solidário</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="excecoes">
+        <h2 class="ops-h2">Quando algo sair do fluxo esperado</h2>
+        <p class="ops-h2-sub">Situações que o produto já trata ou que dependem do backend.</p>
+
+        <article class="ops-exception">
+          <h3>Fila vazia</h3>
+          <p>Empty state “Nenhuma reanálise pendente”.</p>
+          <p><strong>O que fazer.</strong> Normal quando o motor não escalou contratos. Use mocks em dev ou aguarde nova proposta com exceção.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>SLA excedido sem badge</h3>
+          <p>O filtro RN01 existe, mas o card não mostra SLA.</p>
+          <p><strong>O que fazer.</strong> Backend ainda não emite <code>TEMPO_PROCESSAMENTO_EXCEDIDO</code>. Em dev, teste com contrato #101.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Carrossel não carrega em staging</h3>
+          <p>API retorna 501 ou lista vazia.</p>
+          <p><strong>O que fazer.</strong> Backend MarketingBanner ainda não deployado. Em dev, mocks funcionam. UI mostra aviso <code>PROVIDER_UNAVAILABLE</code>.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Imobiliária pergunta por que reprovou</h3>
+          <p>Chamado no Atendimento ligado ao contrato.</p>
+          <p><strong>O que fazer.</strong> Consulte o histórico e o dossiê. A decisão não muda no ticket.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Solidário após condicionar</h3>
+          <p>Nova composição na imobiliária com segundo CPF.</p>
+          <p><strong>O que fazer.</strong> O contrato pode voltar à fila de reanálise com novo auditId. Trate como caso novo na fila.</p>
+        </article>
+      </section>
+
+      <p class="back"><a href="setores.html">← Todos os setores</a> · <a href="index.html">Grafo global</a></p>
+      <footer>Setor · Crédito · Reanálise e Carrossel · agosto/2026</footer>
+    </div>
+  </div>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

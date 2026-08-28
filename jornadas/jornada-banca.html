@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banca humanizada · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-doc">
+  <p class="kicker">Originar garantia · jornada independente</p>
+  <h1>Banca humanizada</h1>
+  <p class="setor-to">Dono do resultado: <a href="setor-credito.html">Crédito</a> — Responsável de Crédito</p>
+  <dl class="contract-grid">
+    <div><dt>Gatilho</dt><dd>O motor escalou. Crédito não inicia — recebe.</dd></div>
+    <div><dt>Resultado</dt><dd>Aprovar, negar ou exigir solidário no dossiê. Irreversível e auditável.</dd></div>
+    <div><dt>Lifecycle</dt><dd>Fila própria. Pode abrir horas depois da NP. Não é o 'próximo passo' do corretor.</dd></div>
+    <div><dt>Atores na operação</dt><dd><ul class="actor-list"><li><strong>Analista de crédito</strong> <code>credito</code></li></ul></dd></div>
+    <div><dt>Dono (setor)</dt><dd><a href="setor-credito.html">Crédito</a></dd></div>
+    <div><dt>Outros setores</dt><dd><span class='muted'>Ninguém além do dono</span></dd></div>
+  </dl>
+  <section class="handoff-board">
+    <div>
+      <h2>Entra de</h2>
+      <a class="graph-neighbor" href="jornada-nova-proposta.html">
+    <span class="chip">pode disparar</span>
+    <strong>Nova proposta</strong>
+    <span>Motor escala para revisão humana · dono: Imobiliária</span>
+  </a><a class="graph-neighbor" href="jornada-ticket.html">
+    <span class="chip">pode disparar</span>
+    <strong>Ticket de atendimento</strong>
+    <span>Imobiliária pergunta por que reprovou · dono: Atendimento</span>
+  </a>
+    </div>
+    <div>
+      <h2>Sai para</h2>
+      <a class="graph-neighbor" href="jornada-ativacao.html">
+    <span class="chip">pode disparar</span>
+    <strong>Ativação do locatário</strong>
+    <span>Crédito aprova na banca · dono: Portais do locatário</span>
+  </a><a class="graph-neighbor" href="jornada-assinar.html">
+    <span class="chip">pode disparar</span>
+    <strong>Assinar o contrato</strong>
+    <span>Crédito aprova na banca · dono: Portais do locatário</span>
+  </a>
+    </div>
+  </section>
+  <section class="journey-section">
+        <h2>Sequência interna (só aqui)</h2>
+        <p class="lead">Estes momentos são obrigatórios <em>dentro</em> desta jornada. Não são o grafo global e não são o menu do papel.</p>
+        <ol class="journey-moments"><li>
+              <h3>Pegar o próximo da fila</h3>
+              <p>Por urgência da Liza, não pela ordem da lista.</p>
+            </li><li>
+              <h3>Decidir no dossiê</h3>
+              <p>A decisão não é na listagem.</p>
+            </li></ol>
+      </section>
+  <section class="journey-section">
+    <h2>Telas (evidência)</h2>
+    <p class="lead">Superfícies atuais onde este ciclo aparece. Abrir a tela não significa avançar uma etapa.</p>
+    <div class="evidence-stack"><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito</div>
+        <img src="../img/jornadas/credito-fila.png" alt="Banca humanizada — /credito" loading="lazy">
+        <figcaption><code>/credito</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/analisar?auditId=550e8400-e29b-41d4-a716-446655440004</div>
+        <img src="../img/jornadas/credito-dossie.png" alt="Banca humanizada — /credito/analisar?auditId=550e8400-e29b-41d4-a716-446655440004" loading="lazy">
+        <figcaption><code>/credito/analisar?auditId=550e8400-e29b-41d4-a716-446655440004</code> · evidência, não etapa</figcaption>
+      </figure><figure class="journey-browser">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/credito/banca-humanizada</div>
+        <img src="../img/jornadas/credito-banca.png" alt="Banca humanizada — /credito/banca-humanizada" loading="lazy">
+        <figcaption><code>/credito/banca-humanizada</code> · evidência, não etapa</figcaption>
+      </figure></div>
+  </section>
+  <section class="journey-extras journey-extras-warn">
+        <h2>Isto não é esta jornada</h2>
+        <ul class="journey-checklist"><li>Análise avulsa, Serasa, validação e gateway são capacidades — não este ciclo.</li><li>Ativação do locatário só começa se a decisão for positiva, e com outro ator.</li></ul>
+      </section>
+  <p class="back"><a href="index.html">← Grafo global</a> · <a href="setores.html">Setores</a></p>
+  <footer>Jornada · agosto/2026</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

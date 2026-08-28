@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grafo de jornadas · Avaliza 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="journey-body">
+
+<header class="topbar">
+    <a class="brand" href="index.html">avali<b>z</b>a · jornadas</a>
+    <nav>
+      <a href="index.html" class="active">Grafo</a>
+      <a href="setores.html" class="">Setores</a>
+      <a href="capacidades.html" class="">Capacidades</a>
+    </nav>
+  </header>
+<main class="wrap journey-hub">
+  <div class="hero">
+    <div class="kicker">Journey graph</div>
+    <h1>Jornadas independentes</h1>
+    <p class="lead">Uma jornada não é um menu. Uma capacidade não é uma etapa. Uma tela não é uma etapa. Separe quando o <strong>gatilho</strong>, o <strong>resultado</strong>, os <strong>atores</strong> ou o <strong>lifecycle</strong> forem outros — e não force um fluxo linear por papel. Os 8 clusters abaixo são um grafo, não uma esteira.</p>
+    <p class="lead">Para mandar a um responsável, use <a href="setores.html">Setores</a>: cada página diz o que o time <strong>é dono</strong>, o que só <strong>participa</strong> e o que <strong>não é da conta deles</strong>.</p>
+  </div>
+  <ul class="graph-legend">
+    <li><i class="graph-swatch graph-swatch--starts"></i> dispara (consequência certa)</li>
+    <li><i class="graph-swatch graph-swatch--may"></i> pode disparar (ramo)</li>
+    <li><i class="graph-swatch graph-swatch--parallel"></i> em paralelo (lifecycle independente)</li>
+    <li><i class="graph-swatch graph-swatch--returns"></i> devolve (o ciclo anterior retoma)</li>
+  </ul>
+  <div class="journey-graph-wrap"><svg class="journey-graph-svg" viewBox="0 0 956 892" role="img" aria-label="Grafo global de jornadas">
+    <defs>
+      <marker id="arrow-starts" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#347d29" />
+      </marker>
+      <marker id="arrow-may-start" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#123b64" />
+      </marker>
+      <marker id="arrow-parallel" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#b7791f" />
+      </marker>
+      <marker id="arrow-returns" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#5e6b7b" />
+      </marker>
+    </defs>
+    <text x="24" y="22" class="graph-col-label">Entrar na rede</text><text x="260" y="22" class="graph-col-label">Originar garantia</text><text x="496" y="22" class="graph-col-label">Fazer vigorar</text><text x="732" y="22" class="graph-col-label">Manter o contrato</text><text x="24" y="380" class="graph-col-label">Cobrir inadimplência</text><text x="260" y="380" class="graph-col-label">Tratar no jurídico</text><text x="496" y="380" class="graph-col-label">Mover dinheiro</text><text x="732" y="380" class="graph-col-label">Lateral</text>
+    <g class="graph-edges"><path class="graph-edge graph-edge--may-start" data-from="nova-proposta" data-to="banca" d="M 460 79 C 476 79, 476 177, 460 177" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="nova-proposta" data-to="ativacao" d="M 460 79 C 478 79, 478 79, 496 79" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="nova-proposta" data-to="assinar" d="M 460 79 C 478 79, 478 177, 496 177" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="banca" data-to="ativacao" d="M 460 177 C 478 177, 478 79, 496 79" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="banca" data-to="assinar" d="M 460 177 C 478 177, 478 177, 496 177" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--parallel" data-from="ativacao" data-to="assinar" d="M 696 79 C 712 79, 712 177, 696 177" marker-end="url(#arrow-parallel)" /><path class="graph-edge graph-edge--starts" data-from="comunicar-in" data-to="cobertura" d="M 224 437 C 240 437, 240 535, 224 535" marker-end="url(#arrow-starts)" /><path class="graph-edge graph-edge--may-start" data-from="cobertura" data-to="pendencias-inq" d="M 224 535 C 240 535, 240 633, 224 633" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--returns" data-from="pendencias-inq" data-to="cobertura" d="M 24 633 C 8 633, 8 535, 24 535" marker-end="url(#arrow-returns)" /><path class="graph-edge graph-edge--may-start" data-from="cobertura" data-to="indenizacao" d="M 224 535 C 240 535, 240 731, 224 731" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="cobertura" data-to="exoneracao" d="M 224 535 C 242 535, 242 437, 260 437" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--parallel" data-from="exoneracao" data-to="ajuizamento-loja" d="M 460 437 C 476 437, 476 633, 460 633" marker-end="url(#arrow-parallel)" /><path class="graph-edge graph-edge--may-start" data-from="renovar-fila" data-to="renovar-portal" d="M 932 79 C 948 79, 948 177, 932 177" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="ticket" data-to="cobertura" d="M 732 437 C 676 437, 280 535, 224 535" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="ticket" data-to="banca" d="M 732 437 C 676 437, 516 177, 460 177" marker-end="url(#arrow-may-start)" /><path class="graph-edge graph-edge--may-start" data-from="onboarding" data-to="nova-proposta" d="M 224 79 C 242 79, 242 79, 260 79" marker-end="url(#arrow-may-start)" /></g>
+    <g class="graph-nodes"><a href="jornada-onboarding.html" class="graph-node-link" data-id="onboarding">
+      <rect class="graph-node" x="24" y="36" width="200" height="86" rx="10" />
+      <text x="36" y="64" class="graph-node-title"><tspan x="36" dy="0">Onboarding da</tspan><tspan x="36" dy="15">imobiliária</tspan></text>
+      <text x="36" y="108" class="graph-node-meta">Parceiro ainda sem conta</text>
+      <text x="212" y="108" class="graph-node-deg" text-anchor="end">0← →1</text>
+    </a><a href="jornada-nova-proposta.html" class="graph-node-link" data-id="nova-proposta">
+      <rect class="graph-node" x="260" y="36" width="200" height="86" rx="10" />
+      <text x="272" y="64" class="graph-node-title"><tspan x="272" dy="0">Nova proposta</tspan></text>
+      <text x="272" y="108" class="graph-node-meta">Corretor</text>
+      <text x="448" y="108" class="graph-node-deg" text-anchor="end">1← →3</text>
+    </a><a href="jornada-banca.html" class="graph-node-link" data-id="banca">
+      <rect class="graph-node" x="260" y="134" width="200" height="86" rx="10" />
+      <text x="272" y="162" class="graph-node-title"><tspan x="272" dy="0">Banca humanizada</tspan></text>
+      <text x="272" y="206" class="graph-node-meta">Analista de crédito</text>
+      <text x="448" y="206" class="graph-node-deg" text-anchor="end">2← →2</text>
+    </a><a href="jornada-ativacao.html" class="graph-node-link" data-id="ativacao">
+      <rect class="graph-node" x="496" y="36" width="200" height="86" rx="10" />
+      <text x="508" y="64" class="graph-node-title"><tspan x="508" dy="0">Ativação do</tspan><tspan x="508" dy="15">locatário</tspan></text>
+      <text x="508" y="108" class="graph-node-meta">Locatário</text>
+      <text x="684" y="108" class="graph-node-deg" text-anchor="end">2← →1</text>
+    </a><a href="jornada-assinar.html" class="graph-node-link" data-id="assinar">
+      <rect class="graph-node" x="496" y="134" width="200" height="86" rx="10" />
+      <text x="508" y="162" class="graph-node-title"><tspan x="508" dy="0">Assinar o contrato</tspan></text>
+      <text x="508" y="206" class="graph-node-meta">Locatário</text>
+      <text x="684" y="206" class="graph-node-deg" text-anchor="end">3← →0</text>
+    </a><a href="jornada-renovar-fila.html" class="graph-node-link" data-id="renovar-fila">
+      <rect class="graph-node" x="732" y="36" width="200" height="86" rx="10" />
+      <text x="744" y="64" class="graph-node-title"><tspan x="744" dy="0">Fila de renovação</tspan><tspan x="744" dy="15">(loja)</tspan></text>
+      <text x="744" y="108" class="graph-node-meta">Corretor</text>
+      <text x="920" y="108" class="graph-node-deg" text-anchor="end">0← →1</text>
+    </a><a href="jornada-renovar-portal.html" class="graph-node-link" data-id="renovar-portal">
+      <rect class="graph-node" x="732" y="134" width="200" height="86" rx="10" />
+      <text x="744" y="162" class="graph-node-title"><tspan x="744" dy="0">Manifestação de</tspan><tspan x="744" dy="15">renovação</tspan></text>
+      <text x="744" y="206" class="graph-node-meta">Locatário</text>
+      <text x="920" y="206" class="graph-node-deg" text-anchor="end">1← →0</text>
+    </a><a href="jornada-danos.html" class="graph-node-link" data-id="danos">
+      <rect class="graph-node" x="732" y="232" width="200" height="86" rx="10" />
+      <text x="744" y="260" class="graph-node-title"><tspan x="744" dy="0">Danos ao imóvel</tspan></text>
+      <text x="744" y="304" class="graph-node-meta">Corretor</text>
+      <text x="920" y="304" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-comunicar-in.html" class="graph-node-link" data-id="comunicar-in">
+      <rect class="graph-node" x="24" y="394" width="200" height="86" rx="10" />
+      <text x="36" y="422" class="graph-node-title"><tspan x="36" dy="0">Comunicar</tspan><tspan x="36" dy="15">inadimplência</tspan></text>
+      <text x="36" y="466" class="graph-node-meta">Corretor</text>
+      <text x="212" y="466" class="graph-node-deg" text-anchor="end">0← →1</text>
+    </a><a href="jornada-cobertura.html" class="graph-node-link" data-id="cobertura">
+      <rect class="graph-node" x="24" y="492" width="200" height="86" rx="10" />
+      <text x="36" y="520" class="graph-node-title"><tspan x="36" dy="0">Analisar cobertura</tspan></text>
+      <text x="36" y="564" class="graph-node-meta">Analista de inadimplência</text>
+      <text x="212" y="564" class="graph-node-deg" text-anchor="end">3← →3</text>
+    </a><a href="jornada-pendencias.html" class="graph-node-link" data-id="pendencias-inq">
+      <rect class="graph-node" x="24" y="590" width="200" height="86" rx="10" />
+      <text x="36" y="618" class="graph-node-title"><tspan x="36" dy="0">Pendências do</tspan><tspan x="36" dy="15">locatário</tspan></text>
+      <text x="36" y="662" class="graph-node-meta">Locatário</text>
+      <text x="212" y="662" class="graph-node-deg" text-anchor="end">1← →1</text>
+    </a><a href="jornada-indenizacao.html" class="graph-node-link" data-id="indenizacao">
+      <rect class="graph-node" x="24" y="688" width="200" height="86" rx="10" />
+      <text x="36" y="716" class="graph-node-title"><tspan x="36" dy="0">Baixa de</tspan><tspan x="36" dy="15">indenização</tspan></text>
+      <text x="36" y="760" class="graph-node-meta">Analista financeiro</text>
+      <text x="212" y="760" class="graph-node-deg" text-anchor="end">1← →0</text>
+    </a><a href="jornada-exoneracao.html" class="graph-node-link" data-id="exoneracao">
+      <rect class="graph-node" x="260" y="394" width="200" height="86" rx="10" />
+      <text x="272" y="422" class="graph-node-title"><tspan x="272" dy="0">Exoneração</tspan><tspan x="272" dy="15">(Avaliza)</tspan></text>
+      <text x="272" y="466" class="graph-node-meta">Analista jurídico</text>
+      <text x="448" y="466" class="graph-node-deg" text-anchor="end">1← →1</text>
+    </a><a href="jornada-easyjur.html" class="graph-node-link" data-id="easyjur">
+      <rect class="graph-node" x="260" y="492" width="200" height="86" rx="10" />
+      <text x="272" y="520" class="graph-node-title"><tspan x="272" dy="0">Divergências</tspan><tspan x="272" dy="15">EasyJur</tspan></text>
+      <text x="272" y="564" class="graph-node-meta">Analista jurídico</text>
+      <text x="448" y="564" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-ajuizamento.html" class="graph-node-link" data-id="ajuizamento-loja">
+      <rect class="graph-node" x="260" y="590" width="200" height="86" rx="10" />
+      <text x="272" y="618" class="graph-node-title"><tspan x="272" dy="0">Ajuizamento na</tspan><tspan x="272" dy="15">loja</tspan></text>
+      <text x="272" y="662" class="graph-node-meta">Gestor da imobiliária</text>
+      <text x="448" y="662" class="graph-node-deg" text-anchor="end">1← →0</text>
+    </a><a href="jornada-aditivos.html" class="graph-node-link" data-id="aditivos">
+      <rect class="graph-node" x="260" y="688" width="200" height="86" rx="10" />
+      <text x="272" y="716" class="graph-node-title"><tspan x="272" dy="0">Aditivos</tspan><tspan x="272" dy="15">contratuais</tspan></text>
+      <text x="272" y="760" class="graph-node-meta">Analista jurídico</text>
+      <text x="448" y="760" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-receber.html" class="graph-node-link" data-id="receber">
+      <rect class="graph-node" x="496" y="394" width="200" height="86" rx="10" />
+      <text x="508" y="422" class="graph-node-title"><tspan x="508" dy="0">Recebíveis</tspan></text>
+      <text x="508" y="466" class="graph-node-meta">Analista financeiro</text>
+      <text x="684" y="466" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-conciliar.html" class="graph-node-link" data-id="conciliar">
+      <rect class="graph-node" x="496" y="492" width="200" height="86" rx="10" />
+      <text x="508" y="520" class="graph-node-title"><tspan x="508" dy="0">Conciliação</tspan></text>
+      <text x="508" y="564" class="graph-node-meta">Analista financeiro</text>
+      <text x="684" y="564" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-repassar.html" class="graph-node-link" data-id="repassar">
+      <rect class="graph-node" x="496" y="590" width="200" height="86" rx="10" />
+      <text x="508" y="618" class="graph-node-title"><tspan x="508" dy="0">Repasses</tspan></text>
+      <text x="508" y="662" class="graph-node-meta">Analista financeiro</text>
+      <text x="684" y="662" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-comissionar.html" class="graph-node-link" data-id="comissionar">
+      <rect class="graph-node" x="496" y="688" width="200" height="86" rx="10" />
+      <text x="508" y="716" class="graph-node-title"><tspan x="508" dy="0">Comissionamento /</tspan><tspan x="508" dy="15">NF</tspan></text>
+      <text x="508" y="760" class="graph-node-meta">Analista financeiro</text>
+      <text x="684" y="760" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-franqueado.html" class="graph-node-link" data-id="franqueado">
+      <rect class="graph-node" x="496" y="786" width="200" height="86" rx="10" />
+      <text x="508" y="814" class="graph-node-title"><tspan x="508" dy="0">Extrato do</tspan><tspan x="508" dy="15">franqueado</tspan></text>
+      <text x="508" y="858" class="graph-node-meta">Gestor da imobiliária</text>
+      <text x="684" y="858" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a><a href="jornada-ticket.html" class="graph-node-link" data-id="ticket">
+      <rect class="graph-node" x="732" y="394" width="200" height="86" rx="10" />
+      <text x="744" y="422" class="graph-node-title"><tspan x="744" dy="0">Ticket de</tspan><tspan x="744" dy="15">atendimento</tspan></text>
+      <text x="744" y="466" class="graph-node-meta">Analista de atendimento</text>
+      <text x="920" y="466" class="graph-node-deg" text-anchor="end">0← →2</text>
+    </a><a href="jornada-sandbox.html" class="graph-node-link" data-id="sandbox">
+      <rect class="graph-node" x="732" y="492" width="200" height="86" rx="10" />
+      <text x="744" y="520" class="graph-node-title"><tspan x="744" dy="0">Treino no sandbox</tspan></text>
+      <text x="744" y="564" class="graph-node-meta">Corretor</text>
+      <text x="920" y="564" class="graph-node-deg" text-anchor="end">0← →0</text>
+    </a></g>
+  </svg></div>
+  <p class="graph-hint">O grafo é largo de propósito — role na horizontal. Passe o mouse num nó para ver só os handoffs dele. Clique para abrir a jornada, não um tour da sidebar.</p>
+  <section class="graph-cluster-block" id="cluster-rede">
+      <h2>Entrar na rede</h2>
+      <p class="lead">A imobiliária ainda não opera. Nada de proposta aqui.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-onboarding.html">
+          <div class="kicker">Entrar na rede</div>
+          <h2>Onboarding da imobiliária</h2>
+          <p><strong>Gatilho.</strong> Parceiro ainda sem conta abre /onboarding (CNPJ, responsável, admin).</p>
+          <p><strong>Resultado.</strong> Cadastro aprovado, rejeitado ou parado — o clique de aprovar é irreversível.</p>
+          <div class="journey-meta">
+            <span class="chip">Parceiro ainda sem conta · Analista comercial</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-originar">
+      <h2>Originar garantia</h2>
+      <p class="lead">Do imóvel/CPF até uma decisão de crédito. Motor e banca são ciclos distintos.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-nova-proposta.html">
+          <div class="kicker">Originar garantia</div>
+          <h2>Nova proposta</h2>
+          <p><strong>Gatilho.</strong> Corretor/gestor tem locatário + imóvel e clica em Nova proposta.</p>
+          <p><strong>Resultado.</strong> Motor decide: aprovado, solidário, banca ou negado. A proposta acaba aqui para o corretor.</p>
+          <div class="journey-meta">
+            <span class="chip">Corretor · Gestor da imobiliária</span>
+            <span class="chip navy">tem sequência interna</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-banca.html">
+          <div class="kicker">Originar garantia</div>
+          <h2>Banca humanizada</h2>
+          <p><strong>Gatilho.</strong> O motor escalou. Crédito não inicia — recebe.</p>
+          <p><strong>Resultado.</strong> Aprovar, negar ou exigir solidário no dossiê. Irreversível e auditável.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista de crédito</span>
+            <span class="chip navy">tem sequência interna</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-vigorar">
+      <h2>Fazer vigorar</h2>
+      <p class="lead">Proposta aprovada não é contrato vigente. Ativação e assinatura correm em paralelo.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-ativacao.html">
+          <div class="kicker">Fazer vigorar</div>
+          <h2>Ativação do locatário</h2>
+          <p><strong>Gatilho.</strong> Link /ativacao/{token} no e-mail/SMS. O locatário não tem login no shell.</p>
+          <p><strong>Resultado.</strong> Cadastro, biometria e termos concluídos — ou travado na fila interna.</p>
+          <div class="journey-meta">
+            <span class="chip">Locatário (portal, sem shell) · Analista de crédito · Analista de CS</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-assinar.html">
+          <div class="kicker">Fazer vigorar</div>
+          <h2>Assinar o contrato</h2>
+          <p><strong>Gatilho.</strong> Link /contrato/{token} enviado ao locatário.</p>
+          <p><strong>Resultado.</strong> Assinado no ZapSign, expirado ou cancelado.</p>
+          <div class="journey-meta">
+            <span class="chip">Locatário (portal, sem shell)</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-manter">
+      <h2>Manter o contrato</h2>
+      <p class="lead">Renovação e danos não passam pela banca nem pela cobertura de IN.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-renovar-fila.html">
+          <div class="kicker">Manter o contrato</div>
+          <h2>Fila de renovação (loja)</h2>
+          <p><strong>Gatilho.</strong> Contrato perto do fim de vigência aparece na sidebar Renovação.</p>
+          <p><strong>Resultado.</strong> Imobiliária trata o recorte; o locatário manifesta noutro portal.</p>
+          <div class="journey-meta">
+            <span class="chip">Corretor · Gestor da imobiliária</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-renovar-portal.html">
+          <div class="kicker">Manter o contrato</div>
+          <h2>Manifestação de renovação</h2>
+          <p><strong>Gatilho.</strong> Locatário abre /renovacao/{token} já vinculado — sem CPF.</p>
+          <p><strong>Resultado.</strong> Aceite, contraproposta ou bloqueio por reanálise (&gt;10%).</p>
+          <div class="journey-meta">
+            <span class="chip">Locatário (portal, sem shell)</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-danos.html">
+          <div class="kicker">Manter o contrato</div>
+          <h2>Danos ao imóvel</h2>
+          <p><strong>Gatilho.</strong> Imobiliária comunica dano (vistoria/laudo).</p>
+          <p><strong>Resultado.</strong> Caso de dano aberto. Não é inadimplência de aluguel.</p>
+          <div class="journey-meta">
+            <span class="chip">Corretor · Gestor da imobiliária</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-cobrir">
+      <h2>Cobrir inadimplência</h2>
+      <p class="lead">Comunicar, analisar, pendenciar e pagar são ciclos com donos diferentes.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-comunicar-in.html">
+          <div class="kicker">Cobrir inadimplência</div>
+          <h2>Comunicar inadimplência</h2>
+          <p><strong>Gatilho.</strong> Loja tem débito a protocolar (pelo contrato ou Nova IN).</p>
+          <p><strong>Resultado.</strong> Caso aberto. O corretor não analisa cobertura.</p>
+          <div class="journey-meta">
+            <span class="chip">Corretor · Gestor da imobiliária</span>
+            <span class="chip navy">tem sequência interna</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-cobertura.html">
+          <div class="kicker">Cobrir inadimplência</div>
+          <h2>Analisar cobertura</h2>
+          <p><strong>Gatilho.</strong> Caso na fila pessoal do analista de IN (não na listagem geral).</p>
+          <p><strong>Resultado.</strong> Aprovar, negar, pendenciar ou encaminhar. Mérito da cobertura.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista de inadimplência</span>
+            <span class="chip navy">tem sequência interna</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-pendencias.html">
+          <div class="kicker">Cobrir inadimplência</div>
+          <h2>Pendências do locatário</h2>
+          <p><strong>Gatilho.</strong> IN pediu documento. Link /pendencias/{token} enviado ao locatário.</p>
+          <p><strong>Resultado.</strong> Documento enviado — o caso volta para a cobertura, não se encerra aqui.</p>
+          <div class="journey-meta">
+            <span class="chip">Locatário (portal, sem shell)</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-indenizacao.html">
+          <div class="kicker">Cobrir inadimplência</div>
+          <h2>Baixa de indenização</h2>
+          <p><strong>Gatilho.</strong> Cobertura já aprovada, valor a pagar. Financeiro não reabre mérito.</p>
+          <p><strong>Resultado.</strong> Indenização marcada paga.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista financeiro · Admin Avaliza</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-juridico">
+      <h2>Tratar no jurídico</h2>
+      <p class="lead">Exoneração Avaliza ≠ ajuizamento que a loja acompanha ≠ aditivo.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-exoneracao.html">
+          <div class="kicker">Tratar no jurídico</div>
+          <h2>Exoneração (Avaliza)</h2>
+          <p><strong>Gatilho.</strong> Caso na carteira jurídica interna / Minhas Tarefas do jurídico Avaliza.</p>
+          <p><strong>Resultado.</strong> Processo de exoneração anda (checklist, andamentos). Não liquida NF.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista jurídico</span>
+            <span class="chip navy">tem sequência interna</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-easyjur.html">
+          <div class="kicker">Tratar no jurídico</div>
+          <h2>Divergências EasyJur</h2>
+          <p><strong>Gatilho.</strong> O EasyJur apontou divergência. Não é o jurídico que abre um caso de exoneração.</p>
+          <p><strong>Resultado.</strong> Divergência fechada ou devolvida com motivo.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista jurídico</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-ajuizamento.html">
+          <div class="kicker">Tratar no jurídico</div>
+          <h2>Ajuizamento na loja</h2>
+          <p><strong>Gatilho.</strong> Gestor/corretor abre Jurídico da imobiliária — acompanhar, não ajuizar no lugar da Avaliza.</p>
+          <p><strong>Resultado.</strong> Loja vê o processo e pega documento de apoio.</p>
+          <div class="journey-meta">
+            <span class="chip">Gestor da imobiliária · Corretor</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-aditivos.html">
+          <div class="kicker">Tratar no jurídico</div>
+          <h2>Aditivos contratuais</h2>
+          <p><strong>Gatilho.</strong> Mudança formal de valor, prazo, garantia ou partes num contrato vigente.</p>
+          <p><strong>Resultado.</strong> Aditivo redigido, assinado no ZapSign, ticket TI pós-assinatura.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista jurídico</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-caixa">
+      <h2>Mover dinheiro</h2>
+      <p class="lead">Receber, conciliar, repassar e comissionar não são a mesma fila.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-receber.html">
+          <div class="kicker">Mover dinheiro</div>
+          <h2>Recebíveis</h2>
+          <p><strong>Gatilho.</strong> Há lançamento a receber (mensalidade, setup, etc.).</p>
+          <p><strong>Resultado.</strong> Financeiro sabe o que ainda não entrou.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista financeiro</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-conciliar.html">
+          <div class="kicker">Mover dinheiro</div>
+          <h2>Conciliação</h2>
+          <p><strong>Gatilho.</strong> Extrato bancário vs sistema. Divergência nomeada.</p>
+          <p><strong>Resultado.</strong> Lote do dia zerado ou divergência rastreada.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista financeiro</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-repassar.html">
+          <div class="kicker">Mover dinheiro</div>
+          <h2>Repasses</h2>
+          <p><strong>Gatilho.</strong> Há valor a ir para a imobiliária (D+30 ou atrasado).</p>
+          <p><strong>Resultado.</strong> Repasse emitido ou atraso com dono.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista financeiro</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-comissionar.html">
+          <div class="kicker">Mover dinheiro</div>
+          <h2>Comissionamento / NF</h2>
+          <p><strong>Gatilho.</strong> Comissão da loja a faturar. URL /financeiro/comissionamento (não é item da sidebar do financeiro).</p>
+          <p><strong>Resultado.</strong> NF tratada (pendente / a receber).</p>
+          <div class="journey-meta">
+            <span class="chip">Analista financeiro · Gestor da imobiliária</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-franqueado.html">
+          <div class="kicker">Mover dinheiro</div>
+          <h2>Extrato do franqueado</h2>
+          <p><strong>Gatilho.</strong> Gestor quer ver o que a loja tem a receber / abater.</p>
+          <p><strong>Resultado.</strong> Extrato conferido; abatimento rastreado.</p>
+          <div class="journey-meta">
+            <span class="chip">Gestor da imobiliária · Analista financeiro</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section><section class="graph-cluster-block" id="cluster-lateral">
+      <h2>Lateral</h2>
+      <p class="lead">Ticket e sandbox atravessam o grafo. Não encadeiam o contrato.</p>
+      <div class="cards"><a class="hub-card journey-hub-card" href="jornada-ticket.html">
+          <div class="kicker">Lateral</div>
+          <h2>Ticket de atendimento</h2>
+          <p><strong>Gatilho.</strong> Alguém tem uma dúvida/bloqueio e abre chamado (ou a Liza faz handoff).</p>
+          <p><strong>Resultado.</strong> Ticket triado e finalizado pelo setor dono.</p>
+          <div class="journey-meta">
+            <span class="chip">Analista de atendimento · Analista de inadimplência · Analista jurídico · Analista de CS · Corretor</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a><a class="hub-card journey-hub-card" href="jornada-sandbox.html">
+          <div class="kicker">Lateral</div>
+          <h2>Treino no sandbox</h2>
+          <p><strong>Gatilho.</strong> Loja quer errar sem contaminar carteira real.</p>
+          <p><strong>Resultado.</strong> Simulações isoladas por tenant. Reset é destrutivo só no sandbox.</p>
+          <div class="journey-meta">
+            <span class="chip">Corretor · Gestor da imobiliária</span>
+            <span class="chip">ciclo único</span>
+          </div>
+        </a></div>
+    </section>
+  <div class="note" style="margin-top:28px">
+    <strong>O que ficou de fora deste grafo</strong>
+    <p>Painéis, históricos, limites do motor, Developer Hub, IAM e o placeholder de Imobiliárias são <a href="capacidades.html">capacidades</a>. Servem jornadas; não são jornadas.</p>
+  </div>
+  <footer>Grafo operacional · agosto/2026 · 23 jornadas · 16 handoffs.</footer>
+</main>
+  <script src="jornada.js"></script>
+</body>
+</html>

@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Avaliza 2.0 — Visão geral</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Visão geral completa do Avaliza 2.0 — modelo mental, arquitetura operacional, ciclo da garantia, áreas, jornadas, automações e capacidades transversais." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --navy:#120E45;
+    --navy-deep:#0b0930;
+    --green:#60BB46;
+    --green-ink:#0d2b08;
+    --green-deep:#3f7d2e;
+    --amber:#cf9a3e;
+    --amber-ink:#3a2405;
+    --violet:#7a5bd0;
+    --teal:#2c7f9c;
+    --paper:#f7f6fb;
+    --ink:#15123e;
+
+    --font-display:'Sora', system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-body:'IBM Plex Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow:hidden;
+  }
+  img,svg{ display:block; max-width:100%; }
+  button{ font:inherit; color:inherit; }
+  ul,ol{ margin:0; padding:0; list-style:none; }
+  h1,h2,h3,h4,p,figure,figcaption{ margin:0; }
+
+  /* ======================= stage & slides ======================= */
+  .stage{ position:fixed; inset:0; background:var(--navy); overflow:hidden; }
+
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    padding: clamp(30px,4.6vh,58px) clamp(24px,4.6vw,80px) clamp(58px,8vh,84px);
+    background:var(--paper); color:var(--ink);
+    overflow-x:hidden; overflow-y:auto;
+    opacity:0; visibility:hidden;
+    transform:translateY(14px) scale(.995);
+    transition:opacity .46s cubic-bezier(.4,0,.2,1), transform .46s cubic-bezier(.4,0,.2,1), visibility 0s linear .46s;
+
+    --surface:#ffffff;
+    --surface-2:#efedf6;
+    --hairline: color-mix(in srgb, currentColor 13%, transparent);
+    --hairline-strong: color-mix(in srgb, currentColor 26%, transparent);
+    --muted: color-mix(in srgb, currentColor 66%, transparent);
+    --faint: color-mix(in srgb, currentColor 44%, transparent);
+    --metro-bg:#ffffff;
+    --xfer:#8a86a8;
+  }
+  .slide.active{
+    opacity:1; visibility:visible; transform:none; z-index:2;
+    transition:opacity .46s cubic-bezier(.4,0,.2,1), transform .46s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s;
+  }
+  .slide:not(.active){ z-index:1; pointer-events:none; }
+
+  .slide[data-theme="dark"]{
+    background:var(--navy); color:#ffffff;
+    --surface: rgba(255,255,255,.055);
+    --surface-2: rgba(255,255,255,.10);
+    --metro-bg:#191552;
+    --xfer:#8f8ab8;
+  }
+  .slide[data-theme="deep"]{
+    background:linear-gradient(150deg,#0b0930 0%, #171150 52%, #101a3c 100%);
+    color:#ffffff;
+    --surface: rgba(255,255,255,.06);
+    --surface-2: rgba(255,255,255,.11);
+  }
+
+  .content{
+    max-width:1180px; width:100%; margin:0 auto;
+    flex:1; min-height:0;
+    display:flex; flex-direction:column; justify-content:center;
+    gap:clamp(13px,2.3vh,26px);
+  }
+  .content.wide{ max-width:1480px; }
+  .content.mid{ max-width:1060px; }
+  .content--eco{
+    max-width:1180px;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:clamp(4px,0.65vh,8px);
+    padding-top:clamp(18px,3.2vh,40px);
+  }
+  .content--eco .eyebrow{ justify-content:center; margin-bottom:clamp(2px,0.4vh,6px); }
+  .content--eco .title{
+    font-size:clamp(20px,2.15vw,30px); line-height:1.12;
+    max-width:min(26ch,100%); margin-inline:auto;
+    margin-bottom:clamp(14px,2.2vh,28px);
+  }
+  .content--eco .title.tight{ max-width:min(30ch,100%); }
+  .content--eco .closing-line{ max-width:680px; margin-inline:auto; font-size:clamp(13px,1.1vw,16px); }
+  .content--eco .eco-foot{
+    display:flex; flex-direction:column; align-items:center; gap:4px; width:100%;
+  }
+  .content--eco .eco-foot .closing-line:last-child{
+    font-size:clamp(12.5px,1.05vw,15px); color:var(--muted); font-weight:500;
+  }
+  .content--eco .eco-map{
+    flex:1 1 auto;
+    align-self:stretch;
+    width:100%;
+    max-width:1080px;
+    min-height:clamp(360px,54vh,560px);
+    margin-inline:auto;
+  }
+
+  /* ======================= text system ======================= */
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px;
+    letter-spacing:.15em; text-transform:uppercase; color:var(--faint);
+    display:flex; align-items:center; gap:9px;
+  }
+  .eyebrow b{ color:var(--green-deep); font-weight:600; letter-spacing:.12em; }
+  [data-theme="dark"] .eyebrow b,[data-theme="deep"] .eyebrow b{ color:var(--green); }
+  .eyebrow s{ text-decoration:none; opacity:.4; }
+
+  .title{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(25px,3.15vw,42px); line-height:1.1;
+    letter-spacing:-.012em; text-wrap:balance; max-width:19ch;
+  }
+  .title.tight{ max-width:none; }
+  .title.sm{ font-size:clamp(22px,2.5vw,33px); }
+
+  .lede{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(17px,1.85vw,24px); line-height:1.4;
+    max-width:820px; text-wrap:balance;
+  }
+  .sub{
+    font-size:clamp(13.5px,1.1vw,15.5px); line-height:1.52;
+    color:var(--muted); max-width:760px;
+  }
+  .closing-line{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(14.5px,1.35vw,18px); line-height:1.4; max-width:760px;
+  }
+  .caption{ font-family:var(--font-mono); font-size:10.5px; color:var(--faint); max-width:820px; line-height:1.5; }
+  .caption b{ color:var(--muted); font-weight:600; }
+
+  /* ======================= reveal ======================= */
+  @media (prefers-reduced-motion: no-preference){
+    .slide.active .reveal > *{
+      animation: rise .55s cubic-bezier(.16,1,.3,1) both;
+      animation-delay: calc(var(--d, 0) * 62ms + 50ms);
+    }
+    @keyframes rise{ from{ opacity:0; transform:translateY(11px); } to{ opacity:1; transform:none; } }
+  }
+
+  /* ======================= visual grammar ======================= */
+  .n{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--surface); border:1px solid var(--hairline);
+    border-radius:12px; padding:9px 14px;
+    font-weight:600; font-size:13px; line-height:1.25;
+  }
+  .n small{ display:block; font-family:var(--font-mono); font-size:9.5px; font-weight:500; color:var(--faint); letter-spacing:.03em; }
+  .n.col{ flex-direction:column; align-items:flex-start; gap:2px; }
+  .n--now{ background:var(--green); color:var(--green-ink); border-color:transparent; }
+  .n--now small{ color:rgba(13,43,8,.62); }
+  .n--warn{ background:color-mix(in srgb, var(--amber) 22%, var(--surface)); border-color:color-mix(in srgb, var(--amber) 55%, transparent); }
+  .n--cond{ background:transparent; border-style:dashed; border-color:var(--hairline-strong); color:var(--muted); }
+  .n--end{ background:var(--surface-2); border-style:solid; }
+  .n--sys{ border-color:color-mix(in srgb, var(--green) 40%, transparent); }
+  .n--sm{ font-size:12px; padding:7px 11px; border-radius:10px; }
+
+  .ico{ width:14px; height:14px; flex:0 0 auto; opacity:.85; }
+  .ico-sys{ color:var(--green-deep); }
+  [data-theme="dark"] .ico-sys,[data-theme="deep"] .ico-sys{ color:var(--green); }
+
+  .ar{ flex:0 0 auto; align-self:center; color:var(--faint); font-size:15px; line-height:1; }
+  .ar--back{ color:var(--amber); }
+  .flow{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .flow.tightgap{ gap:6px; }
+  .flow.nowrap{ flex-wrap:nowrap; }
+  .flow.stack{ flex-direction:column; align-items:flex-start; }
+  .flow--fork{ flex-wrap:nowrap; gap:clamp(12px,1.8vw,18px); align-items:center; }
+  .flow-fork-in{ display:flex; align-items:center; gap:clamp(12px,1.8vw,18px); flex:0 0 auto; }
+  .flow-outcomes{
+    display:flex; flex-direction:column; gap:8px;
+    min-width:min(100%,248px); width:248px; flex:0 0 auto;
+  }
+  .flow-outcomes .n{ width:100%; }
+  .n-head{ display:inline-flex; align-items:center; gap:7px; }
+  .gate-pass{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:11px 16px; border:1px dashed var(--hairline); border-radius:13px;
+    background:transparent; text-align:center;
+  }
+  .gate-pass .flow.stack{ align-items:center; gap:2px; }
+  .gate-pass .kicker{ letter-spacing:.11em; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:5px;
+    font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    padding:4px 10px; border-radius:999px; white-space:nowrap;
+  }
+  .pill-green{ background:var(--green); color:var(--green-ink); }
+  .pill-amber{ background:var(--amber); color:var(--amber-ink); }
+  .pill-neutral{ background:var(--surface-2); color:var(--muted); border:1px solid var(--hairline); }
+  .pill-out{ background:transparent; border:1px dashed var(--hairline-strong); color:var(--faint); }
+
+  /* maturity tags */
+  .tg{ font-family:var(--font-mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); display:inline-flex; align-items:center; gap:4px; }
+  .tg::before{ content:'◆'; color:var(--green-deep); font-size:8px; }
+  .tg.cap::before{ content:'○'; color:var(--amber); }
+  [data-theme="dark"] .tg::before,[data-theme="deep"] .tg::before{ color:var(--green); }
+
+  /* legend */
+  .legend{ display:flex; flex-wrap:wrap; gap:10px 22px; }
+  .legend div{ display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10.5px; color:var(--faint); }
+  .lg-swatch{ width:26px; height:15px; border-radius:5px; border:1px solid var(--hairline-strong); background:var(--surface); flex:0 0 auto; }
+  .lg-swatch.now{ background:var(--green); border-color:transparent; }
+  .lg-swatch.warn{ background:color-mix(in srgb, var(--amber) 45%, var(--surface)); border-color:var(--amber); }
+  .lg-swatch.cond{ background:transparent; border-style:dashed; }
+  .lg-dot{ width:17px; height:17px; border-radius:50%; background:var(--surface-2); border:1.5px solid var(--hairline-strong); flex:0 0 auto; }
+  .lg-dot.liza{ background:radial-gradient(circle at 32% 28%, #a6ec8f, var(--green) 52%, #2b5c20 100%); border:none; }
+
+  /* ======================= layout helpers ======================= */
+  .grid{ display:grid; gap:12px; }
+  .g2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .g3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .g4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .g5{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .g6{ grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,3vw,46px); align-items:start; }
+  .split.lean{ grid-template-columns:.86fr 1.14fr; }
+  .split.lean-r{ grid-template-columns:1.2fr .8fr; }
+  .row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--hairline);
+    border-radius:15px; padding:14px 16px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .card.dash{ background:transparent; border-style:dashed; }
+  .card.hot{ border-color:color-mix(in srgb, var(--green) 45%, transparent); }
+  .card-h{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--faint);
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .card-t{ font-family:var(--font-display); font-weight:700; font-size:15px; line-height:1.2; }
+  .card-t.sm{ font-size:13.5px; }
+  .card p{ font-size:12.5px; line-height:1.48; color:var(--muted); }
+
+  .ilist{ display:flex; flex-direction:column; gap:5px; }
+  .ilist li{ font-size:12.5px; line-height:1.4; display:flex; gap:7px; align-items:baseline; color:var(--muted); }
+  .ilist li::before{ content:''; width:4px; height:4px; border-radius:50%; background:var(--hairline-strong); flex:0 0 auto; transform:translateY(-2px); }
+  .ilist.tickd li::before{ content:'✓'; width:auto; height:auto; background:none; color:var(--green-deep); font-size:10px; transform:none; }
+  .ilist.no li::before{ content:'×'; width:auto; height:auto; background:none; color:var(--faint); font-size:11px; transform:none; }
+  .ilist strong{ color:inherit; font-weight:600; }
+  [data-theme="dark"] .ilist.tickd li::before,[data-theme="deep"] .ilist.tickd li::before{ color:var(--green); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip-s{
+    font-family:var(--font-body); font-size:11.5px; font-weight:600;
+    padding:5px 10px; border-radius:8px;
+    background:var(--surface-2); color:var(--muted); border:1px solid var(--hairline);
+  }
+  .chip-s.on{ background:var(--green); color:var(--green-ink); border-color:transparent; }
+  .chip-s.soft{ background:transparent; border-style:dashed; color:var(--faint); }
+
+  .kicker{ font-family:var(--font-mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--faint); }
+  .rule{ height:1px; background:var(--hairline); border:0; }
+
+  /* ======================= persona ======================= */
+  .persona{ display:flex; align-items:center; gap:9px; }
+  .av{
+    width:32px; height:32px; border-radius:50%; flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:12.5px;
+    color:#fff;
+  }
+  .av.loja{ background:var(--surface-2); border:1.5px solid var(--hairline-strong); color:currentColor; }
+  .av.locatario{ background:var(--amber); color:var(--amber-ink); }
+  .av.inad{ background:var(--green); color:var(--green-ink); }
+  .av.credito{ background:#3b3796; }
+  .av.juridico{ background:var(--violet); }
+  .av.financeiro{ background:var(--teal); }
+  .av.comercial{ background:var(--amber); color:var(--amber-ink); }
+  .av.sm{ width:26px; height:26px; font-size:11px; }
+  .persona-t{ display:flex; flex-direction:column; line-height:1.2; }
+  .persona-n{ font-weight:600; font-size:13px; }
+  .persona-r{ font-family:var(--font-mono); font-size:9.5px; color:var(--faint); }
+
+  /* ======================= story band ======================= */
+  .story{
+    display:flex; align-items:flex-start; gap:11px;
+    border-left:2px solid var(--green); padding:2px 0 2px 13px;
+    max-width:900px;
+  }
+  .story .st-tag{ font-family:var(--font-mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-deep); padding-top:2px; flex:0 0 auto; }
+  [data-theme="dark"] .story .st-tag,[data-theme="deep"] .story .st-tag{ color:var(--green); }
+  .story p{ font-size:12.5px; line-height:1.5; color:var(--muted); }
+
+  /* ======================= mockups ======================= */
+  .mock{ display:flex; flex-direction:column; gap:6px; width:100%; }
+  .mock-frame{
+    border:1px solid var(--hairline-strong); border-radius:13px; overflow:hidden;
+    background:var(--surface);
+    box-shadow:0 16px 34px -22px rgba(18,14,69,.4);
+  }
+  .mock-bar{ height:24px; display:flex; align-items:center; gap:4px; padding:0 11px; background:var(--surface-2); border-bottom:1px solid var(--hairline); }
+  .mock-bar i{ width:5.5px; height:5.5px; border-radius:50%; background:var(--hairline-strong); }
+  .mock-bar u{ flex:1; height:7px; border-radius:4px; background:var(--hairline); margin-left:8px; max-width:180px; }
+  .mock-body{ display:flex; min-height:132px; }
+  .mock-side{ width:52px; padding:11px 9px; border-right:1px solid var(--hairline); display:flex; flex-direction:column; gap:7px; flex:0 0 auto; }
+  .mock-side i{ display:block; height:6px; border-radius:3px; background:var(--hairline); }
+  .mock-side i.on{ background:color-mix(in srgb, var(--green) 55%, transparent); }
+  .mock-main{ flex:1; padding:12px 14px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .mb{ border-radius:5px; background:var(--hairline); height:8px; }
+  .mb.t{ height:11px; width:38%; background:var(--hairline-strong); }
+  .mb.a{ background:color-mix(in srgb, var(--green) 48%, transparent); }
+  .mb.w{ background:color-mix(in srgb, var(--amber) 52%, transparent); }
+  .mcard{ border:1px solid var(--hairline); border-radius:9px; padding:9px 10px; display:flex; flex-direction:column; gap:6px; }
+  .mcard.sel{ border-color:color-mix(in srgb, var(--green) 55%, transparent); background:color-mix(in srgb, var(--green) 7%, transparent); }
+  .mgrid{ display:grid; gap:7px; }
+  .mock-cap{
+    font-family:var(--font-mono); font-size:9px; letter-spacing:.05em;
+    color:var(--faint); display:flex; align-items:center; gap:6px;
+  }
+  .mock-cap::before{ content:''; width:5px; height:5px; border-radius:1px; border:1px dashed var(--hairline-strong); flex:0 0 auto; }
+  .mock--phone{ max-width:186px; }
+  .mock--phone .mock-frame{ border-radius:20px; }
+  .mock--phone .mock-body{ min-height:210px; }
+  .mock--phone .mock-side{ display:none; }
+  .mock-frame--shot img{ width:100%; height:auto; display:block; }
+  .jrefs{ display:flex; flex-wrap:wrap; gap:7px; }
+  .jref{
+    display:inline-flex; align-items:center; gap:7px;
+    padding:7px 12px; border-radius:999px;
+    border:1px solid var(--hairline); background:var(--surface);
+    font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    letter-spacing:.02em; text-decoration:none; color:inherit;
+  }
+  .jref:hover{ border-color:color-mix(in srgb, var(--green) 55%, var(--hairline)); }
+  .jref b{ color:var(--green-deep); font-weight:700; }
+  [data-theme="dark"] .jref,[data-theme="deep"] .jref{
+    background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22); color:#fff;
+  }
+  [data-theme="dark"] .jref b,[data-theme="deep"] .jref b{ color:var(--green); }
+  .jref small{ color:var(--faint); font-weight:500; }
+  .how-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .how-step{
+    flex:1; min-width:140px;
+    border:1px solid var(--hairline); border-radius:12px;
+    background:var(--surface); padding:10px 12px;
+  }
+  .how-step b{
+    display:block; font-family:var(--font-mono); font-size:10px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--green-deep); margin-bottom:4px;
+  }
+  .how-step p{ font-size:12.5px; line-height:1.4; color:var(--muted); }
+  .mock--hero .mock-frame{
+    border-color:color-mix(in srgb, var(--green) 28%, var(--hairline-strong));
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--green) 12%, transparent),
+      0 22px 48px -18px rgba(18,14,69,.45);
+  }
+  .onboard-split{ align-items:stretch; }
+  .onboard-flow{ flex-wrap:wrap; row-gap:6px; }
+
+  /* ======================= metro map ======================= */
+  .metro{ width:100%; }
+  .metro svg{ width:100%; height:auto; }
+  .metro .ln{ fill:none; stroke-width:7.5; stroke-linecap:round; stroke-linejoin:round; }
+  .metro .ln.d{ stroke-width:4.5; stroke-dasharray:1 11; stroke-linecap:round; opacity:.9; }
+  .metro .lead{ fill:none; stroke-width:2.4; stroke-dasharray:1 9; stroke-linecap:round; opacity:.28; }
+  .metro .xf{ fill:none; stroke:var(--xfer); stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; }
+  .metro .xf.d{ stroke-dasharray:7 7; }
+  .metro .st{ fill:var(--metro-bg); stroke-width:4.2; }
+  .metro .st.f{ fill:currentColor; }
+  .metro text{ fill:currentColor; }
+  .metro .lbl{ font-family:var(--font-body); font-size:18px; font-weight:600; }
+  .metro .lnm{ font-family:var(--font-mono); font-size:14px; font-weight:600; letter-spacing:.11em; }
+  .metro .tiny{ font-family:var(--font-mono); font-size:13px; opacity:.55; }
+
+  /* ======================= specific blocks ======================= */
+  /* cover */
+  .cover-mark{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+  .cover-title{ font-family:var(--font-display); font-weight:800; font-size:clamp(46px,8.4vw,120px); line-height:.96; letter-spacing:-.025em; color:#fff; }
+  .cover-sub{ font-family:var(--font-display); font-weight:500; font-size:clamp(16px,1.8vw,23px); color:rgba(255,255,255,.74); max-width:36ch; line-height:1.42; }
+  .cover-tag{ font-family:var(--font-mono); font-size:12px; color:rgba(255,255,255,.42); }
+  .cover-footer{ display:flex; align-items:center; gap:12px; font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,.4); }
+  .cover-footer .dot{ width:5px; height:5px; border-radius:50%; background:var(--green); }
+
+  /* chapter divider */
+  .chapter{ display:flex; flex-direction:column; gap:clamp(10px,2vh,20px); }
+  .ch-num{
+    font-family:var(--font-display); font-weight:800;
+    font-size:clamp(80px,15vw,190px); line-height:.82; letter-spacing:-.04em;
+    color:transparent; -webkit-text-stroke:1.5px rgba(255,255,255,.28);
+  }
+  .ch-name{ font-family:var(--font-display); font-weight:700; font-size:clamp(26px,4.4vw,54px); line-height:1.04; letter-spacing:-.015em; color:#fff; }
+  .ch-line{ font-family:var(--font-display); font-weight:500; font-size:clamp(15px,1.6vw,20px); color:rgba(255,255,255,.62); max-width:40ch; }
+  .ch-rail{ display:flex; gap:5px; margin-top:4px; }
+  .ch-rail i{ height:3px; width:26px; border-radius:2px; background:rgba(255,255,255,.16); }
+  .ch-rail i.on{ background:var(--green); }
+
+  /* ecosystem map — slide 01 */
+  .eco-map{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    grid-template-areas:
+      "top top top"
+      "left core right"
+      "bottom bottom bottom";
+    column-gap:clamp(20px,3.2vw,40px);
+    row-gap:clamp(8px,1.4vh,16px);
+    align-items:center;
+    align-content:center;
+    padding:0;
+    text-align:left;
+  }
+  .eco-spoke-v,
+  .eco-spoke-h{
+    pointer-events:none; z-index:0;
+    background:color-mix(in srgb, var(--navy) 20%, transparent);
+  }
+  .eco-spoke-v{
+    grid-column:2; grid-row:1 / -1;
+    justify-self:center; align-self:stretch;
+    width:1.4px;
+  }
+  .eco-spoke-h{
+    grid-column:1 / -1; grid-row:2;
+    align-self:center; justify-self:stretch;
+    height:1.4px;
+  }
+
+  .eco-slot{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; min-width:0; }
+  .eco-top{ grid-area:top; width:min(100%,600px); justify-self:center; align-self:center; }
+  .eco-left{ grid-area:left; justify-self:end; width:100%; align-self:stretch; }
+  .eco-core{ grid-area:core; align-self:center; justify-self:center; }
+  .eco-right{ grid-area:right; justify-self:start; width:100%; align-self:stretch; }
+  .eco-bottom{ grid-area:bottom; width:min(100%,760px); justify-self:center; align-self:center; }
+
+  .eco-center{
+    background:linear-gradient(155deg, var(--navy) 0%, #181456 58%, #12104a 100%);
+    color:#fff; border-radius:24px; padding:clamp(28px,3.2vh,36px) clamp(32px,3.5vw,42px); text-align:center;
+    width:clamp(188px,16vw,232px);
+    box-shadow:0 18px 44px color-mix(in srgb, var(--navy) 30%, transparent);
+    display:flex; flex-direction:column; gap:6px;
+    border:1px solid color-mix(in srgb, #fff 8%, transparent);
+  }
+  .eco-center b{
+    font-family:var(--font-display); font-weight:800;
+    font-size:clamp(22px,2vw,30px); letter-spacing:-.015em; line-height:1.05;
+  }
+  .eco-center span{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.11em;
+    text-transform:uppercase; color:rgba(255,255,255,.58);
+  }
+
+  .eco-card{
+    border:1px solid var(--hairline); border-radius:16px; background:var(--surface);
+    padding:clamp(14px,1.6vh,18px) clamp(16px,1.8vw,20px);
+    display:flex; flex-direction:column; gap:4px; min-width:0; width:100%;
+    box-shadow:0 1px 0 color-mix(in srgb, #fff 70%, transparent);
+  }
+  .eco-card--wide{ padding:clamp(15px,1.7vh,19px) clamp(18px,2vw,22px); gap:8px; }
+  .eco-card--int{
+    padding:clamp(13px,1.5vh,16px) clamp(14px,1.6vw,18px); gap:6px;
+    background:var(--surface);
+    border:1px dashed color-mix(in srgb, currentColor 16%, transparent);
+    box-shadow:none;
+  }
+  .eco-int-head{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .eco-card--int .eco-card-t{ font-size:13px; color:var(--muted); font-weight:600; }
+  .eco-int-badge{
+    font-family:var(--font-mono); font-size:7.5px; letter-spacing:.07em; text-transform:uppercase;
+    padding:2px 7px; border-radius:999px;
+    background:var(--surface-2); color:var(--faint); border:1px solid var(--hairline);
+    white-space:nowrap;
+  }
+  .eco-int-stack{ display:flex; flex-direction:column; gap:5px; }
+  .eco-int-row{ display:flex; flex-direction:column; gap:2px; }
+  .eco-int-row-l{
+    font-family:var(--font-mono); font-size:7.5px; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--faint);
+  }
+  .eco-int-row-v{
+    font-size:10px; line-height:1.35; color:var(--muted); font-weight:500;
+  }
+  .eco-left{ max-width:288px; }
+  .eco-right{ max-width:288px; }
+  .eco-left .eco-card,
+  .eco-right .eco-card{
+    height:100%; justify-content:flex-start;
+  }
+  .eco-card-t{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(14px,1.2vw,16px); line-height:1.15;
+  }
+  .eco-card-kicker{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--faint); line-height:1.3;
+  }
+  .eco-card-body{
+    font-size:11px; line-height:1.42; color:var(--muted); font-weight:500;
+  }
+
+  .eco-bands{
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(8px,1vh,11px);
+  }
+  .eco-band{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:4px;
+    padding:clamp(10px,1.2vh,13px) clamp(11px,1.2vw,14px); border-radius:11px;
+    background:var(--surface-2); border:1px solid var(--hairline);
+    min-height:clamp(56px,7vh,68px);
+  }
+  .eco-band-l{
+    font-family:var(--font-mono); font-size:9px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--faint);
+  }
+  .eco-band-v{ font-size:clamp(10.5px,0.95vw,12px); color:var(--muted); font-weight:500; line-height:1.35; }
+
+  /* domain map */
+  .dm{ display:flex; flex-direction:column; gap:9px; border:1px solid var(--hairline); border-radius:15px; padding:13px 14px; background:var(--surface); }
+  .dm-h{ display:flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--faint); }
+  .dm-h b{ width:7px; height:7px; border-radius:2px; background:var(--green); flex:0 0 auto; }
+  .dm-h.c2 b{ background:var(--navy); } [data-theme="dark"] .dm-h.c2 b{ background:#8c86e8; }
+  .dm-h.c3 b{ background:var(--amber); }
+  .dm-h.c4 b{ background:var(--violet); }
+  .dm-h.c5 b{ background:var(--teal); }
+  .dm-h.c6 b{ background:#b9b6cc; }
+
+  /* concept tree */
+  .tree{ font-family:var(--font-mono); font-size:12.5px; line-height:1.85; color:var(--muted); }
+  .tree .br{ color:var(--faint); }
+  .tree .lv1{ color:inherit; font-weight:600; font-family:var(--font-body); font-size:13.5px; }
+  .tree em{ font-style:normal; color:var(--green-deep); }
+  [data-theme="dark"] .tree em,[data-theme="deep"] .tree em{ color:var(--green); }
+
+  /* task card anatomy */
+  .taskcard{ border:1px solid var(--hairline); border-radius:13px; background:var(--surface); padding:13px 15px; display:flex; flex-direction:column; gap:8px; }
+  .taskcard .tc-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .taskcard .tc-t{ font-weight:600; font-size:14px; }
+  .taskcard .tc-m{ font-family:var(--font-mono); font-size:10.5px; color:var(--faint); }
+  .taskcard .tc-next{ font-size:12px; color:var(--green-deep); }
+  [data-theme="dark"] .taskcard .tc-next{ color:var(--green); }
+  .anno{ font-family:var(--font-mono); font-size:9.5px; color:var(--faint); display:flex; align-items:center; gap:6px; }
+  .anno::before{ content:'└'; opacity:.5; }
+
+  /* gates */
+  .gate{ display:flex; align-items:center; gap:10px; padding:9px 12px; border:1px solid var(--hairline); border-radius:11px; background:var(--surface); }
+  .gate .gi{ width:19px; height:19px; border-radius:50%; flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-size:10px; }
+  .gate .gi.ok{ background:var(--green); color:var(--green-ink); }
+  .gate .gi.no{ background:color-mix(in srgb, var(--amber) 30%, transparent); color:var(--amber); border:1px solid var(--amber); }
+  .gate span{ font-size:12.5px; }
+  .gate small{ margin-left:auto; font-family:var(--font-mono); font-size:9.5px; color:var(--faint); }
+  .btn-locked{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px; border-radius:11px;
+    background:var(--surface-2); border:1px dashed var(--hairline-strong);
+    color:var(--faint); font-weight:600; font-size:13.5px;
+  }
+  .btn-locked svg{ width:14px; height:14px; }
+
+  /* maker-checker stack */
+  .mk{ display:flex; flex-direction:column; gap:9px; }
+  .mk-step{ display:flex; align-items:center; gap:12px; border:1px solid var(--hairline); border-radius:13px; background:var(--surface); padding:11px 14px; }
+  .mk-step .mk-i{ font-family:var(--font-mono); font-size:10px; color:var(--faint); min-width:38px; }
+  .mk-step .mk-t{ font-weight:600; font-size:13.5px; }
+  .mk-step .mk-d{ font-family:var(--font-mono); font-size:10px; color:var(--faint); }
+  .mk-step .mk-r{ margin-left:auto; }
+  .mk-sep{ height:14px; width:2px; background:var(--hairline-strong); margin-left:26px; border-radius:2px; }
+
+  /* bars */
+  .bars{ display:flex; flex-direction:column; gap:10px; max-width:520px; }
+  .bar-row{ display:flex; align-items:center; gap:11px; }
+  .bar-lbl{ font-family:var(--font-mono); font-size:10.5px; color:var(--faint); min-width:104px; }
+  .bar{ height:15px; border-radius:5px; background:var(--surface-2); flex:1; overflow:hidden; }
+  .bar i{ display:block; height:100%; border-radius:5px; }
+  .bar i.full{ width:100%; background:var(--hairline-strong); }
+  .bar i.part{ width:66%; background:var(--green); }
+
+  /* status rail */
+  .rail{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .rail .rs{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.03em;
+    padding:5px 9px; border-radius:7px; background:var(--surface-2);
+    border:1px solid var(--hairline); color:var(--muted); white-space:nowrap;
+  }
+  .rail .rs.on{ background:var(--green); color:var(--green-ink); border-color:transparent; font-weight:600; }
+  .rail .rs.risk{ background:color-mix(in srgb, var(--amber) 24%, var(--surface)); border-color:color-mix(in srgb,var(--amber) 50%,transparent); }
+  .rail .rs.end{ background:transparent; border-style:dashed; color:var(--faint); }
+  .rail .rr{ color:var(--faint); font-size:11px; }
+
+  /* hub */
+  .hub{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; align-items:stretch; }
+  .hub-c{
+    grid-column:2; grid-row:2;
+    background:var(--green); color:var(--green-ink); border-radius:15px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+    padding:16px 12px; text-align:center;
+  }
+  .hub-c b{ font-family:var(--font-display); font-size:15px; }
+  .hub-c span{ font-family:var(--font-mono); font-size:10px; opacity:.7; }
+  .hub-i{ background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:10px 11px; display:flex; flex-direction:column; gap:2px; justify-content:center; }
+  .hub-i b{ font-size:12.5px; font-weight:600; }
+  .hub-i span{ font-family:var(--font-mono); font-size:9.5px; color:var(--faint); line-height:1.35; }
+
+  /* liza */
+  .orb{
+    width:46px; height:46px; border-radius:50%; flex:0 0 auto;
+    background:radial-gradient(circle at 32% 28%, #a6ec8f, var(--green) 48%, #2b5c20 100%);
+    box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 0 34px rgba(96,187,70,.38);
+  }
+  .orb.sm{ width:26px; height:26px; box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 0 16px rgba(96,187,70,.32); }
+  @media (prefers-reduced-motion:no-preference){
+    .orb{ animation:pulse 3.8s ease-in-out infinite; }
+    @keyframes pulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.055); } }
+  }
+  .bubble{ background:var(--surface); border:1px solid var(--hairline); border-radius:15px; border-top-left-radius:4px; padding:12px 15px; max-width:430px; }
+  .bubble .bl{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.09em; color:var(--green); text-transform:uppercase; margin-bottom:4px; }
+  .bubble .bm{ font-size:13.5px; line-height:1.45; }
+
+  .scale{ display:flex; align-items:stretch; gap:0; border:1px solid var(--hairline); border-radius:13px; overflow:hidden; }
+  .scale div{ flex:1; padding:11px 12px; display:flex; flex-direction:column; gap:3px; border-right:1px solid var(--hairline); }
+  .scale div:last-child{ border-right:0; }
+  .scale b{ font-family:var(--font-display); font-size:18px; }
+  .scale span{ font-family:var(--font-mono); font-size:9.5px; color:var(--faint); line-height:1.4; }
+  .scale div:first-child{ background:color-mix(in srgb, var(--green) 10%, transparent); }
+  .scale div:last-child{ background:color-mix(in srgb, var(--amber) 12%, transparent); }
+
+  /* integrations */
+  .integ{ display:flex; align-items:center; gap:12px; border:1px solid var(--hairline); border-radius:13px; background:var(--surface); padding:11px 14px; }
+  .integ .ig-mk{
+    width:34px; height:34px; border-radius:9px; flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:13px;
+    background:var(--surface-2); border:1px solid var(--hairline);
+  }
+  .integ .ig-t{ font-weight:600; font-size:13.5px; }
+  .integ .ig-d{ font-family:var(--font-mono); font-size:10px; color:var(--faint); }
+  .integ .ig-w{ margin-left:auto; text-align:right; font-size:11.5px; color:var(--muted); max-width:44%; }
+  .integ--lite{ padding:10px 13px; }
+  .integ--lite .ig-t{ font-size:13px; }
+  .integ--lite .ig-d{ font-size:10.5px; margin-top:2px; }
+
+  /* closing chips */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{ border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:9px 18px; font-weight:600; font-size:13px; color:#fff; }
+
+  /* ======================= deck chrome ======================= */
+  .seg-track{
+    position:fixed; top:0; left:0; right:0; height:3px;
+    display:flex; gap:2px; padding:0 2px;
+    background:transparent; z-index:22;
+  }
+  .seg{ height:3px; border-radius:0 0 2px 2px; background:rgba(255,255,255,.15); overflow:hidden; }
+  .seg i{ display:block; height:100%; width:0; background:var(--green); transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .seg.done i{ width:100%; }
+
+  .deck-nav{
+    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+    display:flex; align-items:center; gap:3px; padding:5px;
+    border-radius:999px; background:rgba(255,255,255,.88);
+    backdrop-filter:blur(14px) saturate(1.4); -webkit-backdrop-filter:blur(14px) saturate(1.4);
+    box-shadow:0 10px 30px -12px rgba(18,14,69,.4), 0 0 0 1px rgba(18,14,69,.06);
+    z-index:20; max-width:calc(100vw - 24px);
+  }
+  .nav-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%; border:none; background:transparent;
+    cursor:pointer; color:var(--navy); transition:background .15s ease, opacity .15s ease;
+  }
+  .nav-btn:hover{ background:rgba(18,14,69,.08); }
+  .nav-btn:focus-visible{ outline:2px solid var(--green); outline-offset:2px; }
+  .nav-btn:disabled{ opacity:.26; cursor:default; }
+  .nav-btn:hover:disabled{ background:transparent; }
+  .nav-btn svg{ width:16px; height:16px; }
+  .nav-mid{ display:flex; align-items:center; gap:8px; padding:0 8px; min-width:0; }
+  .nav-ch{
+    font-family:var(--font-mono); font-size:10px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--navy); opacity:.62;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:34vw;
+  }
+  .nav-count{
+    font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--navy);
+    display:flex; align-items:center; gap:4px; font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .nav-count .sep{ opacity:.32; }
+
+  .kbd-hint{ position:fixed; left:20px; bottom:24px; font-family:var(--font-mono); font-size:10.5px; color:rgba(255,255,255,.4); z-index:15; mix-blend-mode:difference; }
+  .wordmark{ position:fixed; right:20px; bottom:24px; font-family:var(--font-mono); font-size:10.5px; color:rgba(255,255,255,.4); letter-spacing:.06em; text-transform:uppercase; z-index:15; mix-blend-mode:difference; }
+
+  /* ======================= responsive ======================= */
+  @media (max-width:1060px){
+    .g6{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .g5{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .g4{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
+  @media (max-width:820px){
+    .split,.split.lean,.split.lean-r{ grid-template-columns:1fr; gap:18px; }
+    .flow--fork{ flex-wrap:wrap; }
+    .flow-outcomes{ width:100%; min-width:0; }
+    .g3,.g4,.g5,.g6{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .g2{ grid-template-columns:1fr; }
+    .hub{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .hub-c{ grid-column:auto; grid-row:auto; }
+    .eco-map{
+      grid-template-columns:1fr;
+      grid-template-areas:"core" "top" "left" "right" "bottom";
+      gap:10px; max-width:440px; padding:0;
+    }
+    .eco-spoke-v,.eco-spoke-h{ display:none; }
+    .eco-left,.eco-right,.eco-top,.eco-bottom{ max-width:none; justify-self:stretch; }
+    .eco-bands{ grid-template-columns:1fr; }
+    .eco-band{ min-height:0; }
+    .title{ max-width:none; }
+  }
+  @media (max-width:560px){
+    .kbd-hint{ display:none; }
+    .g3,.g4,.g5,.g6{ grid-template-columns:1fr; }
+    .nav-ch{ display:none; }
+  }
+  @media (max-height:660px){
+    .content{ gap:11px; }
+    .lede{ font-size:clamp(15px,2.6vw,20px); }
+    .content--eco{ gap:6px; }
+    .content--eco .title{ font-size:clamp(18px,2vw,24px); }
+    .content--eco .eco-map{ min-height:300px; }
+    .eco-map{ row-gap:8px; padding:0; }
+    .eco-center{ padding:20px 26px; width:168px; }
+    .eco-band{ min-height:48px; padding:8px 10px; }
+  }
+
+  @media print{
+    body{ overflow:visible; background:#fff; }
+    .stage{ position:static; }
+    .slide{
+      position:static; opacity:1!important; visibility:visible!important; transform:none!important;
+      height:100vh; page-break-after:always; transition:none; overflow:hidden;
+    }
+    .deck-nav,.seg-track,.kbd-hint,.wordmark{ display:none!important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <!-- ==================== 01 · CAPA ==================== -->
+  <section class="slide active" data-theme="deep" data-chapter="0" data-chapter-name="Abertura">
+    <div class="content reveal" style="justify-content:center;">
+      <div class="cover-mark" style="--d:0">Avaliza · Treinamento de produto e operação</div>
+      <h1 class="cover-title" style="--d:1">Avaliza 2.0</h1>
+      <p class="cover-sub" style="--d:2">Um passeio amigável pela plataforma: o que cada time faz, por onde começar o dia e para onde o caso segue.</p>
+      <div class="jrefs" style="--d:3;margin-top:18px">
+        <a class="jref" href="../jornadas/setor-credito.html" target="_blank" rel="noopener"><b>Crédito</b> <small>guia do setor</small></a>
+        <a class="jref" href="../jornadas/setor-inadimplencia.html" target="_blank" rel="noopener"><b>Inadimplência</b> <small>guia do setor</small></a>
+        <a class="jref" href="../jornadas/setor-juridico.html" target="_blank" rel="noopener"><b>Jurídico</b> <small>guia do setor</small></a>
+        <a class="jref" href="../jornadas/setor-financeiro.html" target="_blank" rel="noopener"><b>Financeiro</b> <small>guia do setor</small></a>
+        <a class="jref" href="index-inad-juridico.html"><b>Deck prático</b> <small>tarefas passo a passo</small></a>
+      </div>
+      <div class="cover-footer" style="--d:4"><span class="dot"></span> Piloto · 2 de setembro de 2026 · Prints reais · Guias por setor ao lado de cada tarefa</div>
+    </div>
+  </section>
+
+  <!-- ==================== 02 · O que é o Avaliza ==================== -->
+  <section class="slide" data-theme="light" data-chapter="1" data-chapter-name="Entendendo o Avaliza">
+    <div class="content content--eco reveal">
+      <div class="eyebrow" style="--d:0"><b>01</b> Entendendo o Avaliza <s>·</s> o que é</div>
+      <h2 class="title tight" style="--d:1">Uma garantia envolve muita gente. O Avaliza conecta o trabalho de todos.</h2>
+
+      <div class="eco-map" style="--d:2">
+        <div class="eco-spoke-v" aria-hidden="true"></div>
+        <div class="eco-spoke-h" aria-hidden="true"></div>
+
+        <div class="eco-slot eco-top">
+          <article class="eco-card">
+            <h3 class="eco-card-t">Imobiliária</h3>
+            <p class="eco-card-kicker">Onde a garantia começa</p>
+            <p class="eco-card-body">Origina propostas, acompanha contratos e comunica ocorrências.</p>
+          </article>
+        </div>
+
+        <div class="eco-slot eco-left">
+          <article class="eco-card eco-card--int">
+            <div class="eco-int-head">
+              <h3 class="eco-card-t">Integrações</h3>
+              <span class="eco-int-badge">externas</span>
+            </div>
+            <p class="eco-card-kicker">Acionadas pela jornada</p>
+            <div class="eco-int-stack">
+              <div class="eco-int-row">
+                <span class="eco-int-row-l">Jurídico & cobrança</span>
+                <span class="eco-int-row-v">EasyJur · CobMais</span>
+              </div>
+              <div class="eco-int-row">
+                <span class="eco-int-row-l">Assinatura & crédito</span>
+                <span class="eco-int-row-v">ZapSign · ClickSign · Itaú · Credit Gateway</span>
+              </div>
+              <div class="eco-int-row">
+                <span class="eco-int-row-l">Operação & dados</span>
+                <span class="eco-int-row-v">OMIE · Receita/CNPJ</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="eco-slot eco-core">
+          <div class="eco-center">
+            <b>Avaliza 2.0</b>
+            <span>operação da garantia</span>
+          </div>
+        </div>
+
+        <div class="eco-slot eco-right">
+          <article class="eco-card">
+            <h3 class="eco-card-t">Locatário</h3>
+            <p class="eco-card-kicker">Participa quando a jornada exige sua ação</p>
+            <p class="eco-card-body">Recebe solicitações, envia documentos e responde etapas — por experiências externas, sem acessar o ambiente interno.</p>
+          </article>
+        </div>
+
+        <div class="eco-slot eco-bottom">
+          <article class="eco-card eco-card--wide">
+            <h3 class="eco-card-t">Operação Avaliza</h3>
+            <p class="eco-card-kicker">Onde o trabalho é distribuído, analisado e governado</p>
+            <div class="eco-bands">
+              <div class="eco-band">
+                <span class="eco-band-l">Relacionamento</span>
+                <span class="eco-band-v">Comercial · CS · Atendimento</span>
+              </div>
+              <div class="eco-band">
+                <span class="eco-band-l">Operação</span>
+                <span class="eco-band-v">Crédito · Inadimplência · Jurídico · Financeiro</span>
+              </div>
+              <div class="eco-band">
+                <span class="eco-band-l">Governança</span>
+                <span class="eco-band-v">Administração</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="eco-foot">
+        <p class="closing-line" style="--d:3">O Avaliza é o ponto em comum entre todos eles.</p>
+        <p class="closing-line" style="--d:4">A garantia muda de etapa, de responsável e até de área. O contexto permanece conectado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 03 · O mapa da plataforma ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="1" data-chapter-name="Entendendo o Avaliza">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>01</b> Entendendo o Avaliza <s>·</s> o território</div>
+      <h2 class="title tight" style="--d:1">O mapa da plataforma</h2>
+      <p class="sub" style="--d:2">Seis domínios organizam tudo o que existe no produto. Ninguém usa todos — mas todos existem.</p>
+
+      <div class="grid g3" style="--d:3">
+        <div class="dm">
+          <div class="dm-h"><b></b> Originação</div>
+          <div class="chips"><span class="chip-s">Onboarding</span><span class="chip-s">Propostas</span><span class="chip-s">Crédito</span><span class="chip-s">Ativação</span><span class="chip-s">Assinaturas</span></div>
+        </div>
+        <div class="dm">
+          <div class="dm-h c2"><b></b> Operação do contrato</div>
+          <div class="chips"><span class="chip-s">Contratos</span><span class="chip-s">Renovações</span><span class="chip-s">Danos</span><span class="chip-s">Inadimplência</span></div>
+        </div>
+        <div class="dm">
+          <div class="dm-h c3"><b></b> Resolução</div>
+          <div class="chips"><span class="chip-s">Cobertura</span><span class="chip-s">Financeiro</span><span class="chip-s">Jurídico</span></div>
+        </div>
+        <div class="dm">
+          <div class="dm-h c4"><b></b> Relacionamento</div>
+          <div class="chips"><span class="chip-s">Comercial</span><span class="chip-s">CS</span><span class="chip-s">Atendimento</span></div>
+        </div>
+        <div class="dm">
+          <div class="dm-h c5"><b></b> Gestão</div>
+          <div class="chips"><span class="chip-s">Dashboard</span><span class="chip-s">Relatórios</span><span class="chip-s">Franqueados</span><span class="chip-s">Configurações</span><span class="chip-s">Governança</span></div>
+        </div>
+        <div class="dm">
+          <div class="dm-h c6"><b></b> Experiência externa</div>
+          <div class="chips"><span class="chip-s">Portais do locatário</span><span class="chip-s">Assinaturas</span><span class="chip-s">Links tokenizados</span></div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Isto não é um menu. É o território onde a operação acontece — e cada perfil enxerga uma parte dele.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 04 · Jornada, caso, tarefa, contrato ==================== -->
+  <section class="slide" data-theme="light" data-chapter="1" data-chapter-name="Entendendo o Avaliza">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>01</b> Entendendo o Avaliza <s>·</s> vocabulário</div>
+      <h2 class="title tight" style="--d:1">Contrato, jornada, caso e tarefa não são a mesma coisa</h2>
+
+      <div class="split lean" style="--d:2">
+        <div class="grid" style="gap:9px">
+          <div class="card"><div class="card-h">Contrato</div><div class="card-t sm">A garantia em si</div><p>Vive por anos e concentra todo o histórico.</p></div>
+          <div class="card"><div class="card-h">Jornada</div><div class="card-t sm">O processo completo</div><p>Ex.: tratar uma inadimplência, renovar, exonerar.</p></div>
+          <div class="card"><div class="card-h">Caso</div><div class="card-t sm">Uma ocorrência específica</div><p>Uma inadimplência protocolada, um processo jurídico.</p></div>
+          <div class="card hot"><div class="card-h">Tarefa</div><div class="card-t sm">O que precisa ser feito agora</div><p>Tem dono, prazo, status e critérios para concluir.</p></div>
+        </div>
+
+        <div class="card" style="justify-content:center">
+          <div class="card-h">Um contrato ao longo da vida</div>
+          <div class="tree">
+            <div class="lv1">Contrato AV-2026-1842</div>
+            <div><span class="br">├─</span> Renovação <span class="br">· jornada</span></div>
+            <div><span class="br">├─</span> Danos ao imóvel <span class="br">· jornada</span></div>
+            <div><span class="br">└─</span> Inadimplência <span class="br">· jornada</span></div>
+            <div><span class="br">&nbsp;&nbsp;&nbsp;&nbsp;├─</span> caso protocolado</div>
+            <div><span class="br">&nbsp;&nbsp;&nbsp;&nbsp;└─</span> tarefas <em>← é aqui que você entra</em></div>
+          </div>
+          <hr class="rule" />
+          <p style="font-size:12px;color:var(--muted);line-height:1.5">Jornadas do mesmo contrato podem correr <strong>ao mesmo tempo</strong> — uma renovação em andamento não impede uma inadimplência aberta.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Você não executa a jornada inteira. Você recebe tarefas dentro dela.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 05 · Capacidades por perfil ==================== -->
+  <section class="slide" data-theme="light" data-chapter="1" data-chapter-name="Entendendo o Avaliza">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>01</b> Entendendo o Avaliza <s>·</s> responsabilidades</div>
+      <h2 class="title tight" style="--d:1">O que cada perfil realmente faz</h2>
+
+      <div class="grid g5" style="--d:2;gap:10px">
+        <div class="card"><div class="card-t sm">Corretor</div><ul class="ilist"><li>originar propostas</li><li>protocolar inadimplência</li><li>tratar renovações</li><li>comunicar danos</li><li>abrir tickets</li></ul></div>
+        <div class="card"><div class="card-t sm">Gestor · franqueado</div><ul class="ilist"><li>tudo do corretor</li><li>relatórios da loja</li><li>extrato e abatimentos</li><li>comissionamento</li><li>acompanhar ajuizamento</li></ul></div>
+        <div class="card"><div class="card-t sm">Crédito</div><ul class="ilist"><li>banca humanizada</li><li>dossiê e decisão</li><li>reanálise de renovação</li><li>limites do motor</li><li>acompanhar ativação</li></ul></div>
+        <div class="card"><div class="card-t sm">Inadimplência</div><ul class="ilist"><li>Minhas Tarefas</li><li>checklist e lançamentos</li><li>pendenciar</li><li>decidir cobertura</li><li>encaminhar jurídico</li></ul></div>
+        <div class="card"><div class="card-t sm">Jurídico</div><ul class="ilist"><li>exoneração</li><li>caução e despejo</li><li>aditivos</li><li>divergências EasyJur</li><li>bonificação</li></ul></div>
+        <div class="card"><div class="card-t sm">Financeiro</div><ul class="ilist"><li>recebíveis e conciliação</li><li>repasses</li><li>contas a pagar</li><li>comissionamento</li><li>baixa de indenização</li></ul></div>
+        <div class="card"><div class="card-t sm">Comercial</div><ul class="ilist"><li>fila de onboarding</li><li>credenciamento</li><li>cadastro manual</li><li>funil de ativação</li><li>carteira de parceiros</li></ul></div>
+        <div class="card"><div class="card-t sm">CS</div><ul class="ilist"><li>acompanhar onboarding</li><li>acompanhar ativação</li><li>tickets do parceiro</li><li>carteira e saúde da conta</li></ul></div>
+        <div class="card"><div class="card-t sm">Atendimento</div><ul class="ilist"><li>triar tickets</li><li>responder</li><li>finalizar (exclusivo)</li><li>revisão de documentos</li></ul></div>
+        <div class="card"><div class="card-t sm">Admin</div><ul class="ilist"><li>acessos e permissões</li><li>governança e auditoria</li><li>tarefas globais</li><li>dashboards executivos</li></ul></div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Mesma plataforma, responsabilidades diferentes — e é essa divisão que faz a operação funcionar.</p>
+    </div>
+  </section>
+  <!-- ==================== 07 · Divisor 02 + gramática visual ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="2" data-chapter-name="Ciclo da garantia">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">02</div>
+        <h2 class="ch-name" style="--d:1">Ciclo da garantia</h2>
+        <p class="ch-line" style="--d:2">Do primeiro cadastro ao encerramento — e tudo o que pode acontecer no meio.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <hr class="rule" style="--d:4;margin-top:6px" />
+      <div style="--d:5">
+        <div class="kicker" style="margin-bottom:9px">Como ler os diagramas a seguir</div>
+        <div class="legend">
+          <div><span class="lg-swatch"></span> etapa</div>
+          <div><span class="lg-swatch now"></span> etapa principal / ação em foco</div>
+          <div><span class="lg-swatch warn"></span> atenção ou pendência</div>
+          <div><span class="lg-swatch cond"></span> caminho condicional</div>
+          <div><span class="lg-dot"></span> pessoa</div>
+          <div><span class="lg-dot liza"></span> Liza</div>
+          <div><span style="color:var(--faint)">→</span> fluxo normal</div>
+          <div><span style="color:var(--amber)">⇢</span> retorno ou condição</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 08 · Mapa de metrô ==================== -->
+  <section class="slide" data-theme="light" data-chapter="2" data-chapter-name="Ciclo da garantia">
+    <div class="content wide reveal" style="justify-content:flex-start;padding-top:4px">
+      <div class="eyebrow" style="--d:0"><b>02</b> Ciclo da garantia <s>·</s> o mapa</div>
+      <h2 class="title tight" style="--d:1">A vida de uma garantia</h2>
+
+      <div class="metro" style="--d:2">
+        <svg viewBox="0 0 1440 700" role="img" aria-label="Mapa das linhas operacionais do Avaliza: originação, contrato, inadimplência, financeiro e jurídico">
+          <defs>
+            <marker id="aX" markerWidth="7" markerHeight="7" refX="5.4" refY="3" orient="auto"><path d="M0,0 L5.4,3 L0,6 Z" fill="#8a86a8"/></marker>
+            <marker id="aG" markerWidth="7" markerHeight="7" refX="5.4" refY="3" orient="auto"><path d="M0,0 L5.4,3 L0,6 Z" fill="#56A83F"/></marker>
+            <marker id="aA" markerWidth="7" markerHeight="7" refX="5.4" refY="3" orient="auto"><path d="M0,0 L5.4,3 L0,6 Z" fill="#C08A2E"/></marker>
+            <marker id="aAs" markerWidth="7" markerHeight="7" refX="1.6" refY="3" orient="auto"><path d="M5.4,0 L0,3 L5.4,6 Z" fill="#C08A2E"/></marker>
+            <marker id="aV" markerWidth="7" markerHeight="7" refX="5.4" refY="3" orient="auto"><path d="M0,0 L5.4,3 L0,6 Z" fill="#7A5BD0"/></marker>
+            <marker id="aT" markerWidth="7" markerHeight="7" refX="5.4" refY="3" orient="auto"><path d="M0,0 L5.4,3 L0,6 Z" fill="#2C7F9C"/></marker>
+          </defs>
+
+          <!-- lane lead-ins -->
+          <path class="lead" stroke="#3B3796" d="M150,225 H648"/>
+          <path class="lead" stroke="#C08A2E" d="M200,365 H818"/>
+          <path class="lead" stroke="#2C7F9C" d="M175,520 H1198"/>
+          <path class="lead" stroke="#7A5BD0" d="M160,628 H1038"/>
+
+          <!-- lane labels -->
+          <rect x="24" y="69" width="12" height="12" rx="3" fill="#56A83F"/><text class="lnm" x="44" y="83" fill="#56A83F">ORIGINAÇÃO</text>
+          <rect x="24" y="216" width="12" height="12" rx="3" fill="#3B3796"/><text class="lnm" x="44" y="230" fill="#3B3796">CONTRATO</text>
+          <rect x="24" y="356" width="12" height="12" rx="3" fill="#C08A2E"/><text class="lnm" x="44" y="370" fill="#C08A2E">INADIMPLÊNCIA</text>
+          <rect x="24" y="511" width="12" height="12" rx="3" fill="#2C7F9C"/><text class="lnm" x="44" y="525" fill="#2C7F9C">FINANCEIRO</text>
+          <rect x="24" y="619" width="12" height="12" rx="3" fill="#7A5BD0"/><text class="lnm" x="44" y="633" fill="#7A5BD0">JURÍDICO</text>
+
+          <!-- LINE 1 · originação -->
+          <path class="ln" stroke="#56A83F" d="M170,78 H636"/>
+          <path class="ln" stroke="#56A83F" d="M636,78 L664,50 H736 L764,78"/>
+          <path class="ln" stroke="#56A83F" d="M636,78 L664,106 H736 L764,78"/>
+          <path class="ln" stroke="#56A83F" d="M764,78 H802 Q840,78 840,116 V208"/>
+          <path class="ln d" stroke="#56A83F" d="M530,92 V144"/>
+          <path class="ln d" stroke="#56A83F" marker-end="url(#aG)" d="M545,150 Q636,140 636,94"/>
+
+          <!-- LINE 2 · contrato -->
+          <path class="ln" stroke="#3B3796" d="M840,225 H1340"/>
+
+          <!-- LINE 3 · inadimplência -->
+          <path class="ln" stroke="#C08A2E" d="M840,242 V332 Q840,365 873,365 H1220"/>
+          <path class="ln d" stroke="#C08A2E" marker-end="url(#aA)" marker-start="url(#aAs)" d="M1076,382 L1114,454"/>
+
+          <!-- LINE 4 · financeiro -->
+          <path class="xf" marker-end="url(#aT)" stroke="#2C7F9C" d="M1220,382 V494"/>
+          <path class="ln" stroke="#2C7F9C" d="M1220,520 H1390"/>
+
+          <!-- LINE 5 · jurídico -->
+          <path class="xf d" marker-end="url(#aV)" stroke="#7A5BD0" d="M1048,380 L1000,438 V598 Q1000,628 1030,628"/>
+          <path class="ln" stroke="#7A5BD0" d="M1060,628 H1390"/>
+
+          <!-- stations · line 1 -->
+          <circle class="st" cx="210" cy="78" r="8.5" stroke="#56A83F"/>
+          <circle class="st" cx="370" cy="78" r="8.5" stroke="#56A83F"/>
+          <circle class="st" cx="530" cy="78" r="8.5" stroke="#56A83F"/>
+          <circle class="st" cx="700" cy="50" r="8.5" stroke="#56A83F"/>
+          <circle class="st" cx="700" cy="106" r="8.5" stroke="#56A83F"/>
+          <circle class="st" cx="530" cy="158" r="8" stroke="#56A83F" stroke-dasharray="3 3"/>
+          <text class="lbl" x="210" y="110" text-anchor="middle">Onboarding</text>
+          <text class="lbl" x="370" y="110" text-anchor="middle">Nova proposta</text>
+          <text class="lbl" x="530" y="52" text-anchor="middle">Motor de crédito</text>
+          <text class="lbl" x="700" y="26" text-anchor="middle">Ativação</text>
+          <text class="lbl" x="700" y="138" text-anchor="middle">Assinatura</text>
+          <text class="lbl" x="530" y="190" text-anchor="middle">Banca humanizada</text>
+          <text class="tiny" x="530" y="210" text-anchor="middle">condicional</text>
+          <text class="tiny" x="700" y="82" text-anchor="middle">em paralelo</text>
+
+          <!-- stations · line 2 -->
+          <circle class="st" cx="840" cy="225" r="13" stroke="#3B3796"/><circle cx="840" cy="225" r="5" fill="#3B3796"/>
+          <circle class="st" cx="1010" cy="225" r="8.5" stroke="#3B3796"/>
+          <circle class="st" cx="1170" cy="225" r="8.5" stroke="#3B3796"/>
+          <circle class="st f" cx="1340" cy="225" r="8.5" stroke="#3B3796" fill="#3B3796"/>
+          <text class="lbl" x="812" y="221" text-anchor="end">Contrato vigente</text>
+          <text class="tiny" x="812" y="241" text-anchor="end">estação central</text>
+          <text class="lbl" x="1010" y="257" text-anchor="middle">Renovação</text>
+          <text class="lbl" x="1170" y="257" text-anchor="middle">Danos ao imóvel</text>
+          <text class="lbl" x="1432" y="257" text-anchor="end">Encerramento</text>
+
+          <!-- stations · line 3 -->
+          <circle class="st" cx="900" cy="365" r="8.5" stroke="#C08A2E"/>
+          <circle class="st" cx="1060" cy="365" r="13" stroke="#C08A2E"/><circle cx="1060" cy="365" r="5" fill="#C08A2E"/>
+          <circle class="st" cx="1220" cy="365" r="8.5" stroke="#C08A2E"/>
+          <circle class="st" cx="1130" cy="470" r="8" stroke="#C08A2E" stroke-dasharray="3 3"/>
+          <text class="lbl" x="900" y="316" text-anchor="middle">Comunicar</text>
+          <text class="lbl" x="900" y="336" text-anchor="middle">inadimplência</text>
+          <text class="lbl" x="1060" y="316" text-anchor="middle">Análise de</text>
+          <text class="lbl" x="1060" y="336" text-anchor="middle">cobertura</text>
+          <text class="lbl" x="1220" y="316" text-anchor="middle">Decisão de</text>
+          <text class="lbl" x="1220" y="336" text-anchor="middle">cobertura</text>
+          <text class="lbl" x="1102" y="502" text-anchor="middle">Pendências</text>
+          <text class="lbl" x="1102" y="522" text-anchor="middle">do locatário</text>
+          <text class="tiny" x="1102" y="542" text-anchor="middle">retorna à análise</text>
+
+          <!-- stations · line 4 -->
+          <circle class="st" cx="1220" cy="520" r="8.5" stroke="#2C7F9C"/>
+          <circle class="st f" cx="1390" cy="520" r="8.5" stroke="#2C7F9C" fill="#2C7F9C"/>
+          <text class="lbl" x="1220" y="552" text-anchor="middle">Indenização</text>
+          <text class="lbl" x="1390" y="552" text-anchor="middle">Repasse e</text>
+          <text class="lbl" x="1390" y="572" text-anchor="middle">comissão</text>
+
+          <!-- stations · line 5 -->
+          <circle class="st" cx="1060" cy="628" r="8.5" stroke="#7A5BD0"/>
+          <circle class="st" cx="1225" cy="628" r="8.5" stroke="#7A5BD0"/>
+          <circle class="st f" cx="1390" cy="628" r="8.5" stroke="#7A5BD0" fill="#7A5BD0"/>
+          <text class="lbl" x="1060" y="660" text-anchor="middle">Exoneração</text>
+          <text class="lbl" x="1225" y="660" text-anchor="middle">Ajuizamento</text>
+          <text class="lbl" x="1225" y="680" text-anchor="middle">e despejo</text>
+          <text class="lbl" x="1434" y="660" text-anchor="end">Encerramento</text>
+          <text class="lbl" x="1434" y="680" text-anchor="end">jurídico</text>
+        </svg>
+      </div>
+
+      <div class="row" style="--d:3;align-items:center;gap:10px 20px">
+        <span class="caption"><b>Comercial, CS, Atendimento e a Liza</b> acompanham o percurso inteiro — não são uma estação, são o entorno.</span>
+      </div>
+      <p class="caption" style="--d:4">estações que um mesmo contrato pode percorrer — nem todas acontecem, algumas acontecem em paralelo e a ordem entre renovação, danos e inadimplência não é fixa</p>
+    </div>
+  </section>
+  <!-- ==================== 09 · Como uma jornada nasce ==================== -->
+  <section class="slide" data-theme="light" data-chapter="2" data-chapter-name="Ciclo da garantia">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>02</b> Ciclo da garantia <s>·</s> gatilhos</div>
+      <h2 class="title tight" style="--d:1">Jornadas não são abertas “na mão”. Elas nascem de eventos</h2>
+
+      <div class="grid g2" style="--d:2;gap:8px 34px">
+        <div class="flow tightgap"><span class="n n--sm">Novo cadastro no portal público</span><span class="ar">→</span><span class="n n--sm n--now">Onboarding</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Contrato próximo do fim da vigência</span><span class="ar">→</span><span class="n n--sm n--now">Renovação</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Proposta simulada</span><span class="ar">→</span><span class="n n--sm n--now">Análise de crédito</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Reajuste acima de 10% na renovação</span><span class="ar">⇢</span><span class="n n--sm n--cond">Reanálise de crédito</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Motor escala o caso</span><span class="ar">⇢</span><span class="n n--sm n--cond">Banca humanizada</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Vistoria aponta dano</span><span class="ar">→</span><span class="n n--sm n--now">Danos ao imóvel</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Crédito aprovado</span><span class="ar">→</span><span class="n n--sm n--now">Ativação + assinatura</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Imobiliária comunica um débito</span><span class="ar">→</span><span class="n n--sm n--now">Inadimplência</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Falta documento na análise</span><span class="ar">⇢</span><span class="n n--sm n--warn">Pendência</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Cobertura aprovada</span><span class="ar">→</span><span class="n n--sm n--now">Baixa de indenização</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Encaminhamento ao jurídico</span><span class="ar">⇢</span><span class="n n--sm n--cond">Exoneração</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Divergência na integração jurídica</span><span class="ar">→</span><span class="n n--sm n--now">Reconciliação EasyJur</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Mudança formal no contrato</span><span class="ar">→</span><span class="n n--sm n--now">Aditivo contratual</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Dúvida ou bloqueio de um usuário</span><span class="ar">→</span><span class="n n--sm n--now">Ticket de atendimento</span></div>
+      </div>
+
+      <p class="closing-line" style="--d:3">O Avaliza transforma eventos da operação em jornadas acompanháveis — com dono, prazo e histórico.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 10 · Como o trabalho circula ==================== -->
+  <section class="slide" data-theme="light" data-chapter="2" data-chapter-name="Ciclo da garantia">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>02</b> Ciclo da garantia <s>·</s> circulação</div>
+      <h2 class="title tight" style="--d:1">Você faz uma parte. O Avaliza conecta o restante</h2>
+
+      <div class="flow" style="--d:2">
+        <span class="n">Evento</span><span class="ar">→</span>
+        <span class="n">Caso</span><span class="ar">→</span>
+        <span class="n n--now">Tarefa</span><span class="ar">→</span>
+        <span class="n">Pessoa</span><span class="ar">→</span>
+        <span class="n">Decisão</span><span class="ar">→</span>
+        <span class="n n--sys"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Próxima etapa</span>
+      </div>
+
+      <div class="split lean" style="--d:3">
+        <div class="taskcard">
+          <div class="tc-top">
+            <div>
+              <div class="tc-t">Validar análise inicial</div>
+              <div class="tc-m">Contrato AV-2026-1842</div>
+              <div class="tc-next">→ próxima ação: confirmar decisão</div>
+            </div>
+            <div class="row" style="gap:6px"><span class="pill pill-amber">Vence amanhã</span><span class="pill pill-green">Docs completos</span></div>
+          </div>
+          <hr class="rule" />
+          <div class="row" style="gap:8px 16px">
+            <span class="anno">status</span><span class="anno">prazo</span><span class="anno">responsável</span><span class="anno">histórico</span>
+          </div>
+        </div>
+
+        <div class="grid" style="gap:8px">
+          <div class="card"><div class="card-t sm">Toda tarefa carrega quatro coisas</div>
+            <ul class="ilist">
+              <li><strong>Status</strong> — em que ponto o caso está</li>
+              <li><strong>Prazo</strong> — o SLA que ordena a fila</li>
+              <li><strong>Responsável</strong> — quem precisa agir agora</li>
+              <li><strong>Histórico</strong> — o que já foi feito e por quem</li>
+            </ul>
+          </div>
+          <div class="card dash"><p>Ao concluir uma tarefa, o sistema cria a próxima no pool da área seguinte. Nada depende de alguém “avisar” a próxima pessoa.</p></div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">O trabalho não termina no seu clique. Ele continua na jornada — e continua rastreável.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 11 · Obrigatório, condicional, paralelo ==================== -->
+  <section class="slide" data-theme="light" data-chapter="2" data-chapter-name="Ciclo da garantia">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>02</b> Ciclo da garantia <s>·</s> estrutura</div>
+      <h2 class="title tight" style="--d:1">Três regras explicam por que o ciclo não é uma esteira</h2>
+
+      <div class="grid g3" style="--d:2">
+        <div class="card hot">
+          <div class="card-h">Sempre acontece <span class="pill pill-green">obrigatório</span></div>
+          <ul class="ilist tickd">
+            <li>onboarding, para um parceiro novo</li>
+            <li>simulação, para a proposta ter desfecho</li>
+            <li>ativação <strong>e</strong> assinatura, para o contrato vigorar</li>
+            <li>protocolo, antes de qualquer análise de cobertura</li>
+          </ul>
+        </div>
+        <div class="card dash">
+          <div class="card-h">Depende da situação <span class="pill pill-out">condicional</span></div>
+          <ul class="ilist">
+            <li>banca humanizada, quando o motor escala</li>
+            <li>pendências, quando falta documento</li>
+            <li>exoneração, quando há encaminhamento jurídico</li>
+            <li>reanálise, quando o reajuste passa de 10%</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Ao mesmo tempo <span class="pill pill-neutral">paralelo</span></div>
+          <ul class="ilist">
+            <li>ativação <span style="opacity:.6">∥</span> assinatura</li>
+            <li>renovação <span style="opacity:.6">∥</span> inadimplência aberta</li>
+            <li>exoneração <span style="opacity:.6">∥</span> acompanhamento da loja</li>
+            <li>tickets <span style="opacity:.6">∥</span> qualquer fase</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Por isso a operação é um grafo de jornadas conectadas — não uma linha reta que todo contrato percorre igual.</p>
+    </div>
+  </section>
+  <!-- ==================== 12 · Divisor 03 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">03</div>
+        <h2 class="ch-name" style="--d:1">Originação e crédito</h2>
+        <p class="ch-line" style="--d:2">A loja monta a proposta. O motor tenta sozinho. Você só entra quando ele pede ajuda.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 13 · Onboarding da imobiliária ==================== -->
+  <section class="slide" data-theme="light" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>03</b> Originação <s>·</s> entrada do parceiro</div>
+      <h2 class="title tight" style="--d:1">Como uma imobiliária entra na rede</h2>
+      <p class="sub" style="--d:2">A porta de entrada é um cadastro público. Quem decide é o Comercial — e CS acompanha.</p>
+
+      <div class="split lean-r onboard-split" style="--d:3">
+        <div class="grid" style="gap:12px">
+          <div class="flow tightgap nowrap onboard-flow">
+            <span class="n n--sm col"><span>Cadastro público</span><small>5 etapas</small></span>
+            <span class="ar">→</span>
+            <span class="n n--sm col n--sys"><span>Consulta de risco</span><small>automática</small></span>
+            <span class="ar">→</span>
+            <span class="n n--sm col n--cond"><span>Baixo risco</span><small>auto-aprovação</small></span>
+            <span class="ar">/</span>
+            <span class="n n--sm col"><span>Fila comercial</span><small>análise humana</small></span>
+            <span class="ar">→</span>
+            <span class="n n--sm col n--now"><span>Aprovar ou rejeitar</span><small>Comercial decide</small></span>
+            <span class="ar">→</span>
+            <span class="n n--sm col"><span>Apta a operar</span><small>origina propostas</small></span>
+          </div>
+
+          <div class="card">
+            <div class="card-h">As 5 etapas do cadastro</div>
+            <div class="flow tightgap">
+              <span class="chip-s">Imobiliária</span><span class="ar">›</span>
+              <span class="chip-s">Documentos</span><span class="ar">›</span>
+              <span class="chip-s">Responsável</span><span class="ar">›</span>
+              <span class="chip-s">Administrador</span><span class="ar">›</span>
+              <span class="chip-s on">Revisão</span>
+            </div>
+            <p>Um cadastro pode ficar parado em rascunho. A rejeição encerra o ciclo; a aprovação abre o acesso à originação.</p>
+          </div>
+
+          <div class="card hot">
+            <div class="card-h">Quem aprova na fila</div>
+            <div class="persona">
+              <span class="av comercial">Co</span>
+              <div class="persona-t">
+                <span class="persona-n">Time Comercial</span>
+                <span class="persona-r">revisa cadastro, cria admin se necessário e confirma aprovação</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="story">
+            <span class="st-tag">Exemplo</span>
+            <p>Horizonte Imóveis Ltda entrou na fila de onboarding. O Comercial revisa o cadastro, define as credenciais do administrador e confirma a aprovação — a imobiliária passa a operar.</p>
+          </div>
+        </div>
+
+        <figure class="mock mock--hero">
+          <div class="mock-frame mock-frame--shot">
+            <img src="img/aprovacaoimob.png" alt="Tela Fila de Onboarding — modal Aprovar cadastro da imobiliária" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Fila de onboarding — aprovar cadastro</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:4">Só depois da aprovação a imobiliária começa a originar garantias.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 14 · Nova proposta ==================== -->
+  <section class="slide" data-theme="light" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>03</b> Originação <s>·</s> nova proposta</div>
+      <h2 class="title tight" style="--d:1">Nova proposta: da composição à simulação</h2>
+      <p class="sub" style="--d:2"><strong>A proposta é construída em etapas.</strong> Na revisão, a simulação envia as informações para o processo de crédito.</p>
+
+      <div class="split lean-r" style="--d:3">
+        <div class="grid" style="gap:12px">
+          <div class="flow tightgap nowrap">
+            <span class="n n--sm col"><span>01 · Composição</span><small>imóvel · valores</small></span><span class="ar">→</span>
+            <span class="n n--sm col"><span>02 · Locatários</span><small>titular · participantes</small></span><span class="ar">→</span>
+            <span class="n n--sm col"><span>03 · Plano</span><small>condições da garantia</small></span><span class="ar">→</span>
+            <span class="n n--sm col"><span>04 · Pagamento</span><small>modalidade aplicável</small></span><span class="ar">→</span>
+            <span class="n n--now col"><span>05 · Revisar e simular</span><small>entrada no processo de crédito</small></span>
+          </div>
+
+          <div class="gate-pass">
+            <div class="flow stack">
+              <span class="kicker">Proposta em construção</span>
+              <span class="ar">↓</span>
+              <span class="n n--sm n--now"><span>Simular</span></span>
+              <span class="ar">↓</span>
+              <span class="kicker">Processo de crédito</span>
+            </div>
+            <span class="caption">→ veremos a decisão no próximo passo</span>
+          </div>
+
+          <div class="card">
+            <div class="card-h">Quem monta a proposta</div>
+            <div class="persona">
+              <span class="av loja">C</span>
+              <div class="persona-t">
+                <span class="persona-n">Corretor ou gestor</span>
+                <span class="persona-r">preenche as informações necessárias e realiza a simulação</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="story">
+            <span class="st-tag">Exemplo</span>
+            <p>Carlos monta uma nova proposta, informa os dados necessários e avança pelas etapas. Na revisão, ele confere as informações e simula. A partir desse momento, a proposta entra no processo de crédito.</p>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="img/simulacaocredito1.png" alt="Tela Simular crédito — locação, participantes e resultado aprovado" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Simular crédito — revisão da proposta</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:4">Preencher monta a proposta. Simular coloca a proposta em decisão.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 15 · Como o crédito decide ==================== -->
+  <section class="slide" data-theme="light" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>03</b> Crédito <s>·</s> decisão</div>
+      <h2 class="title tight" style="--d:1">A proposta entra no motor. Saem quatro caminhos</h2>
+
+      <div class="flow flow--fork" style="--d:2">
+        <div class="flow-fork-in">
+          <span class="n col"><span>Proposta simulada</span><small>dados do imóvel e do locatário</small></span>
+          <span class="ar">→</span>
+          <span class="n col n--sys">
+            <span class="n-head"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="2"/></svg><span>Motor de crédito</span></span>
+            <small>consulta dados · aplica regras</small>
+          </span>
+        </div>
+        <span class="ar">→</span>
+        <div class="flow-outcomes">
+          <span class="n n--sm n--now col"><span>Aprovado</span><small>segue para ativação e assinatura</small></span>
+          <span class="n n--sm col"><span>Exige solidário</span><small>garantidor adicional</small></span>
+          <span class="n n--sm n--cond col"><span>Banca humanizada</span><small>vai para uma pessoa decidir</small></span>
+          <span class="n n--sm col"><span>Negado</span><small>encerra o ciclo da proposta</small></span>
+        </div>
+      </div>
+
+      <div class="split" style="--d:3;align-items:stretch">
+        <div class="card dash" style="justify-content:center">
+          <div class="card-h">O que a proposta percorre depois</div>
+          <div class="rail">
+            <span class="rs">rascunho</span><span class="rr">→</span>
+            <span class="rs">em análise de crédito</span><span class="rr">→</span>
+            <span class="rs on">aguardando ativação</span>
+            <span class="rr">|</span><span class="rs end">reprovada</span>
+          </div>
+        </div>
+        <div class="card" style="justify-content:center">
+          <div class="card-h">Na banca, a decisão é humana e definitiva</div>
+          <p>Você pode aprovar, negar ou pedir um solidário. Escreva o porquê no dossiê — depois de confirmar, não dá para desfazer.</p>
+        </div>
+      </div>
+
+      <div class="jrefs" style="--d:4">
+        <a class="jref" href="../jornadas/setor-credito.html" target="_blank" rel="noopener"><b>Guia do crédito</b> <small>setor-credito.html</small></a>
+        <a class="jref" href="../jornadas/jornada-banca.html" target="_blank" rel="noopener"><b>Banca humanizada</b> <small>/credito</small></a>
+        <a class="jref" href="../jornadas/jornada-nova-proposta.html" target="_blank" rel="noopener"><b>Nova proposta</b> <small>origem na loja</small></a>
+      </div>
+
+      <p class="closing-line" style="--d:5">O motor resolve o que cabe nas regras. O que escapa das regras chega na sua fila.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 16 · Motor x analista ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>03</b> Crédito <s>·</s> automação e pessoa</div>
+      <h2 class="title tight" style="--d:1">O motor tenta. Você decide só o que ele escalou</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:11px">
+          <div class="how-row">
+            <div class="how-step"><b>1 · Comece aqui</b><p>Menu Crédito → Reanálise. A Liza já colocou o urgente no topo.</p></div>
+            <div class="how-step"><b>2 · Abra o card</b><p>O dossiê mostra score, renda, Serasa e o motivo da escalação.</p></div>
+            <div class="how-step"><b>3 · Confirme</b><p>Aprovar, negar ou pedir solidário — no painel da Diretoria, não na lista.</p></div>
+          </div>
+          <div class="card hot">
+            <div class="card-h"><span>O que é seu</span><span class="tg cap">humano</span></div>
+            <p>A recomendação da Liza é um recado, não a decisão. Quem assina o dossiê é você.</p>
+          </div>
+          <div class="jrefs">
+            <a class="jref" href="../jornadas/setor-credito.html#comecar" target="_blank" rel="noopener"><b>Fila de reanálise</b> <small>/credito</small></a>
+            <a class="jref" href="../jornadas/setor-credito.html#analisar" target="_blank" rel="noopener"><b>Decidir no dossiê</b> <small>/credito/analisar</small></a>
+          </div>
+        </div>
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="img/credito.png" alt="Fila de reanálise de crédito — cards ordenados pela Liza" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Comece o dia aqui · /credito · a urgência vem da Liza, não da ordem de chegada</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:3">Quem só olhou a lista não decide. A decisão mora no dossiê.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 17 · Ativação e assinatura ==================== -->
+  <section class="slide" data-theme="light" data-chapter="3" data-chapter-name="Originação e crédito">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>03</b> Originação <s>·</s> fazer vigorar</div>
+      <h2 class="title tight" style="--d:1">Crédito aprovado ainda não é contrato vigente</h2>
+
+      <div class="flow" style="--d:2;gap:14px">
+        <span class="n col"><span>Crédito aprovado</span><small>desfecho positivo</small></span>
+        <span class="ar">→</span>
+        <div class="card" style="gap:9px;border-style:dashed;background:transparent">
+          <div class="card-h">Acontecem em paralelo — um não espera o outro</div>
+          <div class="grid" style="gap:8px">
+            <span class="n n--sm col"><span>Ativação do locatário</span><small>CPF · identidade · biometria · termos</small></span>
+            <span class="n n--sm col"><span>Assinatura do contrato</span><small>link de assinatura eletrônica</small></span>
+          </div>
+        </div>
+        <span class="ar">→</span>
+        <span class="n col n--now"><span>Contrato vigente</span><small>a garantia passa a valer</small></span>
+      </div>
+
+      <div class="grid g3" style="--d:3">
+        <div class="card"><div class="card-t sm">Quem executa</div><p>O locatário, pelos portais — por link, sem login no ambiente interno.</p></div>
+        <div class="card"><div class="card-t sm">Quem acompanha</div><p>Crédito e CS acompanham a fila de ativação e veem quem travou no caminho.</p></div>
+        <div class="card"><div class="card-t sm">O que pode dar errado</div><p>O token expira, ou a ativação trava e o caso fica na fila interna para tratamento.</p></div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Enquanto ativação e assinatura não fecham, a garantia ainda não está de pé.</p>
+    </div>
+  </section>
+  <!-- ==================== 18 · Divisor 04 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="4" data-chapter-name="Contrato e operação">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">04</div>
+        <h2 class="ch-name" style="--d:1">Contrato e operação</h2>
+        <p class="ch-line" style="--d:2">Depois de vigorar, o contrato passa a ser o centro de tudo.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 19 · O contrato no centro ==================== -->
+  <section class="slide" data-theme="light" data-chapter="4" data-chapter-name="Contrato e operação">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>04</b> Contrato <s>·</s> visão 360°</div>
+      <h2 class="title tight" style="--d:1">Quando precisar de contexto, abra o contrato — não uma etapa nova</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="hub">
+        <div class="hub-i"><b>Dados e valores</b><span>imóvel, aluguel, encargos, plano</span></div>
+        <div class="hub-i"><b>Assinaturas</b><span>estado da assinatura eletrônica</span></div>
+        <div class="hub-i"><b>Garantia</b><span>situação da cobertura contratada</span></div>
+        <div class="hub-i"><b>Renovação</b><span>proximidade do fim da vigência</span></div>
+        <div class="hub-c"><b>Contrato</b><span>AV-2026-1842</span></div>
+        <div class="hub-i"><b>Inadimplência</b><span>casos protocolados e em análise</span></div>
+        <div class="hub-i"><b>Danos</b><span>ocorrências de vistoria e laudo</span></div>
+        <div class="hub-i"><b>Jurídico</b><span>processos ligados à garantia</span></div>
+        <div class="hub-i"><b>Financeiro e histórico</b><span>movimentações e linha do tempo</span></div>
+        </div>
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="img/contratos.png" alt="Visão 360 graus do contrato — partes, estado e vínculos" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Consulta · /contratos · contexto do caso, não uma etapa nova</figcaption>
+        </figure>
+      </div>
+
+      <div style="--d:3">
+        <div class="kicker" style="margin-bottom:7px">Os estados que um contrato percorre</div>
+        <div class="rail">
+          <span class="rs">rascunho</span><span class="rr">→</span>
+          <span class="rs">em análise</span><span class="rr">→</span>
+          <span class="rs">aprovado</span><span class="rr">→</span>
+          <span class="rs">assinatura pendente</span><span class="rr">→</span>
+          <span class="rs">pagamento pendente</span><span class="rr">→</span>
+          <span class="rs on">vigente</span>
+          <span class="rr">·</span>
+          <span class="rs risk">em risco</span><span class="rs risk">inadimplente</span><span class="rs risk">jurídico</span><span class="rs risk">renovação iminente</span>
+          <span class="rr">·</span>
+          <span class="rs end">rescindido</span><span class="rs end">cancelado</span><span class="rs end">exonerado</span><span class="rs end">suspenso</span>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Depois da ativação, tudo o que acontece com a garantia fica pendurado no contrato — e visível para quem tem permissão.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 20 · O que a imobiliária faz x acompanha ==================== -->
+  <section class="slide" data-theme="light" data-chapter="4" data-chapter-name="Contrato e operação">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>04</b> Contrato <s>·</s> visão da imobiliária</div>
+      <h2 class="title tight" style="--d:1">O que a loja faz, o que ela acompanha e o que não é dela</h2>
+
+      <div class="grid g3" style="--d:2">
+        <div class="card hot">
+          <div class="card-h">Ela faz</div>
+          <ul class="ilist tickd">
+            <li>originar propostas</li>
+            <li>protocolar inadimplência</li>
+            <li>tratar a fila de renovação</li>
+            <li>comunicar danos ao imóvel</li>
+            <li>anexar documentos e evidências</li>
+            <li>abrir e acompanhar tickets</li>
+            <li>aceitar os termos de uso</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Ela acompanha</div>
+          <ul class="ilist">
+            <li>status de propostas e contratos</li>
+            <li>pendências solicitadas ao locatário</li>
+            <li>andamento das inadimplências comunicadas</li>
+            <li>processos jurídicos espelhados</li>
+            <li>extrato, abatimentos e comissões <span class="tg cap">gestor</span></li>
+            <li>relatórios da própria carteira <span class="tg cap">gestor</span></li>
+          </ul>
+        </div>
+        <div class="card dash">
+          <div class="card-h">Não é dela</div>
+          <ul class="ilist no">
+            <li>analisar cobertura de inadimplência</li>
+            <li>decidir crédito na banca</li>
+            <li>marcar uma indenização como paga</li>
+            <li>conduzir o processo jurídico</li>
+            <li>operar as filas internas da Avaliza</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" style="--d:3;align-items:center;gap:12px">
+        <span class="pill pill-amber">Atenção</span>
+        <span class="sub" style="max-width:none">Se a imobiliária tem termos de uso pendentes de aceite, as operações falham até que os termos sejam aceitos — o acesso continua, mas a ação não passa.</span>
+      </div>
+
+      <p class="closing-line" style="--d:4">A loja origina e comunica. A Avaliza analisa e decide. Confundir isso é a origem da maior parte das dúvidas.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 21 · Renovação ==================== -->
+  <section class="slide" data-theme="light" data-chapter="4" data-chapter-name="Contrato e operação">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>04</b> Operação <s>·</s> renovação</div>
+      <h2 class="title tight" style="--d:1">Renovação: começa na loja, passa pelo locatário</h2>
+
+      <div class="flow" style="--d:2;gap:11px">
+        <span class="n n--sm col"><span>Fim da vigência se aproxima</span><small>contrato entra na fila</small></span>
+        <span class="ar">→</span>
+        <span class="n n--sm col"><span>Fila de renovação na loja</span><small>corretor ou gestor trata</small></span>
+        <span class="ar">→</span>
+        <span class="n n--sm col n--now"><span>Link ao locatário</span><small>portal de manifestação</small></span>
+        <span class="ar">→</span>
+        <div class="grid" style="gap:7px">
+          <span class="n n--sm">Aceite</span>
+          <span class="n n--sm n--warn">Contraproposta</span>
+        </div>
+        <span class="ar">→</span>
+        <span class="n n--sm col"><span>Contrato segue</span><small>renovação concluída</small></span>
+      </div>
+
+      <div class="split" style="--d:3">
+        <div class="card dash">
+          <div class="card-h">Caminho condicional</div>
+          <div class="flow tightgap">
+            <span class="n n--sm n--warn">Reajuste acima de 10%</span><span class="ar">⇢</span><span class="n n--sm n--cond">Reanálise de crédito</span>
+          </div>
+          <p>Nesse caso a renovação fica bloqueada até que crédito ou diretoria reavaliem a operação.</p>
+        </div>
+        <div class="card">
+          <div class="card-h">Status da renovação</div>
+          <div class="rail">
+            <span class="rs">prevista</span><span class="rr">→</span>
+            <span class="rs">em análise</span><span class="rr">→</span>
+            <span class="rs on">aprovada</span><span class="rr">|</span><span class="rs end">recusada</span><span class="rr">→</span>
+            <span class="rs">concluída</span>
+          </div>
+          <p>O locatário manifesta pelo link — não precisa informar CPF, porque o token já está vinculado ao contrato.</p>
+        </div>
+      </div>
+
+      <div class="story" style="--d:4">
+        <span class="st-tag">Exemplo</span>
+        <p>O contrato de Ana está a poucas semanas do fim da vigência. Ele aparece na fila da loja, Carlos envia o link e Ana responde do celular.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 22 · Danos ao imóvel ==================== -->
+  <section class="slide" data-theme="light" data-chapter="4" data-chapter-name="Contrato e operação">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>04</b> Operação <s>·</s> danos</div>
+      <h2 class="title tight" style="--d:1">Danos ao imóvel é uma jornada própria</h2>
+
+      <div class="flow" style="--d:2;gap:12px">
+        <span class="n col"><span>Vistoria e laudo</span><small>origem da ocorrência</small></span>
+        <span class="ar">→</span>
+        <span class="n col"><span>Imobiliária comunica</span><small>abertura do caso de dano</small></span>
+        <span class="ar">→</span>
+        <span class="n col n--now"><span>Caso de dano aberto</span><small>trilha própria</small></span>
+        <span class="ar">→</span>
+        <span class="n col n--cond"><span>Consulta da inadimplência</span><small>quando a análise precisa do contexto</small></span>
+      </div>
+
+      <div class="split" style="--d:3">
+        <div class="card hot">
+          <div class="card-t">Dano não é aluguel em atraso</div>
+          <p>São jornadas distintas, com origem, documentação e tratamento diferentes. Comunicar um dano não abre uma inadimplência — e vice-versa.</p>
+        </div>
+        <div class="card">
+          <div class="card-h">Por que a distinção importa</div>
+          <ul class="ilist">
+            <li>a origem é a vistoria, não o boleto</li>
+            <li>a trilha do caso muda os documentos exigidos</li>
+            <li>a análise de cobertura consulta a trilha de danos separadamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Trilha vigente, rescindida ou de danos: cada uma pede um conjunto diferente de comprovação.</p>
+    </div>
+  </section>
+  <!-- ==================== 23 · Divisor 05 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">05</div>
+        <h2 class="ch-name" style="--d:1">Inadimplência</h2>
+        <p class="ch-line" style="--d:2">A loja protocola. Você decide se a cobertura cabe — item a item, com evidência.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 24 · Visão geral IN ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> visão geral</div>
+      <h2 class="title tight" style="--d:1">Da comunicação à decisão de cobertura</h2>
+
+      <div class="flow" style="--d:2;gap:10px">
+        <span class="n n--sm col"><span>Imobiliária comunica</span><small>wizard de 3 passos</small></span>
+        <span class="ar">→</span>
+        <span class="n n--sm col"><span>Protocolo</span><small>caso aberto</small></span>
+        <span class="ar">→</span>
+        <span class="n n--sm col"><span>Fila do analista</span><small>tarefa criada</small></span>
+        <span class="ar">→</span>
+        <span class="n n--sm col n--now"><span>Análise de cobertura</span><small>checklist e lançamentos</small></span>
+        <span class="ar">→</span>
+        <div class="grid" style="gap:7px;min-width:212px">
+          <span class="n n--sm n--warn col"><span>Pendência</span><small>retorna à análise ⇢</small></span>
+          <span class="n n--sm col"><span>Aprovada ou parcial</span><small>segue ao financeiro</small></span>
+          <span class="n n--sm n--cond col"><span>Negada</span><small>encerra o mérito</small></span>
+          <span class="n n--sm n--cond col"><span>Encaminhada ao jurídico</span><small>abre exoneração</small></span>
+        </div>
+      </div>
+
+      <div class="split lean" style="--d:3">
+        <div class="card">
+          <div class="card-h">O que a loja preenche</div>
+          <div class="flow tightgap">
+            <span class="chip-s">Tipo de débito</span><span class="ar">›</span>
+            <span class="chip-s">Valores, competências e anexos</span><span class="ar">›</span>
+            <span class="chip-s on">Revisão e protocolo</span>
+          </div>
+          <p>Se o caso for aberto a partir do contrato, o vínculo já vem preenchido.</p>
+        </div>
+        <div class="card dash">
+          <div class="card-t sm">A loja protocola. A loja não analisa.</div>
+          <p>Comunicar a inadimplência é registrar o fato com evidência. Decidir se há cobertura é responsabilidade da mesa de inadimplência da Avaliza.</p>
+        </div>
+      </div>
+
+      <div class="story" style="--d:4">
+        <span class="st-tag">Exemplo fictício</span>
+        <p>Carlos, da imobiliária Horizonte, protocola o aluguel não pago do contrato AV-2026-1842, da locatária Ana Souza. A partir daqui o caso passa a viver dentro da operação Avaliza.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 25 · O que chega ao analista ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> a fila</div>
+      <h2 class="title tight" style="--d:1">O trabalho chega como tarefa, não como lista de casos</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:11px">
+          <div class="taskcard">
+            <div class="tc-top">
+              <div>
+                <div class="tc-t">Validar análise inicial</div>
+                <div class="tc-m">AV-2026-1842 · Ana Souza</div>
+                <div class="tc-next">→ próxima ação: conferir lançamentos</div>
+              </div>
+              <div class="row" style="gap:6px"><span class="pill pill-amber">Prazo D+3</span><span class="pill pill-green">Docs completos</span></div>
+            </div>
+            <hr class="rule" />
+            <div class="row" style="gap:8px 14px">
+              <span class="anno">código da tarefa</span><span class="anno">prazo (SLA)</span><span class="anno">valor pleiteado</span><span class="anno">status</span><span class="anno">próxima ação</span>
+            </div>
+          </div>
+
+          <div class="row" style="align-items:flex-start;gap:11px">
+            <span class="orb sm"></span>
+            <div class="bubble">
+              <div class="bl">Liza</div>
+              <div class="bm">Sugere o melhor caminho na fila, destaca o prazo mais crítico e sinaliza risco — a ordem não é por chegada.</div>
+            </div>
+          </div>
+
+          <div class="card dash">
+            <p><strong>Minhas Tarefas é a sua home.</strong> Não precisa vasculhar a listagem para descobrir o que trabalhar — o sistema já separou o que é seu.</p>
+            <div class="jrefs" style="margin-top:10px">
+              <a class="jref" href="../jornadas/setor-inadimplencia.html#comecar" target="_blank" rel="noopener"><b>Guia do setor</b> <small>setor-inadimplencia.html</small></a>
+              <a class="jref" href="../jornadas/jornada-cobertura.html" target="_blank" rel="noopener"><b>Analisar cobertura</b> <small>jornada</small></a>
+            </div>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="../img/jornadas/inadimplencia-tarefas.png" alt="Minhas Tarefas de inadimplência — a fila do dia ordenada por prazo" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Comece aqui · /inadimplencia/tarefas · clique no card, não na listagem</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:3">O objetivo da fila é responder uma única pergunta: o que precisa de mim agora?</p>
+    </div>
+  </section>
+
+  <!-- ==================== 26 · O que é analisado ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> a análise</div>
+      <h2 class="title tight" style="--d:1">O que é analisado dentro de um caso</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:10px">
+          <div class="grid g5" style="gap:8px">
+            <div class="card"><div class="card-t sm">Documentação</div><p>o que foi anexado e o que falta</p></div>
+            <div class="card"><div class="card-t sm">Lançamentos</div><p>cada item de débito do caso</p></div>
+            <div class="card"><div class="card-t sm">Cobertura</div><p>teto e saldo disponíveis</p></div>
+            <div class="card"><div class="card-t sm">Evidências</div><p>o que sustenta a decisão</p></div>
+            <div class="card hot"><div class="card-t sm">Decisão</div><p>item a item, não em bloco</p></div>
+          </div>
+
+          <div class="card">
+            <div class="card-h">Cada lançamento recebe uma decisão própria</div>
+            <div class="row" style="gap:7px">
+              <span class="pill pill-green">Aprovar</span>
+              <span class="pill pill-neutral">Aprovar parcialmente</span>
+              <span class="pill pill-neutral">Reprovar</span>
+              <span class="pill pill-amber">Pendenciar</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-h">O checklist obrigatório — 7 itens</div>
+            <div class="chips">
+              <span class="chip-s">cláusula Avaliza</span><span class="chip-s">assinaturas</span><span class="chip-s">e-mail</span>
+              <span class="chip-s">duplicidade</span><span class="chip-s">contrato vigente</span><span class="chip-s">VMR</span><span class="chip-s">documentos mínimos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="gap:10px">
+          <div class="card hot">
+            <div class="card-h">Conceito-chave</div>
+            <div class="card-t">VMR — Valor Máximo de Risco</div>
+            <p>É o teto de cobertura do contrato. O dossiê de cobertura mostra esse teto e o saldo por tipo de lançamento.</p>
+            <hr class="rule" />
+            <p>Quando o valor pleiteado ultrapassa o teto, o caso pode ser negado por <strong>VMR excedido</strong>. Prazo decadencial também é motivo documentado de negativa.</p>
+          </div>
+          <figure class="mock">
+            <div class="mock-frame mock-frame--shot">
+              <img src="../img/jornadas/inad-checklist.png" alt="Checklist de análise de inadimplência — 7 itens obrigatórios e lançamentos" width="1440" height="900" loading="lazy" />
+            </div>
+            <figcaption class="mock-cap">Tela de trabalho · checklist 7/7 + cada lançamento decidido</figcaption>
+          </figure>
+          <div class="jrefs">
+            <a class="jref" href="../jornadas/setor-inadimplencia.html#analisar" target="_blank" rel="noopener"><b>Como analisar</b> <small>passo a passo</small></a>
+            <a class="jref" href="../jornadas/setor-inadimplencia.html#tarefas" target="_blank" rel="noopener"><b>As 9 tarefas</b> <small>com prints</small></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Analisar não é aprovar um valor. É decidir cada lançamento com evidência e dentro do limite do contrato.</p>
+    </div>
+  </section>
+  <!-- ==================== 27 · Pendências e retorno ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> pendências</div>
+      <h2 class="title tight" style="--d:1">Quando falta informação, o caso não morre — ele volta</h2>
+
+      <div style="--d:2">
+        <div class="flow tightgap">
+          <span class="n n--sm">Análise</span><span class="ar">→</span>
+          <span class="n n--sm n--warn">Pendenciar</span><span class="ar">→</span>
+          <span class="n n--sm n--sys"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M9 14l6-6M8 12H6a4 4 0 1 1 0-8h3M16 12h2a4 4 0 1 1 0 8h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Solicitação enviada</span><span class="ar">→</span>
+          <span class="n n--sm">Resposta recebida</span><span class="ar">→</span>
+          <span class="n n--sm n--now">Retorna à análise</span>
+        </div>
+        <svg viewBox="0 0 640 44" preserveAspectRatio="none" style="width:100%;max-width:640px;height:44px;opacity:.6;margin-top:2px">
+          <defs><marker id="lpH" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#cf9a3e"/></marker></defs>
+          <path d="M 600 4 C 600 36, 36 36, 36 6" fill="none" stroke="#cf9a3e" stroke-width="1.6" stroke-dasharray="3 5" marker-end="url(#lpH)"/>
+        </svg>
+        <p class="caption" style="text-align:center;max-width:640px">o caso retorna à cobertura — a pendência não encerra nada</p>
+      </div>
+
+      <div class="grid g3" style="--d:3">
+        <div class="card">
+          <div class="card-h">Pendência ao locatário</div>
+          <p>Gera um link específico para envio de documentos — boleto, extrato, ciência do débito. Sem login, sem acesso ao ambiente interno.</p>
+        </div>
+        <div class="card">
+          <div class="card-h">Pendência à imobiliária</div>
+          <p>O caso fica marcado como pendenciado enquanto aguarda o documento ou o esclarecimento da loja.</p>
+        </div>
+        <div class="card dash">
+          <div class="card-h">Acompanhar pendências</div>
+          <p>É uma tarefa própria, com prazo próprio. Só conclui com <strong>pelo menos um registro de comunicação</strong> no log do caso.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Pendenciar é uma decisão de trabalho, não um adiamento: ela cria uma tarefa, um prazo e um responsável.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 28 · Maker-checker ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> segregação</div>
+      <h2 class="title tight" style="--d:1">Quem analisa não é quem confere — e a terceira pessoa só fecha</h2>
+
+      <div class="split lean" style="--d:2">
+        <div class="mk">
+          <div class="mk-step">
+            <span class="mk-i">1ª</span>
+            <div><div class="mk-t">Realizar a análise inicial</div><div class="mk-d">decide os lançamentos pela primeira vez</div></div>
+            <span class="mk-r"><span class="persona"><span class="av inad sm">A</span></span></span>
+          </div>
+          <div class="mk-sep"></div>
+          <div class="mk-step">
+            <span class="mk-i">2ª</span>
+            <div><div class="mk-t">Validar a análise inicial</div><div class="mk-d">confere o trabalho de quem analisou — <strong>outra pessoa</strong></div></div>
+            <span class="mk-r"><span class="persona"><span class="av inad sm">B</span></span></span>
+          </div>
+          <div class="mk-sep"></div>
+          <div class="mk-step">
+            <span class="mk-i">3ª</span>
+            <div><div class="mk-t">Confirmar a análise</div><div class="mk-d">fecha o mérito do caso</div></div>
+            <span class="mk-r"><span class="persona"><span class="av inad sm">C</span></span></span>
+          </div>
+        </div>
+
+        <div class="grid" style="gap:10px">
+          <div class="card hot">
+            <div class="card-t sm">Por que existem três camadas</div>
+            <p>Cobertura envolve dinheiro e interpretação de documento. Separar quem faz de quem confere reduz erro e cria responsabilidade rastreável em cada etapa.</p>
+          </div>
+          <div class="card">
+            <div class="card-h">A regra que sustenta tudo</div>
+            <span class="n n--sm n--cond">quem realizou a análise não valida a própria análise</span>
+            <p>O mesmo princípio aparece no crédito: quem triou não valida a própria triagem.</p>
+          </div>
+          <div class="card dash">
+            <div class="card-h">Prazos de referência</div>
+            <div class="row" style="gap:7px">
+              <span class="pill pill-neutral">realizar · D+1–2</span>
+              <span class="pill pill-neutral">validar · D+3–4</span>
+              <span class="pill pill-neutral">confirmar · D+5–6</span>
+              <span class="pill pill-neutral">pendências · D+8–14</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Não é retrabalho. É o combinado que dá confiança à decisão — e o sistema impede que a mesma pessoa faça as duas primeiras.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 29 · O gate de conclusão ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> gates</div>
+      <h2 class="title tight" style="--d:1">Por que às vezes não dá para concluir a tarefa</h2>
+      <p class="sub" style="--d:2">O botão de concluir não é uma formalidade. Ele só libera quando as condições da tarefa estão satisfeitas.</p>
+
+      <div class="split lean" style="--d:3">
+        <div class="grid" style="gap:8px">
+          <div class="gate"><span class="gi ok">✓</span><span>Checklist completo — 7 de 7</span><small>análise</small></div>
+          <div class="gate"><span class="gi no">!</span><span>Nenhum lançamento ainda “em análise”</span><small>análise</small></div>
+          <div class="gate"><span class="gi ok">✓</span><span>Ao menos um registro de comunicação no log</span><small>acompanhar pendências</small></div>
+          <div class="gate"><span class="gi no">!</span><span>Comprovante anexado</span><small>confirmar pagamento</small></div>
+        </div>
+
+        <div class="grid" style="gap:12px;align-content:start">
+          <span class="btn-locked"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.8"/></svg> Concluir tarefa</span>
+          <div class="card dash">
+            <p>Enquanto uma condição obrigatória não estiver satisfeita, o sistema mantém a conclusão bloqueada — e mostra o que está faltando.</p>
+          </div>
+          <div class="card">
+            <div class="card-h">O layout muda conforme a tarefa</div>
+            <p>O mesmo caso é apresentado de formas diferentes dependendo da tarefa ativa: analisar, validar, confirmar, acompanhar pendências ou registrar pagamento.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Não é burocracia de tela. É o sistema garantindo que a decisão está sustentada antes de seguir adiante.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 30 · Cobertura e passagem ao financeiro ==================== -->
+  <section class="slide" data-theme="light" data-chapter="5" data-chapter-name="Inadimplência">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>05</b> Inadimplência <s>·</s> desfecho</div>
+      <h2 class="title tight" style="--d:1">Cobertura decidida, o caso muda de área</h2>
+
+      <div class="flow" style="--d:2;gap:12px">
+        <div class="persona"><span class="av inad">M</span><div class="persona-t"><span class="persona-n">Mariana</span><span class="persona-r">✓ análise concluída</span></div></div>
+        <span class="ar">→</span>
+        <span class="n n--sys"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Sistema cria a próxima tarefa</span>
+        <span class="ar">→</span>
+        <div class="persona"><span class="av financeiro">D</span><div class="persona-t"><span class="persona-n">Financeiro</span><span class="persona-r">provisionar e confirmar pagamento</span></div></div>
+        <span class="ar">⇢</span>
+        <span class="n n--cond col"><span>Jurídico</span><small>quando há encaminhamento</small></span>
+      </div>
+
+      <div class="split lean" style="--d:3">
+        <div class="card">
+          <div class="card-h">Pleito × valor coberto</div>
+          <div class="bars">
+            <div class="bar-row"><span class="bar-lbl">pleito</span><span class="bar"><i class="full"></i></span></div>
+            <div class="bar-row"><span class="bar-lbl">valor coberto</span><span class="bar"><i class="part"></i></span></div>
+          </div>
+          <p style="margin-top:2px">Como cada lançamento é decidido individualmente, o valor coberto pode ser menor que o valor comunicado. Aprovação parcial é um desfecho normal.</p>
+        </div>
+        <div class="card">
+          <div class="card-h">Os estados possíveis do caso</div>
+          <div class="rail">
+            <span class="rs">em análise</span>
+            <span class="rs risk">com pendência</span>
+            <span class="rs on">aprovada</span>
+            <span class="rs on">parcialmente aprovada</span>
+            <span class="rs end">negada</span>
+            <span class="rs">paga</span>
+            <span class="rs">paga na imobiliária</span>
+          </div>
+          <hr class="rule" />
+          <p>Um caso sem cobertura encerra o mérito da inadimplência. Isso não cria automaticamente um processo jurídico — o encaminhamento é uma decisão à parte.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">A inadimplência decide o mérito. Quem executa a etapa financeira é o Financeiro.</p>
+    </div>
+  </section>
+  <!-- ==================== 31 · Divisor 06 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="6" data-chapter-name="Jurídico">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">06</div>
+        <h2 class="ch-name" style="--d:1">Jurídico</h2>
+        <p class="ch-line" style="--d:2">Três filas distintas: exoneração, EasyJur e aditivo. Não é o destino de tudo que deu errado.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 32 · Quando o jurídico entra ==================== -->
+  <section class="slide" data-theme="light" data-chapter="6" data-chapter-name="Jurídico">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>06</b> Jurídico <s>·</s> entrada</div>
+      <h2 class="title tight" style="--d:1">O Jurídico não é o destino de tudo que deu errado</h2>
+      <p class="sub" style="--d:2">Ele tem gatilhos definidos — e cada um abre um tipo diferente de trabalho.</p>
+
+      <div class="grid g2" style="--d:3;gap:9px 26px">
+        <div class="flow tightgap"><span class="n n--sm">Encaminhamento a partir da cobertura</span><span class="ar">→</span><span class="n n--sm n--now">Exoneração</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Caso já na carteira jurídica</span><span class="ar">→</span><span class="n n--sm n--now">Acompanhamento e andamentos</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Divergência apontada pela integração</span><span class="ar">→</span><span class="n n--sm n--now">Reconciliação EasyJur</span></div>
+        <div class="flow tightgap"><span class="n n--sm">Mudança formal no contrato</span><span class="ar">→</span><span class="n n--sm n--now">Aditivo contratual</span></div>
+      </div>
+
+      <div class="split" style="--d:4">
+        <div class="card hot">
+          <div class="card-t sm">Jornada própria, não etapa final</div>
+          <p>O Jurídico tem sua própria fila de tarefas, seus próprios prazos e seu próprio ciclo de status. Um caso pode nascer, correr e encerrar inteiramente dentro dele.</p>
+        </div>
+        <div class="card dash">
+          <div class="card-h">Em paralelo</div>
+          <p>Enquanto a mesa jurídica conduz o processo, a imobiliária acompanha o mesmo caso pela visão espelhada da loja — ao mesmo tempo, com informações e ações diferentes.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:5">Uma cobertura negada não vira processo automaticamente. O encaminhamento é uma decisão registrada.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 33 · Exoneração ==================== -->
+  <section class="slide" data-theme="light" data-chapter="6" data-chapter-name="Jurídico">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>06</b> Jurídico <s>·</s> exoneração</div>
+      <h2 class="title tight" style="--d:1">Exoneração: a principal jornada jurídica</h2>
+
+      <div class="flow" style="--d:2;gap:9px">
+        <span class="n n--sm col"><span>Abertura</span><small>caso entra na carteira</small></span><span class="ar">→</span>
+        <span class="n n--sm col"><span>Documentação</span><small>checklist de exoneração</small></span><span class="ar">→</span>
+        <span class="n n--sm col"><span>Notificações</span><small>locatário e imobiliária</small></span><span class="ar">→</span>
+        <span class="n n--sm col n--warn"><span>Prazos legais</span><small>semáforo em dias úteis</small></span><span class="ar">→</span>
+        <span class="n n--sm col n--cond"><span>Ajuizamento</span><small>quando aplicável</small></span><span class="ar">→</span>
+        <span class="n n--sm col n--now"><span>Desfecho</span><small>encerramento do caso</small></span>
+      </div>
+
+      <div class="split lean" style="--d:3">
+        <div class="grid" style="gap:9px">
+          <div class="card">
+            <div class="card-h">Os status agrupados por momento</div>
+            <div class="grid g2" style="gap:7px">
+              <div><div class="kicker" style="margin-bottom:5px">Em curso</div><div class="chips"><span class="chip-s">em exoneração</span><span class="chip-s">documentos pendentes</span></div></div>
+              <div><div class="kicker" style="margin-bottom:5px">Aguardando</div><div class="chips"><span class="chip-s">aguardando prazo</span><span class="chip-s">aguardando ajuizamento</span></div></div>
+              <div><div class="kicker" style="margin-bottom:5px">Judicial</div><div class="chips"><span class="chip-s">ajuizado</span><span class="chip-s">despejo em curso</span></div></div>
+              <div><div class="kicker" style="margin-bottom:5px">Desfecho</div><div class="chips"><span class="chip-s on">exonerada</span><span class="chip-s">encerrado</span><span class="chip-s">suspensa e restabelecida</span></div></div>
+            </div>
+          </div>
+          <div class="card dash">
+            <div class="card-h">O ciclo da garantia em paralelo</div>
+            <div class="rail">
+              <span class="rs">vigente</span><span class="rr">→</span>
+              <span class="rs">elegível à exoneração</span><span class="rr">→</span>
+              <span class="rs risk">em exoneração</span><span class="rr">→</span>
+              <span class="rs">aguardando prazo</span><span class="rr">→</span>
+              <span class="rs on">exonerada</span><span class="rr">|</span><span class="rs end">encerrada</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hot">
+          <div class="card-h">Prazos legais</div>
+          <div class="row" style="gap:7px">
+            <span class="pill pill-neutral">5 dias</span><span class="pill pill-neutral">15 dias</span>
+            <span class="pill pill-neutral">30 dias</span><span class="pill pill-neutral">120 dias</span>
+          </div>
+          <p>Cada prazo tem um semáforo em dias úteis — verde, amarelo, vermelho — e a Liza sinaliza quando um prazo está prestes a estourar.</p>
+          <hr class="rule" />
+          <p>O acompanhamento é feito por andamentos registrados no caso, que formam o histórico do processo.</p>
+        </div>
+      </div>
+
+      <div class="story" style="--d:4">
+        <span class="st-tag">Exemplo fictício</span>
+        <p>Um caso encaminhado pela cobertura entra na carteira jurídica. A documentação é validada, as notificações saem e o caso passa a ser acompanhado por prazo, não por data de abertura.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 34 · Tarefas e situações especiais ==================== -->
+  <section class="slide" data-theme="light" data-chapter="6" data-chapter-name="Jurídico">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>06</b> Jurídico <s>·</s> o trabalho do dia</div>
+      <h2 class="title tight" style="--d:1">Seu dia começa em Minhas Tarefas — cada card já aponta o caso certo</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:10px">
+          <div class="card">
+            <div class="card-h">Tipos de trabalho na mesa jurídica</div>
+            <div class="chips">
+              <span class="chip-s">notificar</span><span class="chip-s">solicitar documentos</span><span class="chip-s">validar documentos</span>
+              <span class="chip-s">registrar andamentos</span><span class="chip-s">acompanhar prazos</span><span class="chip-s">reconciliar divergências</span>
+              <span class="chip-s">redigir aditivo</span><span class="chip-s">acompanhar assinatura</span><span class="chip-s">bonificação</span>
+            </div>
+          </div>
+
+          <div class="grid g4" style="gap:8px">
+            <div class="card"><div class="card-t sm">Exoneração</div><p>liberar a garantia pelo caminho formal</p></div>
+            <div class="card"><div class="card-t sm">Caução</div><p>carteira própria dentro da mesa</p></div>
+            <div class="card"><div class="card-t sm">Despejo</div><p>acompanhamento da ação em curso</p></div>
+            <div class="card"><div class="card-t sm">Aditivos</div><p>mudança formal no contrato vigente</p></div>
+          </div>
+
+          <div class="card dash">
+            <div class="card-h">O ciclo de um aditivo</div>
+            <div class="flow tightgap">
+              <span class="n n--sm">Redigido</span><span class="ar">→</span>
+              <span class="n n--sm">Enviado para assinatura</span><span class="ar">→</span>
+              <span class="n n--sm">Assinado</span><span class="ar">→</span>
+              <span class="n n--sm n--cond">Ticket técnico pós-assinatura</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="img/fila-juridica.png" alt="Minhas Tarefas do jurídico — fila do dia por prazo" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Comece aqui · /juridico/tarefas · Vence hoje → Prazo crítico → No prazo</figcaption>
+        </figure>
+      </div>
+
+      <div class="jrefs" style="--d:3">
+        <a class="jref" href="../jornadas/setor-juridico.html#comecar" target="_blank" rel="noopener"><b>Guia do jurídico</b> <small>setor-juridico.html</small></a>
+        <a class="jref" href="../jornadas/jornada-exoneracao.html" target="_blank" rel="noopener"><b>Exoneração</b> <small>jornada</small></a>
+        <a class="jref" href="../jornadas/jornada-easyjur.html" target="_blank" rel="noopener"><b>EasyJur</b> <small>fila própria</small></a>
+        <a class="jref" href="../jornadas/jornada-aditivos.html" target="_blank" rel="noopener"><b>Aditivos</b> <small>não mistura com JR</small></a>
+      </div>
+      <p class="closing-line" style="--d:4">Prazo legal não espera fila. Por isso o semáforo e os alertas fazem parte do trabalho, não são um extra.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 35 · Duas visões do jurídico ==================== -->
+  <section class="slide" data-theme="light" data-chapter="6" data-chapter-name="Jurídico">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>06</b> Jurídico <s>·</s> espelhamento</div>
+      <h2 class="title tight" style="--d:1">O mesmo processo, duas responsabilidades</h2>
+
+      <div class="split" style="--d:2">
+        <div class="card hot">
+          <div class="card-h"><span>Mesa jurídica Avaliza</span><span class="tg">conduz</span></div>
+          <ul class="ilist tickd">
+            <li>trabalha a fila pessoal de tarefas</li>
+            <li>cumpre o checklist de exoneração</li>
+            <li>registra andamentos e controla prazos</li>
+            <li>reconcilia divergências da integração</li>
+            <li>redige aditivos e acompanha assinatura</li>
+            <li>conduz caução e despejo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h"><span>Visão da imobiliária</span><span class="tg cap">acompanha</span></div>
+          <ul class="ilist">
+            <li>vê o caso espelhado da própria carteira</li>
+            <li>consulta o andamento do processo</li>
+            <li>baixa documentos de apoio</li>
+            <li>não conduz o processo nem ajuíza no lugar da Avaliza</li>
+            <li>não acessa a fila interna da mesa jurídica</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" style="--d:3;align-items:center;gap:12px">
+        <span class="n n--sm n--cond">mesmo caso</span>
+        <span class="ar">·</span>
+        <span class="n n--sm n--cond">informações diferentes</span>
+        <span class="ar">·</span>
+        <span class="n n--sm n--cond">ações diferentes</span>
+      </div>
+
+      <p class="closing-line" style="--d:4">Quando alguém pergunta “por que eu vejo menos que meu colega?”, normalmente a resposta está aqui.</p>
+    </div>
+  </section>
+  <!-- ==================== 36 · Divisor 07 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="7" data-chapter-name="Financeiro">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">07</div>
+        <h2 class="ch-name" style="--d:1">Financeiro</h2>
+        <p class="ch-line" style="--d:2">Você executa o caixa. Não reabre o mérito — se o valor estiver errado, devolve para a inadimplência.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 37 · O papel do financeiro ==================== -->
+  <section class="slide" data-theme="light" data-chapter="7" data-chapter-name="Financeiro">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>07</b> Financeiro <s>·</s> papel</div>
+      <h2 class="title tight" style="--d:1">Quem decide o mérito não é quem paga</h2>
+
+      <div class="flow" style="--d:2;gap:12px">
+        <span class="n col"><span>Inadimplência decide a cobertura</span><small>mérito do caso</small></span>
+        <span class="ar">→</span>
+        <span class="n col n--now"><span>Financeiro executa</span><small>etapa financeira do caso</small></span>
+        <span class="ar">→</span>
+        <span class="n col"><span>Caso quitado</span><small>paga ou paga na imobiliária</small></span>
+      </div>
+
+      <div class="split lean" style="--d:3">
+        <div class="grid" style="gap:9px">
+          <div class="card">
+            <div class="card-h">As duas tarefas da baixa de indenização</div>
+            <div class="flow tightgap">
+              <span class="n n--sm col"><span>Provisionar pagamento</span><small>informar a data prevista</small></span>
+              <span class="ar">→</span>
+              <span class="n n--sm col n--now"><span>Confirmar pagamento</span><small>anexar comprovante</small></span>
+            </div>
+            <p>Também existe o registro de “pago na imobiliária”, quando a quitação acontece na loja.</p>
+          </div>
+          <div class="card dash">
+            <div class="card-h">O que trava o botão</div>
+            <div class="gate"><span class="gi no">!</span><span>Comprovante anexado</span><small>sem arquivo, não confirma</small></div>
+          </div>
+          <div class="jrefs">
+            <a class="jref" href="../jornadas/setor-financeiro.html" target="_blank" rel="noopener"><b>Guia do financeiro</b> <small>setor-financeiro.html</small></a>
+            <a class="jref" href="../jornadas/jornada-indenizacao.html" target="_blank" rel="noopener"><b>Baixa de indenização</b> <small>/inadimplencia</small></a>
+          </div>
+        </div>
+
+        <div class="grid" style="gap:9px">
+          <div class="card hot">
+            <div class="card-t sm">O Financeiro não reabre o mérito</div>
+            <p>Se o valor estiver errado, o caso é devolvido à inadimplência — não corrigido no caixa. A análise é de quem analisou.</p>
+          </div>
+          <div class="card">
+            <div class="card-h">Segregação de funções</div>
+            <ul class="ilist">
+              <li>o analista de inadimplência não marca o caso como pago sozinho</li>
+              <li>a confirmação do pagamento é do Financeiro</li>
+              <li>a administração atua apenas como retaguarda</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">Duas mãos diferentes em duas decisões diferentes: decidir cobrir e confirmar que foi pago.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 38 · Capacidades financeiras ==================== -->
+  <section class="slide" data-theme="light" data-chapter="7" data-chapter-name="Financeiro">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>07</b> Financeiro <s>·</s> capacidades</div>
+      <h2 class="title tight" style="--d:1">O que o Financeiro controla, organizado por finalidade</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid g2" style="gap:10px">
+          <div class="card">
+            <div class="card-h">Entrada de recursos</div>
+            <ul class="ilist"><li><strong>Recebíveis</strong> — controle do que entra</li><li><strong>Conciliação</strong> — extrato contra sistema, até o lote fechar</li></ul>
+          </div>
+          <div class="card">
+            <div class="card-h">Saída de recursos</div>
+            <ul class="ilist"><li><strong>Repasses</strong> — devidos à imobiliária</li><li><strong>Contas a pagar</strong> e <strong>fornecedores</strong></li><li><strong>Borderô</strong> — lote de pagamento</li></ul>
+          </div>
+          <div class="card hot">
+            <div class="card-h">Indenização</div>
+            <ul class="ilist"><li>provisionar o pagamento</li><li>confirmar com comprovante</li><li>fechar o caso vindo da inadimplência</li></ul>
+          </div>
+          <div class="card">
+            <div class="card-h">Parceiro</div>
+            <ul class="ilist"><li><strong>Comissionamento</strong> e nota fiscal</li><li><strong>Extrato do franqueado</strong></li><li><strong>Abatimentos</strong></li></ul>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="../img/jornadas/financeiro-recebiveis.png" alt="Fila de recebíveis do financeiro — o que ainda não entrou" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Uma das filas do caixa · /financeiro/recebiveis · o dashboard só alerta, o trabalho é aqui</figcaption>
+        </figure>
+      </div>
+
+      <div class="jrefs" style="--d:3">
+        <a class="jref" href="../jornadas/jornada-receber.html" target="_blank" rel="noopener"><b>Recebíveis</b> <small>/financeiro/recebiveis</small></a>
+        <a class="jref" href="../jornadas/jornada-conciliar.html" target="_blank" rel="noopener"><b>Conciliação</b> <small>/financeiro/conciliacao</small></a>
+        <a class="jref" href="../jornadas/jornada-repassar.html" target="_blank" rel="noopener"><b>Repasses</b> <small>/financeiro/repasses</small></a>
+        <a class="jref" href="../jornadas/jornada-comissionar.html" target="_blank" rel="noopener"><b>Comissão / NF</b> <small>/financeiro/comissionamento</small></a>
+      </div>
+      <p class="closing-line" style="--d:4">O Financeiro não é só o fim da inadimplência: é o caixa que sustenta a operação inteira.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 39 · Franqueado, extrato e comissão ==================== -->
+  <section class="slide" data-theme="light" data-chapter="7" data-chapter-name="Financeiro">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>07</b> Financeiro <s>·</s> parceiro</div>
+      <h2 class="title tight" style="--d:1">A relação financeira com a loja</h2>
+
+      <div class="flow" style="--d:2;gap:10px">
+        <span class="n n--sm col"><span>Produção da loja</span><small>contratos originados</small></span><span class="ar">→</span>
+        <span class="n n--sm col"><span>Movimentações</span><small>repasses e lançamentos</small></span><span class="ar">→</span>
+        <span class="n n--sm col n--now"><span>Extrato do franqueado</span><small>visão da loja</small></span><span class="ar">→</span>
+        <span class="n n--sm col"><span>Abatimentos</span><small>descontos aplicados</small></span><span class="ar">→</span>
+        <span class="n n--sm col"><span>Comissionamento e NF</span><small>faturamento</small></span><span class="ar">→</span>
+        <span class="n n--sm col n--cond"><span>Conferência</span><small>tratativa quando diverge</small></span>
+      </div>
+
+      <div class="grid g3" style="--d:3">
+        <div class="card">
+          <div class="card-h">Quem confere</div>
+          <p>O gestor ou franqueado confere o extrato e o comissionamento da própria loja. O Financeiro Avaliza valida do outro lado.</p>
+        </div>
+        <div class="card">
+          <div class="card-h">Repasse</div>
+          <p>O sistema calcula a elegibilidade do repasse — a emissão continua sendo uma ação do Financeiro.</p>
+        </div>
+        <div class="card dash">
+          <div class="card-h">Quem não vê</div>
+          <p>O corretor não acessa comissão nem extrato. Essa é uma visão de gestão da loja, não de operação diária.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">É aqui que a operação vira resultado para o parceiro — e por isso a conferência é uma etapa, não uma formalidade.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 40 · Divisor 08 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="8" data-chapter-name="Relacionamento e negócio">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">08</div>
+        <h2 class="ch-name" style="--d:1">Relacionamento e negócio</h2>
+        <p class="ch-line" style="--d:2">Quem traz o parceiro, quem mantém a relação e quem atende quando algo trava.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 41 · Comercial e CS ==================== -->
+  <section class="slide" data-theme="light" data-chapter="8" data-chapter-name="Relacionamento e negócio">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>08</b> Relacionamento <s>·</s> comercial e CS</div>
+      <h2 class="title tight" style="--d:1">Comercial abre a porta. CS mantém a relação</h2>
+
+      <div class="split" style="--d:2">
+        <div class="card hot">
+          <div class="card-h"><span>Comercial</span><span class="tg">dono do credenciamento</span></div>
+          <div class="flow tightgap" style="margin-bottom:2px">
+            <span class="n n--sm">Cadastro recebido</span><span class="ar">→</span>
+            <span class="n n--sm">Análise</span><span class="ar">→</span>
+            <span class="n n--sm n--now">Aprovar / rejeitar</span>
+          </div>
+          <ul class="ilist">
+            <li>trabalha a fila de onboarding</li>
+            <li>faz cadastro manual quando necessário</li>
+            <li>cuida do credenciamento e dos franqueados</li>
+            <li>acompanha o funil de ativação e a carteira</li>
+            <li>entra pelos relatórios, não por uma fila de casos</li>
+          </ul>
+          <hr class="rule" />
+          <p><strong>A aprovação é irreversível</strong> — é a decisão mais sensível da área.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span>Customer Success</span><span class="tg cap">participa, não fecha ciclos</span></div>
+          <ul class="ilist">
+            <li>acompanha o onboarding do novo parceiro</li>
+            <li>acompanha a fila de ativação dos locatários</li>
+            <li>acompanha tickets e dúvidas do parceiro</li>
+            <li>trabalha a carteira de imobiliárias</li>
+            <li>tem módulo próprio: handover, treinamentos, saúde da conta e agendamentos <span class="tg cap">capacidade</span></li>
+          </ul>
+          <hr class="rule" />
+          <p>CS observa e apoia as jornadas — mas não é dona de nenhum ciclo do grafo. Quando precisa agir, escala.</p>
+        </div>
+      </div>
+
+      <p class="caption" style="--d:3">o módulo estendido de CS existe na plataforma além do que está descrito como jornada oficial; <b>validar escopo antes do treinamento da área</b></p>
+      <p class="closing-line" style="--d:4">O Avaliza não é apenas backoffice operacional: aquisição e relacionamento também vivem dentro dele.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 42 · Atendimento e tickets ==================== -->
+  <section class="slide" data-theme="light" data-chapter="8" data-chapter-name="Relacionamento e negócio">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>08</b> Relacionamento <s>·</s> atendimento</div>
+      <h2 class="title tight" style="--d:1">Um ticket apoia a operação. Ele não substitui o fluxo</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:10px">
+          <div class="card">
+            <div class="card-h">Dúvida ou bloqueio</div>
+            <div class="flow tightgap">
+              <span class="n n--sm">Ticket aberto</span><span class="ar">→</span>
+              <span class="n n--sm n--sys"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Triagem</span><span class="ar">→</span>
+              <span class="n n--sm">Resposta</span><span class="ar">→</span>
+              <span class="n n--sm n--now">Finalizar</span>
+            </div>
+            <div class="rail" style="margin-top:4px">
+              <span class="rs">aberto</span><span class="rr">→</span>
+              <span class="rs">em andamento</span><span class="rr">→</span>
+              <span class="rs risk">aguardando resposta</span><span class="rr">→</span>
+              <span class="rs">resolvido</span><span class="rr">→</span>
+              <span class="rs on">finalizado</span>
+            </div>
+          </div>
+
+          <div class="card dash">
+            <div class="card-h">Inadimplência, crédito, jurídico…</div>
+            <div class="flow tightgap">
+              <span class="n n--sm">Evento operacional</span><span class="ar">→</span>
+              <span class="n n--sm n--now">Jornada com caso e tarefas</span>
+            </div>
+            <p>Um ticket pode <strong>apontar</strong> o contexto de uma banca ou de uma inadimplência — mas não decide nada por elas.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-h">Regras que evitam confusão</div>
+            <ul class="ilist">
+              <li>finalizar ticket é exclusivo de atendimento e administração</li>
+              <li>o ticket não decide crédito nem cobertura</li>
+              <li>a Liza sugere o setor na triagem e faz o handoff</li>
+              <li>tickets convivem com qualquer fase da operação</li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="../img/jornadas/atend-fila.png" alt="Fila de tickets de atendimento" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Ticket esclarece — não reabre crédito nem cobertura</figcaption>
+        </figure>
+      </div>
+
+      <div class="story" style="--d:3">
+        <span class="st-tag">Exemplo</span>
+        <p>Carlos tem uma dúvida sobre uma proposta reprovada. Ele abre um ticket. O ticket esclarece — mas não reabre a decisão de crédito.</p>
+      </div>
+    </div>
+  </section>
+  <!-- ==================== 43 · Divisor 09 ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="chapter">
+        <div class="ch-num" style="--d:0">09</div>
+        <h2 class="ch-name" style="--d:1">Capacidades transversais</h2>
+        <p class="ch-line" style="--d:2">O que atravessa todas as áreas: portais, Liza, integrações, governança e gestão.</p>
+        <div class="ch-rail" style="--d:3"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 44 · Portais do locatário ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> portais</div>
+      <h2 class="title tight" style="--d:1">O locatário nunca entra no ambiente dos analistas</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:11px">
+          <div class="flow" style="gap:10px">
+            <span class="n n--sm col"><span>Avaliza</span><small>a jornada precisa de uma ação</small></span><span class="ar">→</span>
+            <span class="n n--sm col n--sys"><svg class="ico ico-sys" viewBox="0 0 24 24" fill="none"><path d="M9 14l6-6M8 12H6a4 4 0 1 1 0-8h3M16 12h2a4 4 0 1 1 0 8h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Link seguro por token</span><small>gerado pelo sistema</small></span><span class="ar">→</span>
+            <span class="n n--sm col"><span>Locatário</span><small>executa a ação específica</small></span><span class="ar">→</span>
+            <span class="n n--sm col n--now"><span>Retorna à jornada</span><small>o caso continua</small></span>
+          </div>
+
+          <div class="grid g2" style="gap:9px">
+            <div class="card"><div class="card-t sm">Ativação</div><p>informar CPF, validar identidade, completar biometria e aceitar termos.</p></div>
+            <div class="card"><div class="card-t sm">Assinatura do contrato</div><p>identificar-se e assinar eletronicamente.</p></div>
+            <div class="card"><div class="card-t sm">Manifestação de renovação</div><p>aceitar ou apresentar contraproposta — o token já vem vinculado ao contrato.</p></div>
+            <div class="card"><div class="card-t sm">Envio de pendências</div><p>enviar os documentos solicitados durante a análise de cobertura.</p></div>
+          </div>
+
+          <div class="card dash">
+            <p>São links de uso único e finalidade única. Podem <strong>expirar</strong> — e quando isso acontece, a etapa volta a aparecer como pendente na operação.</p>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="../img/jornadas/inquilino-ativacao.png" alt="Portal do locatário — ativação por link, sem login no ambiente interno" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Portal do locatário · uma ação por vez, por link</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:3">Para o locatário, o Avaliza aparece como uma ação de cada vez — nunca como um sistema inteiro.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 45 · Liza: onde ela aparece ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> Liza</div>
+      <h2 class="title tight" style="--d:1">A Liza aparece onde a decisão acontece</h2>
+
+      <div class="row" style="--d:2;align-items:flex-start;gap:16px">
+        <span class="orb"></span>
+        <div class="bubble">
+          <div class="bl">Liza</div>
+          <div class="bm">Priorize AV-2026-1842. O prazo está próximo e a documentação necessária já está disponível.</div>
+        </div>
+      </div>
+
+      <div class="grid g4" style="--d:3;gap:9px">
+        <div class="card"><div class="card-t sm">Nas filas</div><p>ordena crédito e inadimplência por urgência, não por ordem de chegada.</p></div>
+        <div class="card"><div class="card-t sm">No painel</div><p>mostra o que está sob acompanhamento e sugere a próxima ação da carteira.</p></div>
+        <div class="card"><div class="card-t sm">Em Minhas Tarefas</div><p>indica o melhor caminho, destaca o prazo e sinaliza risco.</p></div>
+        <div class="card"><div class="card-t sm">No dossiê de crédito</div><p>apresenta uma recomendação para a decisão da banca.</p></div>
+        <div class="card"><div class="card-t sm">Em banners contextuais</div><p>orienta dentro de proposta, inadimplência, jurídico, financeiro e relatórios.</p></div>
+        <div class="card"><div class="card-t sm">No contrato</div><p>traz insights no detalhe do contrato.</p></div>
+        <div class="card"><div class="card-t sm">No atendimento</div><p>sugere o setor na triagem e faz o handoff para o ticket.</p></div>
+        <div class="card"><div class="card-t sm">Na jornada guiada</div><p>conduz um tour de treino pelos processos.</p></div>
+      </div>
+
+      <div class="row" style="--d:4;gap:10px;align-items:center">
+        <span class="kicker">Também no histórico</span>
+        <span class="n n--sm n--cond">eventos marcados como autoria da Liza na linha do tempo</span>
+        <span class="n n--sm n--cond">andamentos jurídicos de origem automática</span>
+        <span class="n n--sm n--cond">alerta ao estourar prazo legal</span>
+      </div>
+
+      <p class="caption" style="--d:5">imagem da Liza meramente representativa — substituir pela identidade visual definitiva</p>
+    </div>
+  </section>
+
+  <!-- ==================== 46 · Liza: autonomia e governança ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> autonomia</div>
+      <h2 class="title tight" style="--d:1">Quanta autonomia a Liza tem? Depende do domínio</h2>
+
+      <div style="--d:2">
+        <div class="kicker" style="margin-bottom:7px">Níveis de autonomia — configurados por domínio e por ação</div>
+        <div class="scale">
+          <div><b>0</b><span>apenas informa e recomenda</span></div>
+          <div><b>1</b><span>nível intermediário definido por domínio</span></div>
+          <div><b>2</b><span>nível intermediário definido por domínio</span></div>
+          <div><b>3</b><span>pode agir de forma autônoma, conforme o domínio configurado</span></div>
+        </div>
+      </div>
+
+      <div class="split" style="--d:3">
+        <div class="card">
+          <div class="card-h">Estados do motor 2.0</div>
+          <ul class="ilist">
+            <li><strong>Ligada</strong> — o motor decide em produção</li>
+            <li><strong>Sombra</strong> — roda em paralelo, sem afetar a decisão real</li>
+            <li><strong>Desligada</strong> — tudo segue para a banca ou para o caminho manual</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h">Governança</div>
+          <ul class="ilist">
+            <li>configuração por domínio, na administração interna</li>
+            <li>auditoria das conversas, com encadeamento verificável</li>
+            <li>a Liza não substitui gates humanos em nenhum nível</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:4">A autonomia da Liza é uma decisão de governança — não uma característica fixa do produto.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 47 · Sistema x Liza x pessoa ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> divisão de trabalho</div>
+      <h2 class="title tight" style="--d:1">Automação move o trabalho. A responsabilidade continua humana</h2>
+
+      <div class="grid g3" style="--d:2">
+        <div class="card">
+          <div class="card-h"><span>O sistema</span><span class="tg">automático</span></div>
+          <ul class="ilist">
+            <li>organiza filas e pools de tarefas</li>
+            <li>roteia o caso para a próxima área</li>
+            <li>calcula elegibilidades e prazos</li>
+            <li>valida regras e bloqueia gates</li>
+            <li>gera links tokenizados</li>
+            <li>sincroniza as integrações</li>
+            <li>cria a próxima tarefa quando a anterior é concluída</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-h"><span>A Liza</span><span class="tg cap">assistência</span></div>
+          <ul class="ilist">
+            <li>prioriza o que é mais urgente</li>
+            <li>contextualiza o caso aberto</li>
+            <li>recomenda um caminho</li>
+            <li>orienta durante a jornada</li>
+            <li>tria e encaminha atendimento</li>
+          </ul>
+          <hr class="rule" />
+          <p>Ela reduz o tempo até a decisão. Ela não assume a decisão.</p>
+        </div>
+        <div class="card hot">
+          <div class="card-h"><span>A pessoa</span><span class="tg">responsabilidade</span></div>
+          <ul class="ilist tickd">
+            <li>analisa e confere</li>
+            <li>valida o trabalho de outra pessoa</li>
+            <li>decide quando a função exige</li>
+            <li>assume a responsabilidade pela decisão</li>
+            <li>registra evidência</li>
+            <li>conclui os gates críticos</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Quando alguém pergunta “o sistema aprovou sozinho?”, a resposta está nesta divisão.</p>
+    </div>
+  </section>
+  <!-- ==================== 48 · Integrações ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content mid reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> integrações</div>
+      <h2 class="title tight" style="--d:1">Integrações em produção</h2>
+
+      <div class="grid g2" style="--d:2;gap:8px">
+        <div class="integ integ--lite"><div><div class="ig-t">EasyJur</div><div class="ig-d">Jurídico</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">CobMais</div><div class="ig-d">Cobrança e acordos</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">ZapSign</div><div class="ig-d">Assinatura digital</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">ClickSign</div><div class="ig-d">Assinatura ICP</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">Itaú</div><div class="ig-d">Emissão de boleto</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">Credit Gateway</div><div class="ig-d">Bureau de crédito</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">OMIE</div><div class="ig-d">NFS-e e contas a pagar</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">Receita/CNPJ</div><div class="ig-d">Onboarding</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">Brevo</div><div class="ig-d">E-mail transacional</div></div></div>
+        <div class="integ integ--lite"><div><div class="ig-t">AWS S3</div><div class="ig-d">Documentos</div></div></div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Cada integração entra quando a jornada precisa — o Avaliza mantém o fio condutor.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 49 · Governança ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> governança</div>
+      <h2 class="title tight" style="--d:1">O sistema controla como decisões críticas podem acontecer</h2>
+
+      <div class="grid g4" style="--d:2;gap:9px">
+        <div class="card"><div class="card-t sm">Cada perfil vê o que precisa</div><p>o acesso é definido pelo papel — e a imobiliária vê apenas a própria carteira.</p></div>
+        <div class="card"><div class="card-t sm">Ações críticas têm dono</div><p>finalizar ticket, confirmar pagamento e aprovar credenciamento são exclusivos de quem tem a responsabilidade.</p></div>
+        <div class="card"><div class="card-t sm">Algumas decisões são irreversíveis</div><p>aprovação de onboarding e decisão de banca não têm “desfazer”.</p></div>
+        <div class="card"><div class="card-t sm">Segregação maker-checker</div><p>quem executa não valida o próprio trabalho nas decisões sensíveis.</p></div>
+        <div class="card"><div class="card-t sm">Gates bloqueiam a conclusão</div><p>checklist, lançamentos decididos, comprovante e registro de comunicação.</p></div>
+        <div class="card"><div class="card-t sm">Tudo fica no histórico</div><p>quem fez, quando, com qual evidência — inclusive o que a Liza sugeriu.</p></div>
+        <div class="card"><div class="card-t sm">Autonomia da Liza é governada</div><p>configurada por domínio, auditada e reversível.</p></div>
+        <div class="card"><div class="card-t sm">Condições de uso</div><p>termos pendentes de aceite bloqueiam operações da imobiliária até a regularização.</p></div>
+      </div>
+
+      <p class="closing-line" style="--d:3">O Avaliza não apenas organiza o trabalho. Ele define quem pode decidir o quê — e sob quais condições.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 50 · Dashboard e relatórios ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> gestão</div>
+      <h2 class="title tight" style="--d:1">Trabalhar é diferente de acompanhar</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:10px">
+          <div class="split" style="gap:12px">
+            <div class="card hot">
+              <div class="card-h">Trabalhar</div>
+              <p>Filas, Minhas Tarefas, casos abertos, prazos individuais. É onde o analista passa o dia.</p>
+            </div>
+            <div class="card">
+              <div class="card-h">Acompanhar</div>
+              <p>Painéis, indicadores, relatórios e visão de carteira. É onde o gestor entende o todo.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-h">O que o painel reúne</div>
+            <ul class="ilist">
+              <li>indicadores da carteira de contratos</li>
+              <li>feed de atividade da operação</li>
+              <li>sugestão de próxima ação</li>
+              <li>painel da Liza com o que está sob acompanhamento</li>
+              <li>bloco do parceiro e comunicação para a imobiliária</li>
+            </ul>
+          </div>
+
+          <div class="card dash">
+            <div class="card-h">Relatórios e painéis</div>
+            <div class="chips">
+              <span class="chip-s">carteira</span><span class="chip-s">produção</span><span class="chip-s">funil de ativação</span>
+              <span class="chip-s">painéis de SLA</span><span class="chip-s">relatório gerencial jurídico</span><span class="chip-s">dashboards executivos</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="mock">
+          <div class="mock-frame mock-frame--shot">
+            <img src="../img/jornadas/gestor-dash.png" alt="Painel do gestor — a mesma operação vista de outro ângulo" width="1440" height="900" loading="lazy" />
+          </div>
+          <figcaption class="mock-cap">Painel · quem opera trabalha na fila; quem gestiona acompanha aqui</figcaption>
+        </figure>
+      </div>
+
+      <p class="closing-line" style="--d:3">Um analista trabalha na fila. Um gestor acompanha pelo painel. Os dois olham a mesma operação de ângulos diferentes.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 51 · Outras capacidades ==================== -->
+  <section class="slide" data-theme="light" data-chapter="9" data-chapter-name="Capacidades transversais">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>09</b> Transversais <s>·</s> além do fluxo principal</div>
+      <h2 class="title tight" style="--d:1">O produto é maior que o fluxo principal</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid g3" style="gap:9px">
+          <div class="dm">
+            <div class="dm-h"><b></b> Treino <span class="tg">jornada</span></div>
+            <div class="chips"><span class="chip-s">Sandbox</span><span class="chip-s">Jornada guiada</span></div>
+            <p style="font-size:11.5px;color:var(--muted);line-height:1.45">Ambiente isolado para praticar sem afetar a produção. O reset destrutivo existe apenas no sandbox.</p>
+          </div>
+          <div class="dm">
+            <div class="dm-h c2"><b></b> Crédito</div>
+            <div class="chips"><span class="chip-s">Limites do motor</span><span class="chip-s">Simulação por link</span><span class="chip-s soft">Laboratório</span></div>
+          </div>
+          <div class="dm">
+            <div class="dm-h c3"><b></b> Inadimplência</div>
+            <div class="chips"><span class="chip-s soft">Pré-cobrança</span><span class="chip-s soft">Recuperação CobMais</span><span class="chip-s soft">Quita Fácil</span><span class="chip-s">Controle operacional</span></div>
+          </div>
+          <div class="dm">
+            <div class="dm-h c5"><b></b> Financeiro</div>
+            <div class="chips"><span class="chip-s">Contas a pagar</span><span class="chip-s">Fornecedores</span><span class="chip-s">Borderô</span></div>
+          </div>
+          <div class="dm">
+            <div class="dm-h c4"><b></b> Parceiro</div>
+            <div class="chips"><span class="chip-s">Credenciamento</span><span class="chip-s">Franqueados</span><span class="chip-s soft">Beta Ops</span><span class="chip-s soft">Portal de imobiliárias</span></div>
+          </div>
+          <div class="dm">
+            <div class="dm-h c6"><b></b> Plataforma</div>
+            <div class="chips"><span class="chip-s">Configurações e acessos</span><span class="chip-s">Banners</span><span class="chip-s">Notificações</span><span class="chip-s">Busca global</span><span class="chip-s">Ajuda</span><span class="chip-s soft">Developer Hub</span></div>
+          </div>
+        </div>
+
+        <div class="grid" style="gap:10px;align-content:start">
+          <div class="card">
+            <div class="card-h">Como ler esta página</div>
+            <div class="grid" style="gap:6px">
+              <span class="tg">jornada consolidada — faz parte do fluxo oficial</span>
+              <span class="tg cap">capacidade da plataforma — existe, mas ainda não figura como jornada oficial</span>
+            </div>
+            <hr class="rule" />
+            <p>Os itens em traço pontilhado precisam ser confirmados com a operação antes de virarem conteúdo de treinamento.</p>
+          </div>
+          <div class="card dash">
+            <div class="card-h">Fora do grafo operacional</div>
+            <p>A <strong>vitrine pública de imóveis</strong> é uma capacidade de captação e marketing — não faz parte do ciclo da garantia.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Não é honesto reduzir o Avaliza a “proposta → contrato → inadimplência → financeiro”. Existe muito mais em volta.</p>
+    </div>
+  </section>
+  <!-- ==================== 52 · O Avaliza como sistema conectado ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="10" data-chapter-name="Fechamento">
+    <div class="content wide reveal">
+      <div class="eyebrow" style="--d:0"><b>10</b> Fechamento <s>·</s> o mapa completo</div>
+      <h2 class="title tight" style="--d:1">Agora o mapa está preenchido</h2>
+
+      <div class="split lean-r" style="--d:2">
+        <div class="grid" style="gap:8px">
+          <div class="flow tightgap"><span class="n n--sm">Imobiliária</span><span class="ar">→</span><span class="n n--sm">Originação</span><span class="ar">→</span><span class="n n--sm">Crédito</span><span class="ar">→</span><span class="n n--sm n--now">Contrato vigente</span></div>
+          <div class="flow tightgap" style="padding-left:22px">
+            <span class="ar">↳</span>
+            <span class="n n--sm">Renovação</span>
+            <span class="n n--sm">Danos</span>
+            <span class="n n--sm n--warn">Inadimplência</span>
+          </div>
+          <div class="flow tightgap" style="padding-left:44px">
+            <span class="ar">↳</span>
+            <span class="n n--sm">Análise de cobertura</span><span class="ar">→</span>
+            <span class="n n--sm">Decisão</span><span class="ar">→</span>
+            <span class="n n--sm">Financeiro</span>
+            <span class="ar">⇢</span>
+            <span class="n n--sm n--cond">Jurídico</span>
+          </div>
+          <div class="flow tightgap" style="padding-left:66px">
+            <span class="ar">↳</span>
+            <span class="n n--sm n--cond">Pendências do locatário</span>
+            <span class="ar ar--back">⇢ retorna à análise</span>
+          </div>
+          <hr class="rule" style="margin:6px 0" />
+          <div class="flow tightgap">
+            <span class="n n--sm">Encerramento</span>
+            <span class="n n--sm n--cond">exoneração</span>
+            <span class="n n--sm n--cond">rescisão</span>
+            <span class="n n--sm n--cond">caso pago</span>
+          </div>
+        </div>
+
+        <div class="card dash" style="align-content:start">
+          <div class="card-h">Em volta, o tempo inteiro</div>
+          <div class="grid g2" style="gap:7px">
+            <span class="chip-s">Comercial</span><span class="chip-s">CS</span>
+            <span class="chip-s">Atendimento</span><span class="chip-s">Liza</span>
+            <span class="chip-s">Portais do locatário</span><span class="chip-s">Integrações</span>
+            <span class="chip-s">Relatórios</span><span class="chip-s">Governança</span>
+          </div>
+          <hr class="rule" />
+          <p>Nenhuma dessas áreas é uma etapa do ciclo. Todas atravessam o ciclo inteiro.</p>
+        </div>
+      </div>
+
+      <p class="closing-line" style="--d:3">Uma operação conectada: o contrato guarda o histórico, as jornadas criam casos, os casos criam tarefas — e as tarefas têm dono, prazo e evidência.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 53 · Agora vamos para sua rotina ==================== -->
+  <section class="slide" data-theme="deep" data-chapter="10" data-chapter-name="Fechamento">
+    <div class="content reveal">
+      <div class="eyebrow" style="--d:0"><b>10</b> Fechamento <s>·</s> próximos passos</div>
+      <h2 class="title" style="--d:1">Agora você conhece o Avaliza como plataforma</h2>
+      <p class="lede" style="--d:2">Nos próximos treinamentos, vamos transformar este mapa na rotina do seu setor.</p>
+
+      <div class="chip-row" style="--d:3">
+        <span class="chip">Imobiliária</span>
+        <span class="chip">Crédito</span>
+        <span class="chip">Inadimplência</span>
+        <span class="chip">Jurídico</span>
+        <span class="chip">Financeiro</span>
+        <span class="chip">Comercial / CS</span>
+        <span class="chip">Atendimento</span>
+      </div>
+
+      <p class="caption" style="--d:4">nomes, contratos e situações usados nesta apresentação são fictícios · telas representadas por imagens template, a substituir pelas telas reais do produto</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="seg-track" id="segTrack" aria-hidden="true"></div>
+
+<nav class="deck-nav" aria-label="Navegação da apresentação">
+  <button class="nav-btn" id="prevBtn" aria-label="Slide anterior">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="nav-mid">
+    <span class="nav-ch" id="navCh">Abertura</span>
+    <span class="nav-count"><span id="curNum">01</span><span class="sep">/</span><span id="totalNum">53</span></span>
+  </div>
+  <button class="nav-btn" id="nextBtn" aria-label="Próximo slide">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="nav-btn" id="fsBtn" aria-label="Tela cheia">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</nav>
+
+<div class="kbd-hint">← → navegar · F tela cheia</div>
+<div class="wordmark">Avaliza 2.0</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var fsBtn   = document.getElementById('fsBtn');
+  var curNum  = document.getElementById('curNum');
+  var totalNum= document.getElementById('totalNum');
+  var navCh   = document.getElementById('navCh');
+  var segTrack= document.getElementById('segTrack');
+
+  totalNum.textContent = String(total).padStart(2,'0');
+
+  /* --- build chapter segments --- */
+  var chapters = [];
+  slides.forEach(function(s, i){
+    var key = s.getAttribute('data-chapter') || '0';
+    var name = s.getAttribute('data-chapter-name') || '';
+    var last = chapters[chapters.length - 1];
+    if(!last || last.key !== key){ chapters.push({ key:key, name:name, start:i, count:1 }); }
+    else { last.count++; }
+  });
+  chapters.forEach(function(c){
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.style.flex = String(c.count);
+    seg.title = c.name;
+    var fill = document.createElement('i');
+    seg.appendChild(fill);
+    segTrack.appendChild(seg);
+    c.el = seg; c.fill = fill;
+  });
+
+  function pad(n){ return String(n + 1).padStart(2,'0'); }
+
+  function render(){
+    slides.forEach(function(s, i){
+      if(i === current){ s.classList.add('active'); s.removeAttribute('aria-hidden'); }
+      else { s.classList.remove('active'); s.setAttribute('aria-hidden','true'); }
+    });
+    var s = slides[current];
+    navCh.textContent = s.getAttribute('data-chapter-name') || '';
+    curNum.textContent = pad(current);
+
+    chapters.forEach(function(c){
+      var end = c.start + c.count - 1;
+      if(current > end){ c.el.classList.add('done'); c.fill.style.width = '100%'; }
+      else if(current < c.start){ c.el.classList.remove('done'); c.fill.style.width = '0%'; }
+      else {
+        c.el.classList.remove('done');
+        c.fill.style.width = (((current - c.start + 1) / c.count) * 100) + '%';
+      }
+    });
+
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    try{ history.replaceState(null, '', '#' + (current + 1)); }catch(e){}
+  }
+
+  function goTo(i){ current = Math.max(0, Math.min(total - 1, i)); render(); }
+  function next(){ if(current < total - 1) goTo(current + 1); }
+  function prev(){ if(current > 0) goTo(current - 1); }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  fsBtn.addEventListener('click', function(){
+    if(!document.fullscreenElement){ document.documentElement.requestFullscreen().catch(function(){}); }
+    else { document.exitFullscreen().catch(function(){}); }
+  });
+
+  window.addEventListener('keydown', function(e){
+    if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); next(); }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); prev(); }
+    else if(e.key === 'Home'){ e.preventDefault(); goTo(0); }
+    else if(e.key === 'End'){ e.preventDefault(); goTo(total - 1); }
+    else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); fsBtn.click(); }
+  });
+
+  var tsx = null, tsy = null;
+  window.addEventListener('touchstart', function(e){
+    tsx = e.changedTouches[0].clientX; tsy = e.changedTouches[0].clientY;
+  }, {passive:true});
+  window.addEventListener('touchend', function(e){
+    if(tsx === null) return;
+    var dx = e.changedTouches[0].clientX - tsx;
+    var dy = e.changedTouches[0].clientY - tsy;
+    if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)){ dx < 0 ? next() : prev(); }
+    tsx = null; tsy = null;
+  }, {passive:true});
+
+  var start = parseInt((location.hash || '').replace('#',''), 10);
+  if(!isNaN(start) && start >= 1 && start <= total){ current = start - 1; }
+  render();
+})();
+</script>
+</body>
+</html>

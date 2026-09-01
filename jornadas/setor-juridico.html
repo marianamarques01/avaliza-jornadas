@@ -15,6 +15,7 @@
     <nav>
       <a href="index.html" class="">Grafo</a>
       <a href="setores.html" class="active">Setores</a>
+      <a href="../apresentacao/index-inad-juridico.html">Treinamento</a>
       <a href="capacidades.html" class="">Capacidades</a>
     </nav>
   </header>
@@ -68,7 +69,7 @@
 
       <section id="comecar">
         <h2 class="ops-h2">Minhas Tarefas</h2>
-        <p class="ops-h2-sub">Sua home operacional. No menu: Painel, Minhas Tarefas ★, Contratos em exoneração, Aditivos, Divergências EasyJur, Documentos de apoio e Bonificação.</p>
+        <p class="ops-h2-sub">Sua home operacional. No menu: Painel, Minhas Tarefas ★, Contratos em exoneração, Controle de caução, Ações de despejo, Aditivos, Divergências EasyJur, Documentos de apoio, Bonificação e Relatório gerencial.</p>
 
         <div class="ops-chips"><span class="ops-chip">Tela de trabalho</span><span class="ops-chip ops-chip--navy">Próxima ação sugerida</span><span class="ops-chip ops-chip--amber">Ordenada por prazo</span></div>
 
@@ -200,7 +201,7 @@
 
       <section id="abas">
         <h2 class="ops-h2">Abas do detalhe do caso</h2>
-        <p class="ops-h2-sub">As cinco abas ficam abaixo do cabeçalho. A imobiliária não vê Prazos legais; lá Anexos aparece como Documentos. O desfecho não é uma aba — quando o prazo de 30 dias encerra, o botão fica no cabeçalho.</p>
+        <p class="ops-h2-sub">Seis abas para a analista interna (cinco na visão imobiliária). Ficam abaixo do cabeçalho. A imobiliária não vê Prazos legais nem Tickets; lá Anexos aparece como Documentos. O desfecho não é uma aba — quando o prazo de 30 dias encerra, o botão fica no cabeçalho.</p>
 
         <figure class="journey-browser ops-shot">
         <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/JR-0024</div>
@@ -243,6 +244,11 @@
                 <td>Histórico de envios ao locatário e à imobiliária (destinatário, documento, data, status). Enviar o kit não é nesta aba — é pelos botões do cabeçalho.</td>
                 <td>Sempre. Na loja, só o que a imobiliária recebeu.</td>
               </tr>
+              <tr>
+                <td>Tickets</td>
+                <td>Chamados de atendimento vinculados ao contrato do caso. Consulta rápida sem sair do dossiê; abrir novo ticket leva ao Atendimento.</td>
+                <td>Só analista interno, quando tickets nativos estão ativos. Badge = quantidade em aberto.</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -268,7 +274,7 @@
 
         <article class="ops-block">
           <h3>Como usar as abas no dia a dia</h3>
-          <dl class="ops-dl-grid"><div><dt>Comece em Detalhes</dt><dd>Leia a situação, o próximo passo e as travas. Se o prazo de 30 dias já esgotou, o desfecho está no cabeçalho — não numa aba.</dd></div><div><dt>Registre em Andamentos</dt><dd>Cada evento do processo fica na timeline. O que a loja não deve ver, oculte.</dd></div><div><dt>Anexos no dossiê</dt><dd>Petição, AR e aditivo entram aqui. Anexe o que ainda falta e recuse o que estiver fora do critério.</dd></div><div><dt>Prazos legais</dt><dd>É aqui que o prazo da exoneração aparece com início, limite e restante.</dd></div><div><dt>Notificações</dt><dd>Confira se locatário e imobiliária receberam o kit. Enviar é pelos botões do caso.</dd></div><div><dt>Desfecho</dt><dd>Prazo encerrado → Registrar desfecho: garantia restabelecida (locatário regularizou) ou exonerada. Irreversível.</dd></div></dl>
+          <dl class="ops-dl-grid"><div><dt>Comece em Detalhes</dt><dd>Leia a situação, o próximo passo e as travas. Se o prazo de 30 dias já esgotou, o desfecho está no cabeçalho — não numa aba.</dd></div><div><dt>Registre em Andamentos</dt><dd>Cada evento do processo fica na timeline. O que a loja não deve ver, oculte.</dd></div><div><dt>Anexos no dossiê</dt><dd>Petição, AR e aditivo entram aqui. Anexe o que ainda falta e recuse o que estiver fora do critério.</dd></div><div><dt>Prazos legais</dt><dd>É aqui que o prazo da exoneração aparece com início, limite e restante.</dd></div><div><dt>Notificações</dt><dd>Confira se locatário e imobiliária receberam o kit. Enviar é pelos botões do caso.</dd></div><div><dt>Tickets</dt><dd>Veja chamados do contrato. Para fila completa ou abrir ticket, use Atendimento no menu lateral.</dd></div><div><dt>Desfecho</dt><dd>Prazo encerrado → Registrar desfecho: garantia restabelecida (locatário regularizou) ou exonerada. Irreversível.</dd></div></dl>
         </article>
       </section>
 
@@ -303,6 +309,13 @@
         </article>
 
         <article class="ops-block ops-block--task">
+          <div class="ops-chips"><span class="ops-chip">Sua tarefa</span><span class="ops-chip ops-chip--navy">Despesa</span></div>
+          <h3>Registrar despesa jurídica</h3>
+          <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso já está ajuizado ou em ação de despejo e há custas, honorários ou caução judicial a pagar.</dd></div><div><dt>O que fazer</dt><dd>No caso, abra Despesas jurídicas e escolha o tipo (custas processuais, honorários ou caução judicial). O wizard abre na Inadimplência com aprovação automática — não passa pelas três conferências.</dd></div><div><dt>Para onde o card leva</dt><dd>Caso jurídico → painel Despesas jurídicas → wizard IN2.</dd></div><div><dt>O que acontece depois</dt><dd>O comunicado fica aprovado automaticamente e segue direto ao Financeiro provisionar e confirmar pagamento.</dd></div></dl>
+          <p class="ops-validate">Você registra a despesa; a Inadimplência não reanalisa mérito. O Financeiro paga com base no comunicado auto-aprovado.</p>
+        </article>
+
+        <article class="ops-block ops-block--task">
           <div class="ops-chips"><span class="ops-chip ops-chip--amber">Sua fila · Financeiro paga</span></div>
           <h3>Provisionar pagamento da exoneração</h3>
           <dl class="ops-dl-grid"><div><dt>Quando aparece</dt><dd>O caso já está na via de exoneração e há valores a provisionar.</dd></div><div><dt>O que o card faz</dt><dd>Abre o caso na aba Detalhes, para você ver o contexto.</dd></div><div><dt>Quem informa data e comprovante</dt><dd>O <strong>Financeiro</strong>. Você não liquida NF nem marca o pagamento da indenização.</dd></div></dl>
@@ -310,7 +323,7 @@
         </article>
 
         <p class="ops-group-label">Fora da fila de tarefas — telas próprias no menu</p>
-        <p class="ops-note">Divergências EasyJur e Bonificação não aparecem como card de Minhas Tarefas. Você as abre pelo menu. Tickets do setor ficam em Atendimento.</p>
+        <p class="ops-note">Divergências EasyJur e Bonificação não aparecem como card de Minhas Tarefas. Você as abre pelo menu. Chamados do setor (tickets) ficam em <strong>Atendimento</strong> — a aba Tickets no caso JR só mostra o que já está vinculado ao contrato.</p>
       </section>
 
       <section id="decidir">
@@ -664,7 +677,7 @@
         <article class="ops-block">
           <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
           <h3>Contratos em exoneração</h3>
-          <p>Carteira completa. Não é a fila do dia — abrir um caso daqui é consulta, a menos que você já tenha tarefa nele.</p>
+          <p>Carteira completa. Não é a fila do dia — abrir um caso daqui é consulta, a menos que você já tenha tarefa nele. No menu, fica <strong>depois</strong> de Minhas Tarefas ★.</p>
           <p class="ops-route">Jurídico → Contratos em exoneração</p>
           <figure class="journey-browser ops-shot">
         <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico</div>
@@ -674,14 +687,58 @@
         </article>
 
         <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta · cross-setor</span></div>
+          <h3>Atendimento</h3>
+          <p>Fila de tickets do setor. Use para abrir chamado, responder imobiliária ou vincular contexto ao contrato. No detalhe do caso JR, a aba Tickets mostra só o recorte vinculado.</p>
+          <p class="ops-route">Menu lateral → Atendimento</p>
+        </article>
+
+        <article class="ops-block">
           <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
           <h3>Painel</h3>
           <p>Números do dia (volume, prazos, produção). Não substitui a fila: o próximo caso continua em Minhas Tarefas.</p>
+          <p class="ops-note">Volume e prazos do dia — não é o relatório mensal para diretoria. Para extrato consolidado (exonerados, rescindidos, acordos, despejo), use Relatório gerencial.</p>
           <p class="ops-route">Jurídico → Painel</p>
           <figure class="journey-browser ops-shot">
         <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/dashboard</div>
         <img src="../img/jornadas/juridico-painel.png" alt="Painel do setor" loading="lazy">
         <figcaption>Painel do setor</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Controle de caução</h3>
+          <p>Fila própria com três estados por contrato: <strong>Caução recolhida</strong> → <strong>Alvará emitido</strong> → <strong>Valores recebidos</strong>. KPIs no topo; cada linha abre o caso JR. No detalhe do caso, o painel Controle de caução repete o estado e permite avançar.</p>
+          <p class="ops-route">Jurídico → Controle de caução</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/caucao</div>
+        <img src="../img/jornadas/juridico-caucao.png" alt="Controle de caução — estados e total consolidado" loading="lazy">
+        <figcaption>Controle de caução — estados e total consolidado</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Ações de despejo</h3>
+          <p>Pipeline consolidado em três colunas: <strong>Elegíveis a ajuizamento</strong>, <strong>Em ação</strong> e <strong>Encerrados</strong>. Substitui a planilha de acompanhamento — cada card leva ao caso. Não substitui Minhas Tarefas para executar o trabalho do dia.</p>
+          <p class="ops-route">Jurídico → Ações de despejo</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/juridico/despejo</div>
+        <img src="../img/jornadas/juridico-despejo.png" alt="Pipeline de despejo — elegíveis, em ação e encerrados" loading="lazy">
+        <figcaption>Pipeline de despejo — elegíveis, em ação e encerrados</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta · gestão</span></div>
+          <h3>Relatório gerencial</h3>
+          <p>Extrato mensal/trimestral: KPIs (exonerados, rescindidos, acordos extrajudiciais, despejo em curso) e tabela detalhada por caso (prazo exoneração→rescisão, dias até chaves, valores). Filtro por mês atual, mês anterior ou trimestre. Consulta — não avança caso.</p>
+          <p class="ops-route">Jurídico → Relatório gerencial</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/relatorios/juridico</div>
+        <img src="../img/jornadas/juridico-relatorio.png" alt="Relatório gerencial jurídico — KPIs e linhas por período" loading="lazy">
+        <figcaption>Relatório gerencial jurídico — KPIs e linhas por período</figcaption>
       </figure>
         </article>
 
@@ -781,7 +838,7 @@
                 </tr>
                 <tr>
                   <td>5. Ferramentas e governança</td>
-                  <td>Aditivos, EasyJur e o certificado ao concluir.</td>
+                  <td>Caução, pipeline de despejo, relatório gerencial, aditivos, EasyJur e o certificado ao concluir.</td>
                 </tr>
               </tbody>
             </table>
@@ -801,7 +858,7 @@
           </article>
           <article class="ops-team">
             <h3>Financeiro</h3>
-            <p>Paga a indenização já aprovada e liquida a bonificação que você conferiu. Também provisiona valores da exoneração.</p>
+            <p>Paga a indenização já aprovada, liquida a bonificação que você conferiu e paga despesas jurídicas (custas, honorários, caução judicial) após você registrar no caso — essas entram na Inadimplência com aprovação automática.</p>
             <p>Status “Aprovada” na Inadimplência não significa pagamento efetuado — confira antes de ajuizar.</p>
           </article>
           <article class="ops-team">
@@ -897,6 +954,12 @@
           <h3>A loja pergunta por Minhas Tarefas</h3>
           <p>Essa tela é da Avaliza. A imobiliária acompanha em Minha imobiliária → Jurídico.</p>
           <p><strong>O que fazer.</strong> Oriente o URL certo. Não compartilhe a sua fila.</p>
+        </article>
+
+        <article class="ops-exception">
+          <h3>Custas ou honorários sem trilha de análise</h3>
+          <p>Despesas jurídicas (custas processuais, honorários, caução judicial) não passam pelas três conferências da Inadimplência — o sistema aprova automaticamente ao registrar pelo caso JR.</p>
+          <p><strong>O que fazer.</strong> Registre pelo painel Despesas jurídicas no caso ajuizado. Se o valor estiver errado, corrija antes de concluir o wizard — o Financeiro paga o comunicado aprovado.</p>
         </article>
       </section>
 

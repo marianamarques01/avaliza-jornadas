@@ -15,6 +15,7 @@
     <nav>
       <a href="index.html" class="">Grafo</a>
       <a href="setores.html" class="active">Setores</a>
+      <a href="../apresentacao/index-inad-juridico.html">Treinamento</a>
       <a href="capacidades.html" class="">Capacidades</a>
     </nav>
   </header>
@@ -475,6 +476,29 @@
         </div>
 
         <p class="ops-note">Não há um botão “Encaminhar ao Jurídico” na análise dos lançamentos. O Jurídico entra depois, quando o caso pede via de exoneração — em geral após a indenização, se o locatário não regularizou. Encaminhar não é conduzir o processo.</p>
+
+        <p class="ops-group-label">Despesas jurídicas (auto-aprovadas)</p>
+        <p class="ops-note">Custas processuais, honorários advocatícios e caução judicial <strong>não passam</strong> pelas três conferências. O Jurídico registra pelo caso ajuizado; o wizard IN2 abre com o tipo pré-selecionado e o comunicado segue aprovado automaticamente para o Financeiro.</p>
+
+        <div class="ops-decision-grid">
+          <article class="ops-decision">
+            <h3>Receber comunicado do Jurídico</h3>
+            <dl>
+              <div>
+                <dt>Quando acontece</dt>
+                <dd>O analista jurídico registrou custas, honorários ou caução judicial a partir de um caso JR ajuizado ou em despejo.</dd>
+              </div>
+              <div>
+                <dt>O que você vê</dt>
+                <dd>Comunicado na Inadimplência com cobertura jurídica auto-aprovada — sem tarefa Realizar/Validar/Confirmar análise.</dd>
+              </div>
+              <div>
+                <dt>O que acontece depois</dt>
+                <dd>O Financeiro provisiona e confirma o pagamento. Você só consulta se precisar de contexto.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <section id="depois">
@@ -639,6 +663,18 @@
 
         <article class="ops-block">
           <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
+          <h3>Fila de Análise</h3>
+          <p>Board de cobertura: KPIs, Melhor caminho da Liza e cards por trilha (vigente vs rescindida/danos). Cada card leva ao caso. O analista trabalha por Minhas Tarefas — esta tela é recorte/auditoria, não substitui a fila do dia.</p>
+          <p class="ops-route">Inadimplência → Fila de Análise (admin/auditoria)</p>
+          <figure class="journey-browser ops-shot">
+        <div class="journey-browser-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i> avaliza.app/inadimplencia/analise</div>
+        <img src="../img/jornadas/inad-analise.png" alt="Fila de Análise — board de cobertura" loading="lazy">
+        <figcaption>Fila de Análise — board de cobertura</figcaption>
+      </figure>
+        </article>
+
+        <article class="ops-block">
+          <div class="ops-chips"><span class="ops-chip ops-chip--navy">Consulta</span></div>
           <h3>Histórico</h3>
           <p>Casos já encerrados (pago, negado, cancelado, pago na imobiliária). Use para consultar o que já saiu da fila.</p>
           <p class="ops-route">Inadimplência → Histórico</p>
@@ -727,7 +763,7 @@
                 </tr>
                 <tr>
                   <td>5. Histórico e handoffs</td>
-                  <td>Histórico, controle operacional e quando o Jurídico assume.</td>
+                  <td>Histórico, controle operacional, despesas jurídicas auto-aprovadas e quando o Jurídico assume.</td>
                 </tr>
               </tbody>
             </table>
@@ -752,8 +788,8 @@
           </article>
           <article class="ops-team">
             <h3>Jurídico</h3>
-            <p>Entra quando o caso pede via de exoneração. Conduz checklist e andamentos. Não é a sua mesa.</p>
-            <p>Encaminhar o caso não é fazer a exoneração.</p>
+            <p>Entra quando o caso pede via de exoneração. Conduz checklist e andamentos. Registra despesas processuais (custas, honorários, caução) — aprovadas automaticamente na sua fila.</p>
+            <p>Encaminhar o caso não é fazer a exoneração nem analisar cobertura de aluguel.</p>
           </article>
           <article class="ops-team">
             <h3>Locatário (portal)</h3>
